@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SistemaAeR - Barbara Lana</title>
+  <link rel="stylesheet" href="css/financeiro.css"/>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+</head>
+<body>
+  <!-- Header -->
+  <header class="topbar">
+    <div class="logo-title">
+      <span class="menu-icon material-icons">menu</span>
+      <h2>SistemaAeR - Barbara Lana</h2>
+    </div>
+
+    <div class="search-container">
+      <input type="text" placeholder="Procurar Financeiro" />
+    </div>
+
+    <div class="actions">
+      <div class="user-dropdown">
+        <div class="user-icon" id="userToggle">B</div>
+        <div class="dropdown-menu" id="userMenu">
+          <div class="user-email">barbaralc80@gmail.com</div>
+          <div class="dropdown-item" onclick="logout()">
+            <span class="material-icons">logout</span> Sair
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <nav>
+        <ul>
+          <li data-tooltip="Detalhe"><span class="material-icons">info</span> <span>Detalhe</span></li>
+          <li data-tooltip="Convênios"><span class="material-icons">handshake</span> <span>Convênios</span></li>
+          <li data-tooltip="Filtrar Idades"><span class="material-icons">filter_alt</span> <span>Filtrar Idades</span></li>
+          <li data-tooltip="Pacientes"><span class="material-icons">group</span> <span>Pacientes</span></li>
+          <li data-tooltip="Agenda"><span class="material-icons">calendar_today</span> <span>Agenda</span></li>
+          <li data-tooltip="Agendamentos"><span class="material-icons">event</span> <span>Agendamentos</span></li>
+          <li data-tooltip="Aniver. do dia"><span class="material-icons">cake</span> <span>Aniver. do dia</span></li>
+          <li data-tooltip="Serviços"><span class="material-icons">home_repair_service</span> <span>Serviços</span></li>
+          <li class="active" data-tooltip="Financeiro"><span class="material-icons">attach_money</span> <span>Financeiro</span></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Main -->
+    <main class="main-content">
+      <div class="financial-summary">
+        <div class="summary-item">
+          <label>DATA INÍCIO</label>
+          <input type="date" id="start-date" value="2025-10-01" />
+        </div>
+        <div class="summary-item">
+          <label>DATA FINAL</label>
+          <input type="date" id="end-date" value="2025-10-31" />
+        </div>
+        <div class="summary-item">
+          <label>Agendado</label>
+          <span>R$0,00</span>
+        </div>
+        <div class="summary-item">
+          <label>Atendido</label>
+          <span>R$1.312,45</span>
+        </div>
+        <div class="summary-item">
+          <label>N Desmarc.</label>
+          <span>R$341,48</span>
+        </div>
+        <div class="summary-item total">
+          <label>Total s/ Desc.</label>
+          <span>R$1.653,93</span>
+        </div>
+        <div class="summary-item">
+          <label>CLÍNICA</label>
+          <span>% 45</span>
+        </div>
+        <div class="summary-item">
+          <label>IMPOSTOS</label>
+          <span>% 6</span>
+        </div>
+        <div class="summary-item">
+          <label>Receber</label>
+          <span>R$865,01</span>
+        </div>
+        <button class="delete-btn">Excluir</button>
+      </div>
+      <div class="financial-report">
+        <h3>RELATÓRIO GERAL</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>DATA CONSULTA</th>
+              <th>NOME</th>
+              <th>CONVÊNIO</th>
+              <th>CONSULTA</th>
+              <th>FREQUÊNCIA</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1/10/2025</td>
+              <td>Kessyla Luiza Dutra dos Santos</td>
+              <td>USISAÚDE</td>
+              <td>Sessão de 30 min</td>
+              <td>SEMANAL</td>
+            </tr>
+            <tr>
+              <td>1/10/2025</td>
+              <td>Marco Antônio Oliveira Almeida</td>
+              <td>UNIMED</td>
+              <td>Sessão de 30 min</td>
+              <td>SEMANAL</td>
+            </tr>
+            <tr>
+            <tr>
+              <td>1/10/2025</td>
+              <td>Maressa Vitória Sales Figueiredo</td>
+              <td>USISAÚDE</td>
+              <td>Sessão de 30 min</td>
+              <td>QUINZENAL</td>
+            </tr>
+            <tr>
+              <td>1/10/2025</td>
+              <td>Ana Darmstadter Stokler</td>
+              <td>USISAÚDE</td>
+              <td>Sessão de 30 min</td>
+              <td>SEMANAL</td>
+            </tr>
+            <tr>
+              <td>1/10/2025</td>
+              <td>Leandro Faria Melo</td>
+              <td>USISAÚDE</td>
+              <td>Sessão de 30 min</td>
+              <td>SEMANAL</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/financeiro.js"></script>
+</body>
+</html>

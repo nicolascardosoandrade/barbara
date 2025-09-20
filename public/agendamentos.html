@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SistemaAeR - Barbara Lana</title>
+  <link rel="stylesheet" href="css/agendamentos.css"/>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+</head>
+<body>
+  <!-- Header -->
+  <header class="topbar">
+    <div class="logo-title">
+      <span class="menu-icon material-icons">menu</span>
+      <h2>SistemaAeR - Barbara Lana</h2>
+    </div>
+
+    <div class="search-container">
+      <input type="text" placeholder="Procurar Agendamentos" />
+    </div>
+
+    <div class="actions">
+      <div class="user-dropdown">
+        <div class="user-icon" id="userToggle">B</div>
+        <div class="dropdown-menu" id="userMenu">
+          <div class="user-email">barbaralc80@gmail.com</div>
+          <div class="dropdown-item" onclick="logout()">
+            <span class="material-icons">logout</span> Sair
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <nav>
+        <ul>
+          <li data-tooltip="Detalhe"><span class="material-icons">info</span> <span>Detalhe</span></li>
+          <li data-tooltip="Convênios"><span class="material-icons">handshake</span> <span>Convênios</span></li>
+          <li data-tooltip="Filtrar Idades"><span class="material-icons">filter_alt</span> <span>Filtrar Idades</span></li>
+          <li data-tooltip="Pacientes"><span class="material-icons">group</span> <span>Pacientes</span></li>
+          <li data-tooltip="Agenda"><span class="material-icons">calendar_today</span> <span>Agenda</span></li>
+          <li class="active" data-tooltip="Agendamentos"><span class="material-icons">event</span> <span>Agendamentos</span></li>
+          <li data-tooltip="Aniver. do dia"><span class="material-icons">cake</span> <span>Aniver. do dia</span></li>
+          <li data-tooltip="Serviços"><span class="material-icons">home_repair_service</span> <span>Serviços</span></li>
+          <li data-tooltip="Financeiro"><span class="material-icons">attach_money</span> <span>Financeiro</span></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Main -->
+    <main class="main-content">
+      <table>
+        <thead>
+          <tr>
+            <th>DATA CONSULTA</th>
+            <th>NOME</th>
+            <th>INÍCIO</th>
+            <th>FIM</th>
+            <th>CONVÊNIO</th>
+            <th>CONSULTA</th>
+            <th>FREQUÊNCIA</th>
+            <th>OBS.</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1/4/2024</td>
+            <td>Márcio da Silva Rodrigues</td>
+            <td>09:00</td>
+            <td>09:30</td>
+            <td>USISAÚDE</td>
+            <td>Sessão de 30 min</td>
+            <td>SEMANAL</td>
+            <td><span class="material-icons">edit</span></td>
+          </tr>
+          <tr>
+            <td>1/4/2024</td>
+            <td>João Gabriel Domingos Rodrigues Mãe Aline</td>
+            <td>09:30</td>
+            <td>10:00</td>
+            <td>USISAÚDE</td>
+            <td>Sessão de 30 min</td>
+            <td>SEMANAL</td>
+            <td><span class="material-icons">edit</span></td>
+          </tr>
+          <tr>
+            <td>1/4/2024</td>
+            <td>Isadora Ferreira de Oliveira Mãe Renata</td>
+            <td>10:00</td>
+            <td>10:30</td>
+            <td>USISAÚDE</td>
+            <td>Sessão de 30 min</td>
+            <td>SEMANAL</td>
+            <td><span class="material-icons">edit</span></td>
+          </tr>
+          <tr>
+            <td>1/4/2024</td>
+            <td>Send Lopes Carvalho</td>
+            <td>10:30</td>
+            <td>11:00</td>
+            <td>USISAÚDE</td>
+            <td>Sessão de 30 min</td>
+            <td>SEMANAL</td>
+            <td><span class="material-icons">edit</span></td>
+          </tr>
+          <tr>
+            <td>1/4/2024</td>
+            <td>Helena Lima Soares Rocha Mãe Isabely</td>
+            <td>11:00</td>
+            <td>11:30</td>
+            <td>CENIBRA</td>
+            <td>Sessão de 30 min</td>
+            <td>SEMANAL</td>
+            <td><span class="material-icons">edit</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <button class="add-appointment">+ ADICIONAR</button>
+    </main>
+  </div>
+
+  <script src="js/agendamentos.js"></script>
+</body>
+</html>
