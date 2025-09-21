@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
   document.querySelectorAll(".sidebar nav ul li").forEach((item, index) => {
     item.addEventListener("click", () => {
       switch (index) {
-        case 0: window.location.href = "index"; break;
+        case 0: window.location.href = "index.html"; break;
         case 1: window.location.href = "convenios.html"; break;
         case 2: window.location.href = "filtrar_idades.html"; break;
         case 3: window.location.href = "pacientes.html"; break;
