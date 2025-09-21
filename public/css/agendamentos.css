@@ -118,6 +118,17 @@ body {
   min-height: calc(100vh - 60px);
 }
 
+.main-content h2 {
+  margin-bottom: 10px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
 table {
   width: 100%;
   border-collapse: collapse;
@@ -141,7 +152,7 @@ table td .material-icons {
   color: #5e2d79;
 }
 
-.add-appointment {
+.add-appointment, .export-excel {
   background-color: #5e2d79;
   color: white;
   border: none;
@@ -151,7 +162,19 @@ table td .material-icons {
   font-size: 14px;
 }
 
-.add-appointment:hover {
+.export-excel {
+  padding: 10px;
+  min-width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.export-excel .material-icons {
+  font-size: 20px;
+}
+
+.add-appointment:hover, .export-excel:hover {
   background-color: #4a2261;
 }
 

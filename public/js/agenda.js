@@ -2,14 +2,20 @@ document.addEventListener('DOMContentLoaded', function() {
   // === CONFIGURAÇÃO DO FULLCALENDAR ===
   var calendarEl = document.getElementById('calendar');
   var calendar = new FullCalendar.Calendar(calendarEl, {
-    initialView: 'timeGridWeek',
-    slotMinTime: '12:00:00',
-    slotMaxTime: '23:00:00',
+    initialView: window.innerWidth < 768 ? 'timeGridDay' : 'timeGridWeek',
+    locale: 'pt-br',
+    timeZone: 'America/Sao_Paulo', // Brasília time (UTC-3)
+    slotMinTime: '00:00:00', // Start at midnight
+    slotMaxTime: '24:00:00', // End at 23:59
     allDaySlot: false,
-    slotDuration: '01:00:00',
-    slotLabelInterval: '01:00',
+    slotDuration: '00:30:00', // 30-minute intervals
+    slotLabelInterval: '00:30:00',
+    slotLabelFormat: {
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: false // 24-hour format
+    },
     height: 'auto',
-
     events: [
       { title: 'LAYLA PEREIRA DA SILVA', start: '2025-09-14T15:00:00', className: 'green' },
       { title: 'ALMOÇO', start: '2025-09-14T16:00:00', className: 'blue' },
@@ -58,7 +64,6 @@ document.addEventListener('DOMContentLoaded', function() {
       { title: 'THALISSON AVELINO PERES', start: '2025-09-18T23:00:00', className: 'green' },
       { title: 'ALMOÇO', start: '2025-09-19T15:00:00', className: 'blue' }
     ],
-
     eventDidMount: function(info) {
       if (info.event.classNames.includes('green')) {
         info.el.style.backgroundColor = 'green';
@@ -68,16 +73,14 @@ document.addEventListener('DOMContentLoaded', function() {
         info.el.style.backgroundColor = '#0366d6';
       }
     },
-
     customButtons: {
       addEventButton: {
-        text: '+ ADICIONAR',
+        text: '+ Adicionar',
         click: function() {
           alert('Adicionar evento');
         }
       }
     },
-
     headerToolbar: {
       left: 'prev',
       center: 'title',
@@ -110,6 +113,23 @@ document.addEventListener('DOMContentLoaded', function() {
         case 8: window.location.href = "financeiro.html"; break;
       }
     });
+  });
+
+  // === MUDANÇA DE VISUALIZAÇÃO (DIA, SEMANA, MÊS) ===
+  document.querySelectorAll('.view-btn').forEach(button => {
+    button.addEventListener('click', () => {
+      const view = button.getAttribute('data-view');
+      calendar.changeView(view);
+    });
+  });
+
+  // === RESPONSIVIDADE DO CALENDÁRIO ===
+  window.addEventListener('resize', () => {
+    if (window.innerWidth < 768 && calendar.getOption('initialView') !== 'timeGridDay') {
+      calendar.changeView('timeGridDay');
+    } else if (window.innerWidth >= 768 && calendar.getOption('initialView') !== 'timeGridWeek') {
+      calendar.changeView('timeGridWeek');
+    }
   });
 });
 

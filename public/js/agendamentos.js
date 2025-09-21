@@ -43,4 +43,33 @@ document.addEventListener('DOMContentLoaded', function() {
   document.querySelector('.add-appointment').addEventListener('click', function() {
     alert('Adicionar agendamento');
   });
+
+  function exportToExcel() {
+    let table = document.getElementById("appointmentsTable");
+    let rows = [];
+    for (let i = 0; i < table.rows.length; i++) {
+      let cells = table.rows[i].cells;
+      let rowData = [];
+      for (let j = 0; j < cells.length - 1; j++) { // Exclude OBS column
+        rowData.push(cells[j].textContent);
+      }
+      rows.push(rowData);
+    }
+
+    let csvContent = "data:text/csv;charset=utf-8,";
+    rows.forEach(function(rowArray) {
+      let row = rowArray.join(",");
+      csvContent += row + "\r\n";
+    });
+
+    let encodedUri = encodeURI(csvContent);
+    let link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", "agendamentos.csv");
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+
+  document.querySelector('.export-excel').addEventListener('click', exportToExcel);
 });
