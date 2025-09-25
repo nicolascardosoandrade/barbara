@@ -136,7 +136,7 @@ table th {
   color: #333;
 }
 
-.add-service {
+.add-service, .filter-service, .select-service {
   background-color: #5e2d79;
   color: white;
   border: none;
@@ -144,9 +144,18 @@ table th {
   border-radius: 6px;
   cursor: pointer;
   font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 5px;
 }
 
-.add-service:hover {
+.filter-service .material-icons, .select-service .material-icons {
+  font-size: 20px;
+  color: white;
+}
+
+.add-service:hover, .filter-service:hover, .select-service:hover {
   background-color: #4a2261;
 }
 
@@ -250,4 +259,11 @@ table th {
 
 .dropdown-item:hover {
   background-color: #f0f0f0;
+}
+
+#tabela-servicos {
+  height: 500px; /* altura mínima para o Tabulator renderizar */
+  background: #fff; /* cor de fundo para diferenciar */
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }

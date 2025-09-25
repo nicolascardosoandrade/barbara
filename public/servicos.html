@@ -6,6 +6,9 @@
   <title>SistemaAeR - Barbara Lana</title>
   <link rel="stylesheet" href="css/servicos.css"/>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+
+  <!-- Tabulator CSS -->
+  <link href="https://unpkg.com/tabulator-tables@5.6.2/dist/css/tabulator.min.css" rel="stylesheet">
 </head>
 <body>
   <!-- Header -->
@@ -16,7 +19,7 @@
     </div>
 
     <div class="search-container">
-      <input type="text" placeholder="Procurar Serviços" />
+      <input type="text" id="searchInput" placeholder="Procurar Serviços" />
     </div>
 
     <div class="actions">
@@ -52,79 +55,22 @@
 
     <!-- Main -->
     <main class="main-content">
-      <table>
-        <thead>
-          <tr>
-            <th>CONVÊNIO</th>
-            <th>CONSULTA</th>
-            <th>DURAÇÃO</th>
-            <th>VALOR</th>
-            <th>PAGAMENTO</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>AAPI</td>
-            <td>Sessão de 1h</td>
-            <td>1:00</td>
-            <td>R$120,00</td>
-            <td>30</td>
-          </tr>
-          <tr>
-            <td>ABERTTA</td>
-            <td>Sessão de 1h</td>
-            <td>1:00</td>
-            <td>R$84,26</td>
-            <td>60</td>
-          </tr>
-          <tr>
-            <td>ABERTTA</td>
-            <td>1ª Sessão de 30 min</td>
-            <td>0:30</td>
-            <td>R$54,46</td>
-            <td>60</td>
-          </tr>
-          <tr>
-            <td>ABERTTA</td>
-            <td>Sessão de 30 min</td>
-            <td>0:30</td>
-            <td>R$42,13</td>
-            <td>60</td>
-          </tr>
-          <tr>
-            <td>ALMOÇO</td>
-            <td>Intervalo de 1:30 min</td>
-            <td>1:30</td>
-            <td>R$0,00</td>
-            <td>-</td>
-          </tr>
-          <tr>
-            <td>ALMOÇO</td>
-            <td>Intervalo de 1 hora</td>
-            <td>1:00</td>
-            <td>R$0,00</td>
-            <td>-</td>
-          </tr>
-          <tr>
-            <td>AMIL</td>
-            <td>Sessão de 30 min</td>
-            <td>0:30</td>
-            <td>R$40,00</td>
-            <td>60</td>
-          </tr>
-          <tr>
-            <td>CASAL</td>
-            <td>Sessão de 1h</td>
-            <td>1:00</td>
-            <td>R$250,00</td>
-            <td>30</td>
-          </tr>
-        </tbody>
-      </table>
-      <button class="add-service">+ ADICIONAR</button>
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+        <h2>Serviços</h2>
+        <div>
+          <button class="add-service">+ ADICIONAR</button>
+          <button class="filter-service" title="Filtrar"><span class="material-icons">filter_list</span></button>
+          <button class="select-service" title="Selecionar"><span class="material-icons">checklist</span></button>
+        </div>
+      </div>
+
+      <!-- Aqui entra a tabela dinâmica do Tabulator -->
+      <div id="tabela-servicos"></div>
     </main>
   </div>
 
+  <!-- Tabulator JS -->
+  <script src="https://unpkg.com/tabulator-tables@5.6.2/dist/js/tabulator.min.js"></script>
   <script src="js/servicos.js"></script>
 </body>
 </html>
