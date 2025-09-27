@@ -54,8 +54,15 @@ body {
   padding: 0;
 }
 
+/* Estilo para o item da lista (li) - principalmente para o "active" e espaçamento se necessário */
 .sidebar nav ul li {
-  display: flex;
+  position: relative; /* Necessário para o tooltip */
+  margin-bottom: 5px; /* Espaço entre os itens */
+}
+
+/* === ESTILOS PARA O LINK (a) DENTRO DO LI === */
+.sidebar nav ul li a {
+  display: flex; /* Para alinhar ícone e texto */
   align-items: center;
   gap: 10px;
   padding: 10px;
@@ -64,38 +71,44 @@ body {
   border-radius: 6px;
   transition: background-color 0.2s ease-in-out;
   white-space: nowrap;
-  position: relative;
-  color: #333;
+  color: #333; /* Cor do texto do link */
+  text-decoration: none; /* Remover sublinhado padrão do link */
 }
 
-.sidebar nav ul li .material-icons {
+.sidebar nav ul li a .material-icons {
   font-size: 22px;
   color: #333;
 }
 
-.sidebar nav ul li:hover {
+.sidebar nav ul li a:hover {
   background-color: #f0f0f0;
 }
 
-.sidebar nav ul li.active {
+/* Para o item ativo, estilizar o link dentro do li */
+.sidebar nav ul li.active a {
   background-color: #dca0e5;
   font-weight: bold;
 }
 
+.sidebar nav ul li.active a .material-icons {
+  color: #333; /* Manter a cor do ícone se necessário, ou mudar para branco */
+}
+
+
 /* Esconder texto quando colapsado */
-.sidebar.collapsed nav ul li span:not(:first-child) {
+.sidebar.collapsed nav ul li a span:not(:first-child) {
   display: none;
 }
 
 /* Ícones centralizados quando colapsado */
-.sidebar.collapsed nav ul li {
+.sidebar.collapsed nav ul li a {
   justify-content: center;
   padding: 12px 0;
   gap: 0;
 }
 
 /* Tooltip visível ao passar o mouse */
-.sidebar.collapsed nav ul li:hover::after {
+.sidebar.collapsed nav ul li:hover::after { /* O tooltip ainda pode estar no LI */
   content: attr(data-tooltip);
   position: absolute;
   left: 70px;
@@ -223,41 +236,95 @@ body {
 /* ==== CALENDÁRIO HEADER ==== */
 .calendar-header {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  padding: 10px 0;
+  justify-content: space-between;
+  padding: 10px 15px;
   margin-bottom: 10px;
-  text-align: center;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
 }
 
 .calendar-header h3 {
   font-size: 18px;
   color: #333;
-  margin-bottom: 10px;
+  margin: 0;
 }
 
-.view-options {
+/* Ações da agenda (Excel, Adicionar, Filtrar) */
+/* === BOTÕES DE AÇÃO NO CALENDÁRIO === */
+.calendar-actions {
   display: flex;
   gap: 10px;
-  justify-content: center;
+  align-items: center;
 }
 
-.view-btn {
-  padding: 5px 15px;
+.icon-btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background-color: #1976d2; /* azul padrão */
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.icon-btn:hover {
+  background-color: #1565c0;
+}
+
+/* === BOTÃO HOJE (diferente para destacar) === */
+.today-btn {
+  background-color: #9c27b0; /* Roxo */
+}
+
+.today-btn:hover {
+  background-color: #7b1fa2;
+}
+
+
+.excel-btn { background-color: #4caf50; }
+.excel-btn:hover { background-color: #3e8e41; }
+
+.add-btn { background-color: #dca0e5; }
+.add-btn:hover { background-color: #b76acc; }
+
+.filter-btn { background-color: #607d8b; }
+.filter-btn:hover { background-color: #4b636e; }
+
+/* ==== CALENDAR VIEWS ==== */
+.calendar-views {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  padding: 10px 15px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+
+.calendar-views .view-btn {
+  padding: 6px 15px;
   border: 1px solid #ddd;
   border-radius: 4px;
   background-color: #fff;
   cursor: pointer;
   font-size: 14px;
+  transition: background 0.2s;
 }
 
-.view-btn:hover {
+.calendar-views .view-btn:hover {
   background-color: #f0f0f0;
 }
 
-.view-btn.active {
+.calendar-views .view-btn.active {
   background-color: #dca0e5;
-  color: white;
+  color: #fff;
   border-color: #dca0e5;
 }
 
@@ -267,6 +334,7 @@ body {
   border: 1px solid #ddd;
   border-radius: 4px;
   margin: 10px;
+  transition: all 0.3s ease; /* suaviza o ajuste */
 }
 
 .fc-daygrid-day {
@@ -286,17 +354,9 @@ body {
   font-size: 12px;
 }
 
-.fc-event.green {
-  background-color: green;
-}
-
-.fc-event.red {
-  background-color: red;
-}
-
-.fc-event.blue {
-  background-color: #0366d6;
-}
+.fc-event.green { background-color: green; }
+.fc-event.red { background-color: red; }
+.fc-event.blue { background-color: #0366d6; }
 
 .fc-header-toolbar {
   margin-bottom: 10px;
@@ -311,99 +371,6 @@ body {
 
 /* ==== RESPONSIVIDADE ==== */
 @media (max-width: 768px) {
-  .sidebar {
-    width: 60px;
-    padding: 20px 5px;
-    align-items: center;
-  }
-
-  .sidebar nav ul li span:not(:first-child) {
-    display: none;
-  }
-
-  .sidebar nav ul li {
-    justify-content: center;
-    padding: 12px 0;
-    gap: 0;
-  }
-
-  .sidebar.collapsed {
-    width: 60px;
-  }
-
-  .topbar {
-    flex-wrap: wrap;
-    padding: 10px;
-    height: auto;
-  }
-
-  .search-container {
-    max-width: 100%;
-    margin: 10px 0;
-  }
-
-  .logo-title h2 {
-    font-size: 14px;
-  }
-
-  .calendar-header {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .view-options {
-    width: 100%;
-    justify-content: center;
-  }
-
-  #calendar {
-    margin: 5px;
-  }
-
-  .fc-header-toolbar {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .fc-toolbar-title {
-    font-size: 14px;
-  }
-
-  .fc-button {
-    font-size: 12px;
-    padding: 5px;
-  }
-}
-
-@media (max-width: 480px) {
-  .topbar {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .search-container input {
-    font-size: 14px;
-  }
-
-  .actions {
-    width: 100%;
-    justify-content: flex-end;
-  }
-
-  .calendar-header h3 {
-    font-size: 16px;
-  }
-
-  .view-btn {
-    padding: 3px 10px;
-    font-size: 12px;
-  }
-
-  .fc-event {
-    font-size: 10px;
-  }
-
-  .fc-daygrid-day {
-    min-height: 40px;
-  }
+  .calendar-header { flex-direction: column; gap: 10px; }
+  .calendar-views { flex-wrap: wrap; }
 }

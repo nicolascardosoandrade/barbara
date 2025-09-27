@@ -73,18 +73,10 @@ document.addEventListener('DOMContentLoaded', function() {
         info.el.style.backgroundColor = '#0366d6';
       }
     },
-    customButtons: {
-      addEventButton: {
-        text: '+ Adicionar',
-        click: function() {
-          alert('Adicionar evento');
-        }
-      }
-    },
     headerToolbar: {
       left: 'prev',
       center: 'title',
-      right: 'next addEventButton'
+      right: 'next'
     }
   });
 
@@ -94,26 +86,15 @@ document.addEventListener('DOMContentLoaded', function() {
   const sidebar = document.querySelector(".sidebar");
   const menuIcon = document.querySelector(".menu-icon");
 
-  menuIcon.addEventListener("click", () => {
-    sidebar.classList.toggle("collapsed");
-  });
+menuIcon.addEventListener("click", () => {
+  sidebar.classList.toggle("collapsed");
+  setTimeout(() => {
+    calendar.updateSize(); // recalcula o tamanho do calendário
+  }, 310); // espera o fim da transição da sidebar (0.3s)
+});
 
-  // === CLIQUE NOS ITENS DA SIDEBAR PARA NAVEGAR ===
-  document.querySelectorAll(".sidebar nav ul li").forEach((item, index) => {
-    item.addEventListener("click", () => {
-      switch (index) {
-        case 0: window.location.href = "index.html"; break;
-        case 1: window.location.href = "convenios.html"; break;
-        case 2: window.location.href = "filtrar_idades.html"; break;
-        case 3: window.location.href = "pacientes.html"; break;
-        case 4: window.location.href = "agenda.html"; break;
-        case 5: window.location.href = "agendamentos.html"; break;
-        case 6: window.location.href = "aniversariante_do_dia.html"; break;
-        case 7: window.location.href = "servicos.html"; break;
-        case 8: window.location.href = "financeiro.html"; break;
-      }
-    });
-  });
+
+ 
 
   // === MUDANÇA DE VISUALIZAÇÃO (DIA, SEMANA, MÊS) ===
   document.querySelectorAll('.view-btn').forEach(button => {
@@ -123,11 +104,19 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
+  // === BOTÃO HOJE ===
+  const todayBtn = document.getElementById('todayBtn');
+  if (todayBtn) {
+    todayBtn.addEventListener('click', () => {
+      calendar.today(); // volta para hoje respeitando a view atual
+    });
+  }
+
   // === RESPONSIVIDADE DO CALENDÁRIO ===
   window.addEventListener('resize', () => {
-    if (window.innerWidth < 768 && calendar.getOption('initialView') !== 'timeGridDay') {
+    if (window.innerWidth < 768 && calendar.view.type !== 'timeGridDay') {
       calendar.changeView('timeGridDay');
-    } else if (window.innerWidth >= 768 && calendar.getOption('initialView') !== 'timeGridWeek') {
+    } else if (window.innerWidth >= 768 && calendar.view.type !== 'timeGridWeek') {
       calendar.changeView('timeGridWeek');
     }
   });
@@ -137,13 +126,13 @@ document.addEventListener('DOMContentLoaded', function() {
 const userToggle = document.getElementById("userToggle");
 const userMenu = document.getElementById("userMenu");
 
-userToggle.addEventListener("click", function (e) {
+userToggle.addEventListener("click", function(e) {
   e.stopPropagation();
   userMenu.style.display = userMenu.style.display === "flex" ? "none" : "flex";
 });
 
 // Fecha dropdown ao clicar fora
-document.addEventListener("click", function (e) {
+document.addEventListener("click", function(e) {
   if (!userMenu.contains(e.target) && e.target !== userToggle) {
     userMenu.style.display = "none";
   }
