@@ -54,8 +54,15 @@ body {
   padding: 0;
 }
 
+/* Estilo para o item da lista (li) - principalmente para o "active" e espaçamento se necessário */
 .sidebar nav ul li {
-  display: flex;
+  position: relative; /* Necessário para o tooltip */
+  margin-bottom: 5px; /* Espaço entre os itens */
+}
+
+/* === ESTILOS PARA O LINK (a) DENTRO DO LI === */
+.sidebar nav ul li a {
+  display: flex; /* Para alinhar ícone e texto */
   align-items: center;
   gap: 10px;
   padding: 10px;
@@ -64,31 +71,36 @@ body {
   border-radius: 6px;
   transition: background-color 0.2s ease-in-out;
   white-space: nowrap;
-  position: relative;
-  color: #333;
+  color: #333; /* Cor do texto do link */
+  text-decoration: none; /* Remover sublinhado padrão do link */
 }
 
-.sidebar nav ul li .material-icons {
+.sidebar nav ul li a .material-icons {
   font-size: 22px;
   color: #333;
 }
 
-.sidebar nav ul li:hover {
+.sidebar nav ul li a:hover {
   background-color: #f0f0f0;
 }
 
-.sidebar nav ul li.active {
+/* Para o item ativo, estilizar o link dentro do li */
+.sidebar nav ul li.active a {
   background-color: #dca0e5;
   font-weight: bold;
 }
 
+.sidebar nav ul li.active a .material-icons {
+  color: #333; /* Manter a cor do ícone se necessário */
+}
+
 /* Esconder texto quando colapsado */
-.sidebar.collapsed nav ul li span:not(:first-child) {
+.sidebar.collapsed nav ul li a span:not(:first-child) {
   display: none;
 }
 
 /* Ícones centralizados quando colapsado */
-.sidebar.collapsed nav ul li {
+.sidebar.collapsed nav ul li a {
   justify-content: center;
   padding: 12px 0;
   gap: 0;

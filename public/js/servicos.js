@@ -7,23 +7,6 @@ document.addEventListener('DOMContentLoaded', function() {
     sidebar.classList.toggle("collapsed");
   });
 
-  // Navegação da sidebar
-  document.querySelectorAll(".sidebar nav ul li").forEach((item, index) => {
-    item.addEventListener("click", () => {
-      switch (index) {
-        case 0: window.location.href = "index.html"; break;
-        case 1: window.location.href = "convenios.html"; break;
-        case 2: window.location.href = "filtrar_idades.html"; break;
-        case 3: window.location.href = "pacientes.html"; break;
-        case 4: window.location.href = "agenda.html"; break;
-        case 5: window.location.href = "agendamentos.html"; break;
-        case 6: window.location.href = "aniversariante_do_dia.html"; break;
-        case 7: window.location.href = "servicos.html"; break;
-        case 8: window.location.href = "financeiro.html"; break;
-      }
-    });
-  });
-
   // Dropdown do usuário
   const userToggle = document.getElementById("userToggle");
   const userMenu = document.getElementById("userMenu");
@@ -59,21 +42,20 @@ document.addEventListener('DOMContentLoaded', function() {
     {convenio: "CASAL", consulta: "Sessão de 1h", duracao: "1:00", valor: "R$250,00", pagamento: "30"},
   ];
 
-// ======= Criação da Tabela com Tabulator =======
-const tabela = new Tabulator("#tabela-servicos", {
-  data: dadosServicos,
-  layout: "fitColumns",
-  movableColumns: true, // permite arrastar colunas
-  height: "500px",      // <<< ADICIONE ESTA LINHA
-  columns: [
-    {title: "CONVÊNIO", field: "convenio"},
-    {title: "CONSULTA", field: "consulta"},
-    {title: "DURAÇÃO", field: "duracao"},
-    {title: "VALOR", field: "valor"},
-    {title: "PAGAMENTO", field: "pagamento"},
-  ],
-});
-
+  // ======= Criação da Tabela com Tabulator =======
+  const tabela = new Tabulator("#tabela-servicos", {
+    data: dadosServicos,
+    layout: "fitColumns",
+    movableColumns: true, // permite arrastar colunas
+    height: "500px",
+    columns: [
+      {title: "CONVÊNIO", field: "convenio"},
+      {title: "CONSULTA", field: "consulta"},
+      {title: "DURAÇÃO", field: "duracao"},
+      {title: "VALOR", field: "valor"},
+      {title: "PAGAMENTO", field: "pagamento"},
+    ],
+  });
 
   // ======= Filtro de pesquisa =======
   const searchInput = document.getElementById("searchInput");
