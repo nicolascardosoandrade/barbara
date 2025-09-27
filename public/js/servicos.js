@@ -2,30 +2,56 @@ document.addEventListener('DOMContentLoaded', function() {
   const sidebar = document.querySelector(".sidebar");
   const menuIcon = document.querySelector(".menu-icon");
 
-  // Toggle sidebar
+  // Toggle sidebar (collapsed for desktop, active for mobile)
   menuIcon.addEventListener("click", () => {
-    sidebar.classList.toggle("collapsed");
+    if (window.innerWidth < 768) {
+      sidebar.classList.toggle("active");
+      document.body.style.overflow = sidebar.classList.contains("active") ? "hidden" : "";
+    } else {
+      sidebar.classList.toggle("collapsed");
+    }
   });
 
-  // Dropdown do usuário
+  // Close sidebar when clicking a menu item on mobile
+  sidebar.querySelectorAll('nav ul li a').forEach(item => {
+    item.addEventListener('click', () => {
+      if (window.innerWidth < 768 && sidebar.classList.contains('active')) {
+        sidebar.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+  });
+
+  // Close sidebar when clicking outside on mobile
+  document.addEventListener('click', function(e) {
+    if (window.innerWidth < 768 && sidebar.classList.contains('active') && !sidebar.contains(e.target) && !menuIcon.contains(e.target)) {
+      sidebar.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  });
+
+  // User dropdown
   const userToggle = document.getElementById("userToggle");
   const userMenu = document.getElementById("userMenu");
 
-  userToggle.addEventListener("click", function (e) {
+  userToggle.addEventListener("click", function(e) {
     e.stopPropagation();
     userMenu.style.display = userMenu.style.display === "flex" ? "none" : "flex";
   });
 
-  document.addEventListener("click", function (e) {
+  // Close dropdown when clicking outside
+  document.addEventListener("click", function(e) {
     if (!userMenu.contains(e.target) && e.target !== userToggle) {
       userMenu.style.display = "none";
     }
   });
 
+  // Logout function
   window.logout = function() {
     alert("Você saiu com sucesso!");
   };
 
+  // Add service button
   document.querySelector('.add-service').addEventListener('click', function() {
     alert('Adicionar serviço');
   });
@@ -68,6 +94,14 @@ document.addEventListener('DOMContentLoaded', function() {
       ]);
     } else {
       tabela.clearFilter();
+    }
+  });
+
+  // Handle window resize to ensure sidebar state is correct
+  window.addEventListener('resize', () => {
+    if (window.innerWidth >= 768 && sidebar.classList.contains('active')) {
+      sidebar.classList.remove('active');
+      document.body.style.overflow = '';
     }
   });
 });

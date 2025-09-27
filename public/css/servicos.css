@@ -48,6 +48,26 @@ body {
   align-items: center;
 }
 
+/* ==== SIDEBAR EM MOBILE (ESCONDIDA POR PADRÃO) ==== */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 0;
+    padding: 0;
+    overflow: hidden;
+    position: absolute;
+    height: calc(100vh - 60px);
+    z-index: 999;
+    box-shadow: none;
+    background-color: #efcef3;
+  }
+
+  .sidebar.active {
+    width: 200px;
+    padding: 20px 10px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+  }
+}
+
 .sidebar nav ul {
   list-style: none;
   flex: 1;
@@ -128,6 +148,13 @@ body {
   padding: 20px;
   overflow-y: auto;
   min-height: calc(100vh - 60px);
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    width: 100%;
+    padding: 10px;
+  }
 }
 
 table {
@@ -219,6 +246,12 @@ table th {
   outline: none;
 }
 
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
 /* === DROPDOWN DE USUÁRIO === */
 .user-dropdown {
   position: relative;
@@ -278,4 +311,41 @@ table th {
   background: #fff; /* cor de fundo para diferenciar */
   border-radius: 6px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* ==== RESPONSIVIDADE ==== */
+@media (max-width: 768px) {
+  .topbar .logo-title h2 {
+    display: none;
+  }
+
+  .search-container {
+    margin: 0 10px;
+  }
+
+  .logo-title {
+    justify-content: flex-start;
+  }
+
+  .topbar .menu-icon {
+    display: block;
+    margin-right: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .topbar {
+    padding: 10px;
+  }
+  .search-container {
+    max-width: 150px;
+    margin: 0 5px;
+  }
+  .search-container input {
+    padding: 6px 8px;
+    font-size: 12px;
+  }
+  .actions {
+    margin-left: 5px;
+  }
 }

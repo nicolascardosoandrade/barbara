@@ -373,4 +373,89 @@ body {
 @media (max-width: 768px) {
   .calendar-header { flex-direction: column; gap: 10px; }
   .calendar-views { flex-wrap: wrap; }
+
+  /* Esconde o título h2 da topbar em telas menores */
+  .topbar .logo-title h2 {
+    display: none;
+  }
+
+  /* Ajusta o contêiner de pesquisa para ocupar mais espaço */
+  .search-container {
+    margin: 0 10px; /* Reduz a margem lateral */
+  }
+
+  /* Centraliza o menu-icon e o h2 (se visível) */
+  .logo-title {
+    justify-content: flex-start; /* Alinha à esquerda, mas você pode mudar para center se preferir */
+  }
+
+  /* Esconde a barra lateral completamente em telas muito pequenas ou força-a a colapsar */
+  .sidebar {
+    width: 0; /* Começa com largura 0 */
+    padding: 0;
+    overflow: hidden;
+    position: absolute; /* Para não ocupar espaço no layout */
+    height: calc(100vh - 60px);
+    z-index: 999; /* Garante que fique acima do conteúdo principal */
+    box-shadow: none; /* Remove sombra quando escondido */
+    background-color: #efcef3; /* Garante que a cor de fundo ainda esteja lá para quando aparecer */
+  }
+
+  /* Quando a sidebar está ativa (expandida) em mobile */
+  .sidebar.active {
+    width: 200px; /* Largura para a sidebar expandida em mobile */
+    padding: 20px 10px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Ajusta o main-content para ocupar 100% da largura quando a sidebar está escondida */
+  .container {
+    flex-direction: row; /* Mantém a direção da linha, mas ajustamos a sidebar */
+  }
+
+  .main-content {
+    width: 100%; /* Ocupa toda a largura disponível */
+    padding: 10px;
+  }
+
+  /* Garante que o menu icon apareça visível no topo da tela */
+  .topbar .menu-icon {
+    display: block;
+    margin-right: 10px;
+  }
+}
+
+/* Media query para telas ainda menores, se necessário */
+@media (max-width: 480px) {
+  .topbar {
+    padding: 10px;
+  }
+  .search-container {
+    max-width: 150px; /* Reduz o tamanho da barra de pesquisa */
+    margin: 0 5px;
+  }
+  .search-container input {
+    padding: 6px 8px;
+    font-size: 12px;
+  }
+  .actions {
+    margin-left: 5px;
+  }
+
+  .calendar-actions {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .icon-btn {
+    padding: 4px 8px;
+    font-size: 12px;
+  }
+  .calendar-views {
+    flex-wrap: wrap;
+    padding: 5px;
+  }
+  .calendar-views .view-btn {
+    padding: 4px 10px;
+    font-size: 12px;
+  }
 }

@@ -86,23 +86,58 @@ document.addEventListener('DOMContentLoaded', function() {
   const sidebar = document.querySelector(".sidebar");
   const menuIcon = document.querySelector(".menu-icon");
 
-menuIcon.addEventListener("click", () => {
-  sidebar.classList.toggle("collapsed");
-  setTimeout(() => {
-    calendar.updateSize(); // recalcula o tamanho do calendário
-  }, 310); // espera o fim da transição da sidebar (0.3s)
-});
+  menuIcon.addEventListener("click", () => {
+    // Se a largura da tela for menor que 768px, controla a classe 'active' para mobile
+    if (window.innerWidth < 768) {
+      sidebar.classList.toggle("active");
+      // Quando a sidebar está ativa no mobile, o overflow do body pode ser ocultado
+      document.body.style.overflow = sidebar.classList.contains("active") ? "hidden" : "";
+    } else {
+      // Para desktop, usa a classe 'collapsed' como antes
+      sidebar.classList.toggle("collapsed");
+    }
+    setTimeout(() => {
+      calendar.updateSize(); // recalcula o tamanho do calendário
+    }, 310); // espera o fim da transição da sidebar (0.3s)
+  });
 
+  // Fecha a sidebar ao clicar em um item da lista em dispositivos móveis
+  sidebar.querySelectorAll('nav ul li a').forEach(item => {
+    item.addEventListener('click', () => {
+      if (window.innerWidth < 768 && sidebar.classList.contains('active')) {
+        sidebar.classList.remove('active');
+        document.body.style.overflow = ''; // Restaura o overflow do body
+      }
+    });
+  });
 
- 
+  // Fecha a sidebar ao clicar fora dela em dispositivos móveis
+  document.addEventListener('click', function(e) {
+    if (window.innerWidth < 768 && sidebar.classList.contains('active') && !sidebar.contains(e.target) && !menuIcon.contains(e.target)) {
+      sidebar.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  });
+
 
   // === MUDANÇA DE VISUALIZAÇÃO (DIA, SEMANA, MÊS) ===
   document.querySelectorAll('.view-btn').forEach(button => {
     button.addEventListener('click', () => {
       const view = button.getAttribute('data-view');
       calendar.changeView(view);
+      // Remove a classe 'active' de todos os botões e adiciona ao clicado
+      document.querySelectorAll('.view-btn').forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
     });
   });
+
+  // Adiciona a classe 'active' ao botão de visualização inicial
+  if (window.innerWidth < 768) {
+    document.querySelector('.view-btn[data-view="timeGridDay"]').classList.add('active');
+  } else {
+    document.querySelector('.view-btn[data-view="timeGridWeek"]').classList.add('active');
+  }
+
 
   // === BOTÃO HOJE ===
   const todayBtn = document.getElementById('todayBtn');
@@ -116,8 +151,20 @@ menuIcon.addEventListener("click", () => {
   window.addEventListener('resize', () => {
     if (window.innerWidth < 768 && calendar.view.type !== 'timeGridDay') {
       calendar.changeView('timeGridDay');
-    } else if (window.innerWidth >= 768 && calendar.view.type !== 'timeGridWeek') {
+      // Atualiza a classe 'active' para o botão "Dia"
+      document.querySelectorAll('.view-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelector('.view-btn[data-view="timeGridDay"]').classList.add('active');
+    } else if (window.innerWidth >= 768 && calendar.view.type !== 'timeGridWeek' && calendar.view.type !== 'dayGridMonth') {
+      // Adicionei dayGridMonth para que ele não mude para semana se já estiver em mês
       calendar.changeView('timeGridWeek');
+      // Atualiza a classe 'active' para o botão "Semana"
+      document.querySelectorAll('.view-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelector('.view-btn[data-view="timeGridWeek"]').classList.add('active');
+    }
+    // Garante que a sidebar esteja escondida em mobile ao redimensionar se estiver ativa
+    if (window.innerWidth >= 768 && sidebar.classList.contains('active')) {
+      sidebar.classList.remove('active');
+      document.body.style.overflow = '';
     }
   });
 });

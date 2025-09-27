@@ -260,3 +260,77 @@ body {
 .dropdown-item:hover {
   background-color: #f0f0f0;
 }
+
+/* Media Queries para responsividade */
+@media (max-width: 768px) {
+  /* Oculta o título na topbar em telas menores */
+  .logo-title h2 {
+    display: none;
+  }
+
+  .search-container {
+    margin: 0 10px; /* Ajusta a margem da barra de pesquisa */
+  }
+
+  .topbar {
+    padding: 10px 15px; /* Ajusta o padding da topbar */
+  }
+
+  /* Esconde a barra lateral completamente em telas muito pequenas ou força-a a colapsar */
+  .sidebar {
+    width: 0; /* Começa com largura 0 */
+    padding: 0;
+    overflow: hidden;
+    position: absolute; /* Para não ocupar espaço no layout */
+    height: calc(100vh - 60px);
+    z-index: 999; /* Garante que fique acima do conteúdo principal */
+    box-shadow: none; /* Remove sombra quando escondido */
+    background-color: #efcef3; /* Garante que a cor de fundo ainda esteja lá para quando aparecer */
+    transition: width 0.3s ease; /* Adiciona transição para uma abertura suave */
+  }
+
+  /* Quando a sidebar está ativa (expandida) em mobile */
+  .sidebar.active {
+    width: 200px; /* Largura para a sidebar expandida em mobile */
+    padding: 20px 10px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Ajusta o main-content para ocupar 100% da largura quando a sidebar está escondida */
+  .container {
+    flex-direction: row; /* Mantém a direção da linha, mas ajustamos a sidebar */
+  }
+
+  .main-content {
+    width: 100%; /* Ocupa toda a largura disponível */
+    padding: 10px; /* Ajusta o padding para mobile */
+  }
+
+  /* Garante que o menu icon apareça visível no topo da tela */
+  .topbar .menu-icon {
+    display: block;
+    margin-right: 10px;
+  }
+
+  /* Não há necessidade de tooltip para a sidebar "oculta" em mobile, pois ela se expande */
+  .sidebar.collapsed nav ul li:hover::after {
+    content: none; /* Remove o tooltip quando a sidebar está "colapsada" por padrão em mobile */
+  }
+}
+
+@media (max-width: 480px) {
+  .search-container {
+    max-width: 150px; /* Reduz a largura máxima da barra de pesquisa */
+    margin: 0 5px;
+  }
+  .search-container input {
+    padding: 6px 8px;
+    font-size: 12px;
+  }
+  .actions {
+    gap: 10px; /* Reduz o espaçamento entre os itens de ação */
+  }
+  .topbar {
+    padding: 10px;
+  }
+}
