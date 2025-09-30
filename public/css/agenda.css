@@ -42,27 +42,27 @@ body {
 /* ==== SIDEBAR COLAPSADA ==== */
 .sidebar.collapsed {
   width: 60px;
-  padding: 20px 5px;
+  padding: 20px 0;
   background-color: #efcef3;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-  align-items: center;
 }
 
+/* Estilo para a lista da sidebar */
 .sidebar nav ul {
   list-style: none;
   flex: 1;
   padding: 0;
 }
 
-/* Estilo para o item da lista (li) - principalmente para o "active" e espaçamento se necessário */
+/* Estilo para o item da lista (li) */
 .sidebar nav ul li {
-  position: relative; /* Necessário para o tooltip */
-  margin-bottom: 5px; /* Espaço entre os itens */
+  position: relative;
+  margin-bottom: 5px;
 }
 
-/* === ESTILOS PARA O LINK (a) DENTRO DO LI === */
+/* Estilo para o link (a) dentro do li */
 .sidebar nav ul li a {
-  display: flex; /* Para alinhar ícone e texto */
+  display: flex;
   align-items: center;
   gap: 10px;
   padding: 10px;
@@ -71,8 +71,8 @@ body {
   border-radius: 6px;
   transition: background-color 0.2s ease-in-out;
   white-space: nowrap;
-  color: #333; /* Cor do texto do link */
-  text-decoration: none; /* Remover sublinhado padrão do link */
+  color: #333;
+  text-decoration: none;
 }
 
 .sidebar nav ul li a .material-icons {
@@ -84,16 +84,15 @@ body {
   background-color: #f0f0f0;
 }
 
-/* Para o item ativo, estilizar o link dentro do li */
+/* Estilo para o item ativo */
 .sidebar nav ul li.active a {
   background-color: #dca0e5;
   font-weight: bold;
 }
 
 .sidebar nav ul li.active a .material-icons {
-  color: #333; /* Manter a cor do ícone se necessário, ou mudar para branco */
+  color: #333;
 }
-
 
 /* Esconder texto quando colapsado */
 .sidebar.collapsed nav ul li a span:not(:first-child) {
@@ -104,11 +103,19 @@ body {
 .sidebar.collapsed nav ul li a {
   justify-content: center;
   padding: 12px 0;
+  width: 100%;
   gap: 0;
 }
 
+/* Para o item ativo quando a sidebar está colapsada */
+.sidebar.collapsed nav ul li.active a {
+  background-color: #dca0e5;
+  font-weight: bold;
+  border-radius: 0;
+}
+
 /* Tooltip visível ao passar o mouse */
-.sidebar.collapsed nav ul li:hover::after { /* O tooltip ainda pode estar no LI */
+.sidebar.collapsed nav ul li:hover::after {
   content: attr(data-tooltip);
   position: absolute;
   left: 70px;
@@ -252,7 +259,6 @@ body {
 }
 
 /* Ações da agenda (Excel, Adicionar, Filtrar) */
-/* === BOTÕES DE AÇÃO NO CALENDÁRIO === */
 .calendar-actions {
   display: flex;
   gap: 10px;
@@ -263,7 +269,7 @@ body {
   display: flex;
   align-items: center;
   gap: 5px;
-  background-color: #1976d2; /* azul padrão */
+  background-color: #1976d2;
   color: #fff;
   border: none;
   padding: 6px 12px;
@@ -277,15 +283,14 @@ body {
   background-color: #1565c0;
 }
 
-/* === BOTÃO HOJE (diferente para destacar) === */
+/* Botão Hoje */
 .today-btn {
-  background-color: #9c27b0; /* Roxo */
+  background-color: #9c27b0;
 }
 
 .today-btn:hover {
   background-color: #7b1fa2;
 }
-
 
 .excel-btn { background-color: #4caf50; }
 .excel-btn:hover { background-color: #3e8e41; }
@@ -334,7 +339,7 @@ body {
   border: 1px solid #ddd;
   border-radius: 4px;
   margin: 10px;
-  transition: all 0.3s ease; /* suaviza o ajuste */
+  transition: all 0.3s ease;
 }
 
 .fc-daygrid-day {
@@ -374,64 +379,61 @@ body {
   .calendar-header { flex-direction: column; gap: 10px; }
   .calendar-views { flex-wrap: wrap; }
 
-  /* Esconde o título h2 da topbar em telas menores */
   .topbar .logo-title h2 {
     display: none;
   }
 
-  /* Ajusta o contêiner de pesquisa para ocupar mais espaço */
   .search-container {
-    margin: 0 10px; /* Reduz a margem lateral */
+    margin: 0 10px;
   }
 
-  /* Centraliza o menu-icon e o h2 (se visível) */
   .logo-title {
-    justify-content: flex-start; /* Alinha à esquerda, mas você pode mudar para center se preferir */
+    justify-content: flex-start;
   }
 
-  /* Esconde a barra lateral completamente em telas muito pequenas ou força-a a colapsar */
   .sidebar {
-    width: 0; /* Começa com largura 0 */
+    width: 0;
     padding: 0;
     overflow: hidden;
-    position: absolute; /* Para não ocupar espaço no layout */
+    position: absolute;
     height: calc(100vh - 60px);
-    z-index: 999; /* Garante que fique acima do conteúdo principal */
-    box-shadow: none; /* Remove sombra quando escondido */
-    background-color: #efcef3; /* Garante que a cor de fundo ainda esteja lá para quando aparecer */
+    z-index: 999;
+    box-shadow: none;
+    background-color: #efcef3;
+    transition: width 0.3s ease;
   }
 
-  /* Quando a sidebar está ativa (expandida) em mobile */
   .sidebar.active {
-    width: 200px; /* Largura para a sidebar expandida em mobile */
+    width: 280px;
     padding: 20px 10px;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
   }
 
-  /* Ajusta o main-content para ocupar 100% da largura quando a sidebar está escondida */
   .container {
-    flex-direction: row; /* Mantém a direção da linha, mas ajustamos a sidebar */
+    flex-direction: row;
   }
 
   .main-content {
-    width: 100%; /* Ocupa toda a largura disponível */
+    width: 100%;
     padding: 10px;
   }
 
-  /* Garante que o menu icon apareça visível no topo da tela */
   .topbar .menu-icon {
     display: block;
     margin-right: 10px;
   }
+
+  .sidebar.collapsed nav ul li:hover::after {
+    content: none;
+  }
 }
 
-/* Media query para telas ainda menores, se necessário */
 @media (max-width: 480px) {
   .topbar {
     padding: 10px;
   }
   .search-container {
-    max-width: 150px; /* Reduz o tamanho da barra de pesquisa */
+    max-width: 150px;
     margin: 0 5px;
   }
   .search-container input {
@@ -441,7 +443,6 @@ body {
   .actions {
     margin-left: 5px;
   }
-
   .calendar-actions {
     flex-wrap: wrap;
     justify-content: center;

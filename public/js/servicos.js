@@ -2,6 +2,11 @@ document.addEventListener('DOMContentLoaded', function() {
   const sidebar = document.querySelector(".sidebar");
   const menuIcon = document.querySelector(".menu-icon");
 
+  // Garante que a sidebar inicie colapsada em desktop
+  if (window.innerWidth >= 768 && !sidebar.classList.contains('collapsed')) {
+    sidebar.classList.add('collapsed');
+  }
+
   // Toggle sidebar (collapsed for desktop, active for mobile)
   menuIcon.addEventListener("click", () => {
     if (window.innerWidth < 768) {
@@ -12,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
-  // Close sidebar when clicking a menu item on mobile
+  // Fecha a sidebar ao clicar em um item da lista em dispositivos móveis
   sidebar.querySelectorAll('nav ul li a').forEach(item => {
     item.addEventListener('click', () => {
       if (window.innerWidth < 768 && sidebar.classList.contains('active')) {
@@ -22,11 +27,25 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-  // Close sidebar when clicking outside on mobile
+  // Fecha a sidebar ao clicar fora dela em dispositivos móveis
   document.addEventListener('click', function(e) {
     if (window.innerWidth < 768 && sidebar.classList.contains('active') && !sidebar.contains(e.target) && !menuIcon.contains(e.target)) {
       sidebar.classList.remove('active');
       document.body.style.overflow = '';
+    }
+  });
+
+  // Gerencia a sidebar ao redimensionar a janela
+  window.addEventListener('resize', () => {
+    if (window.innerWidth >= 768 && sidebar.classList.contains('active')) {
+      sidebar.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    if (window.innerWidth < 768 && sidebar.classList.contains('collapsed')) {
+      sidebar.classList.remove('collapsed');
+    }
+    if (window.innerWidth >= 768 && !sidebar.classList.contains('collapsed')) {
+      sidebar.classList.add('collapsed');
     }
   });
 
@@ -39,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
     userMenu.style.display = userMenu.style.display === "flex" ? "none" : "flex";
   });
 
-  // Close dropdown when clicking outside
+  // Fecha dropdown ao clicar fora
   document.addEventListener("click", function(e) {
     if (!userMenu.contains(e.target) && e.target !== userToggle) {
       userMenu.style.display = "none";
@@ -49,6 +68,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Logout function
   window.logout = function() {
     alert("Você saiu com sucesso!");
+    // window.location.href = "login.html";
   };
 
   // Add service button
@@ -72,14 +92,30 @@ document.addEventListener('DOMContentLoaded', function() {
   const tabela = new Tabulator("#tabela-servicos", {
     data: dadosServicos,
     layout: "fitColumns",
-    movableColumns: true, // permite arrastar colunas
+    movableColumns: true,
     height: "500px",
+    responsiveLayout: "collapse",
     columns: [
-      {title: "CONVÊNIO", field: "convenio"},
-      {title: "CONSULTA", field: "consulta"},
-      {title: "DURAÇÃO", field: "duracao"},
-      {title: "VALOR", field: "valor"},
-      {title: "PAGAMENTO", field: "pagamento"},
+      {title: "CONVÊNIO", field: "convenio", formatter: function(cell) {
+        cell.getElement().setAttribute("data-label", "Convênio");
+        return cell.getValue();
+      }},
+      {title: "CONSULTA", field: "consulta", formatter: function(cell) {
+        cell.getElement().setAttribute("data-label", "Consulta");
+        return cell.getValue();
+      }},
+      {title: "DURAÇÃO", field: "duracao", formatter: function(cell) {
+        cell.getElement().setAttribute("data-label", "Duração");
+        return cell.getValue();
+      }},
+      {title: "VALOR", field: "valor", formatter: function(cell) {
+        cell.getElement().setAttribute("data-label", "Valor");
+        return cell.getValue();
+      }},
+      {title: "PAGAMENTO", field: "pagamento", formatter: function(cell) {
+        cell.getElement().setAttribute("data-label", "Pagamento");
+        return cell.getValue();
+      }},
     ],
   });
 
@@ -94,14 +130,6 @@ document.addEventListener('DOMContentLoaded', function() {
       ]);
     } else {
       tabela.clearFilter();
-    }
-  });
-
-  // Handle window resize to ensure sidebar state is correct
-  window.addEventListener('resize', () => {
-    if (window.innerWidth >= 768 && sidebar.classList.contains('active')) {
-      sidebar.classList.remove('active');
-      document.body.style.overflow = '';
     }
   });
 });

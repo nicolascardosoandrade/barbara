@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -14,7 +13,6 @@
   <!-- SheetJS para exportar Excel -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 </head>
-
 <body>
   <!-- Cabeçalho -->
   <header class="topbar">
@@ -22,11 +20,9 @@
       <span class="menu-icon material-icons">menu</span>
       <h2>SistemaAeR - Bárbara Lana</h2>
     </div>
-
     <div class="search-container">
       <input type="text" placeholder="Pesquisar na Agenda" />
     </div>
-
     <div class="actions">
       <div class="user-dropdown">
         <div class="user-icon" id="userToggle">B</div>
@@ -42,57 +38,57 @@
 
   <div class="container">
     <!-- Barra Lateral -->
-    <aside class="sidebar">
-  <nav>
-    <ul>
-      <li data-tooltip="Detalhes">
-        <a href="index.html">
-          <span class="material-icons">info</span> <span>Detalhes</span>
-        </a>
-      </li>
-      <li data-tooltip="Convênios">
-        <a href="convenios.html">
-          <span class="material-icons">handshake</span> <span>Convênios</span>
-        </a>
-      </li>
-      <li data-tooltip="Filtrar Idades">
-        <a href="filtrar_idades.html">
-          <span class="material-icons">filter_alt</span> <span>Filtrar Idades</span>
-        </a>
-      </li>
-      <li data-tooltip="Pacientes">
-        <a href="pacientes.html">
-          <span class="material-icons">group</span> <span>Pacientes</span>
-        </a>
-      </li>
-      <li class="active" data-tooltip="Agenda">
-        <a href="agenda.html">
-          <span class="material-icons">calendar_today</span> <span>Agenda</span>
-        </a>
-      </li>
-      <li data-tooltip="Agendamentos">
-        <a href="agendamentos.html">
-          <span class="material-icons">event</span> <span>Agendamentos</span>
-        </a>
-      </li>
-      <li data-tooltip="Aniversariantes do Dia">
-        <a href="aniversariante_do_dia.html">
-          <span class="material-icons">cake</span> <span>Aniversariantes do Dia</span>
-        </a>
-      </li>
-      <li data-tooltip="Serviços">
-        <a href="servicos.html">
-          <span class="material-icons">home_repair_service</span> <span>Serviços</span>
-        </a>
-      </li>
-      <li data-tooltip="Financeiro">
-        <a href="financeiro.html">
-          <span class="material-icons">attach_money</span> <span>Financeiro</span>
-        </a>
-      </li>
-    </ul>
-  </nav>
-</aside>
+    <aside class="sidebar collapsed">
+      <nav>
+        <ul>
+          <li data-tooltip="Detalhes">
+            <a href="index.html">
+              <span class="material-icons">info</span> <span>Detalhes</span>
+            </a>
+          </li>
+          <li data-tooltip="Convênios">
+            <a href="convenios.html">
+              <span class="material-icons">handshake</span> <span>Convênios</span>
+            </a>
+          </li>
+          <li data-tooltip="Filtrar Idades">
+            <a href="filtrar_idades.html">
+              <span class="material-icons">filter_alt</span> <span>Filtrar Idades</span>
+            </a>
+          </li>
+          <li data-tooltip="Pacientes">
+            <a href="pacientes.html">
+              <span class="material-icons">group</span> <span>Pacientes</span>
+            </a>
+          </li>
+          <li class="active" data-tooltip="Agenda">
+            <a href="agenda.html">
+              <span class="material-icons">calendar_today</span> <span>Agenda</span>
+            </a>
+          </li>
+          <li data-tooltip="Agendamentos">
+            <a href="agendamentos.html">
+              <span class="material-icons">event</span> <span>Agendamentos</span>
+            </a>
+          </li>
+          <li data-tooltip="Aniversariantes do Dia">
+            <a href="aniversariante_do_dia.html">
+              <span class="material-icons">cake</span> <span>Aniversariantes do Dia</span>
+            </a>
+          </li>
+          <li data-tooltip="Serviços">
+            <a href="servicos.html">
+              <span class="material-icons">home_repair_service</span> <span>Serviços</span>
+            </a>
+          </li>
+          <li data-tooltip="Financeiro">
+            <a href="financeiro.html">
+              <span class="material-icons">attach_money</span> <span>Financeiro</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </aside>
 
     <!-- Conteúdo Principal -->
     <main class="main-content">
@@ -112,20 +108,16 @@
             <span class="material-icons">today</span> Hoje
           </button>
         </div>
-
       </div>
-
       <div class="calendar-views">
         <button class="view-btn" data-view="timeGridDay">Dia</button>
         <button class="view-btn" data-view="timeGridWeek">Semana</button>
         <button class="view-btn" data-view="dayGridMonth">Mês</button>
       </div>
-
       <div id="calendar"></div>
     </main>
   </div>
 
   <script src="js/agenda.js"></script>
 </body>
-
 </html>
