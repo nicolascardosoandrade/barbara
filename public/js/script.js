@@ -4,10 +4,23 @@ document.addEventListener('DOMContentLoaded', function() {
   const userToggle = document.getElementById("userToggle");
   const userMenu = document.getElementById("userMenu");
 
-  // Garante que a sidebar inicie colapsada em desktop
-  if (window.innerWidth >= 768 && !sidebar.classList.contains('collapsed')) {
-    sidebar.classList.add('collapsed');
+  // Função para aplicar o estado inicial da sidebar com base no tamanho da tela
+  function initializeSidebarState() {
+    if (window.innerWidth >= 768) {
+      // Em desktop, a sidebar começa colapsada
+      sidebar.classList.add('collapsed');
+      sidebar.classList.remove('active'); // Garante que a classe 'active' não esteja presente
+      document.body.classList.remove("no-scroll"); // Garante que o scroll não esteja bloqueado
+    } else {
+      // Em mobile, a sidebar SEMPRE começa oculta (sem a classe 'active' e sem 'collapsed')
+      sidebar.classList.remove('collapsed');
+      sidebar.classList.remove('active'); // ESSENCIAL: Garante que 'active' seja removida ao carregar em mobile
+      document.body.classList.remove("no-scroll"); // Garante que o scroll não esteja bloqueado
+    }
   }
+
+  // Chame a função ao carregar a página para definir o estado inicial correto
+  initializeSidebarState();
 
   // Toggle sidebar (collapsed for desktop, active for mobile)
   menuIcon.addEventListener("click", () => {
@@ -16,6 +29,8 @@ document.addEventListener('DOMContentLoaded', function() {
       document.body.classList.toggle("no-scroll"); // Impede scroll quando sidebar ativa
     } else {
       sidebar.classList.toggle("collapsed");
+      sidebar.classList.remove('active'); // Garante que a classe 'active' não esteja presente em desktop
+      document.body.classList.remove("no-scroll"); // Garante que o scroll não esteja bloqueado em desktop
     }
   });
 
@@ -31,6 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Fecha a sidebar ao clicar fora dela em dispositivos móveis
   document.addEventListener('click', function(e) {
+    // Verifica se o clique não foi na sidebar e nem no ícone do menu
     if (window.innerWidth < 768 && sidebar.classList.contains('active') && !sidebar.contains(e.target) && !menuIcon.contains(e.target)) {
       sidebar.classList.remove('active');
       document.body.classList.remove("no-scroll");
@@ -39,16 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Gerencia a sidebar ao redimensionar a janela
   window.addEventListener('resize', () => {
-    if (window.innerWidth >= 768 && sidebar.classList.contains('active')) {
-      sidebar.classList.remove('active');
-      document.body.classList.remove("no-scroll");
-    }
-    if (window.innerWidth < 768 && sidebar.classList.contains('collapsed')) {
-      sidebar.classList.remove('collapsed');
-    }
-    if (window.innerWidth >= 768 && !sidebar.classList.contains('collapsed')) {
-      sidebar.classList.add('collapsed');
-    }
+    initializeSidebarState(); // Reaplica o estado correto ao redimensionar
   });
 
   // User dropdown

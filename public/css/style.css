@@ -376,6 +376,7 @@ table th {
     box-shadow: none; /* Remove a sombra por padrão */
     z-index: 999;
     padding: 0; /* Remove padding inicial */
+    transition: transform 0.3s ease, padding 0.3s ease, box-shadow 0.3s ease; /* Transições suaves */
   }
 
   /* Quando a sidebar está ativa (expandida) em mobile */
