@@ -1,10 +1,26 @@
 document.addEventListener('DOMContentLoaded', function() {
-  // Garante que a sidebar inicie colapsada em desktop
   const sidebar = document.querySelector(".sidebar");
   const menuIcon = document.querySelector(".menu-icon");
-  if (window.innerWidth >= 768 && !sidebar.classList.contains('collapsed')) {
-    sidebar.classList.add('collapsed');
+  const userToggle = document.getElementById("userToggle");
+  const userMenu = document.getElementById("userMenu");
+
+  // Função para aplicar o estado inicial da sidebar com base no tamanho da tela
+  function initializeSidebarState() {
+    if (window.innerWidth >= 768) {
+      // Em desktop, a sidebar começa colapsada
+      sidebar.classList.add('collapsed');
+      sidebar.classList.remove('active'); // Garante que a classe 'active' não esteja presente
+      document.body.classList.remove("no-scroll"); // Garante que o scroll não esteja bloqueado
+    } else {
+      // Em mobile, a sidebar SEMPRE começa oculta (sem a classe 'active' e sem 'collapsed')
+      sidebar.classList.remove('collapsed');
+      sidebar.classList.remove('active'); // ESSENCIAL: Garante que 'active' seja removida ao carregar em mobile
+      document.body.classList.remove("no-scroll"); // Garante que o scroll não esteja bloqueado
+    }
   }
+
+  // Chame a função ao carregar a página para definir o estado inicial correto
+  initializeSidebarState();
 
   // === CONFIGURAÇÃO DO FULLCALENDAR ===
   var calendarEl = document.getElementById('calendar');
@@ -57,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function() {
       { title: 'JULIA CARVALHO SANTOS MÃE', start: '2025-09-17T18:00:00', className: 'green' },
       { title: 'ELTON MARCOS ANSELMO MÃE', start: '2025-09-17T19:00:00', className: 'green' },
       { title: 'CIERO JOSE DA SILVA', start: '2025-09-17T20:00:00', className: 'green' },
-      { title: 'MELISA RODRIGUES DIAS MÃE', start: '2025-09-17T21:00:00', className: 'green' },
+      { title: 'MELISA RODRIGODES DIAS MÃE', start: '2025-09-17T21:00:00', className: 'green' },
       { title: 'PRISCILA BATISTA RODRIGUES', start: '2025-09-17T22:00:00', className: 'green' },
       { title: 'CLARA SOUTO CHAVES DE', start: '2025-09-17T23:00:00', className: 'green' },
       { title: 'LUIZ HENRIQUE DE OLIVEIRA', start: '2025-09-18T15:00:00', className: 'green' },
@@ -89,13 +105,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
   calendar.render();
 
-  // === COLAPSAR SIDEBAR ===
+  // Toggle sidebar (collapsed for desktop, active for mobile)
   menuIcon.addEventListener("click", () => {
     if (window.innerWidth < 768) {
       sidebar.classList.toggle("active");
-      document.body.style.overflow = sidebar.classList.contains("active") ? "hidden" : "";
+      document.body.classList.toggle("no-scroll"); // Impede scroll quando sidebar ativa
     } else {
       sidebar.classList.toggle("collapsed");
+      sidebar.classList.remove('active'); // Garante que a classe 'active' não esteja presente em desktop
+      document.body.classList.remove("no-scroll"); // Garante que o scroll não esteja bloqueado em desktop
     }
     setTimeout(() => {
       calendar.updateSize();
@@ -107,31 +125,23 @@ document.addEventListener('DOMContentLoaded', function() {
     item.addEventListener('click', () => {
       if (window.innerWidth < 768 && sidebar.classList.contains('active')) {
         sidebar.classList.remove('active');
-        document.body.style.overflow = '';
+        document.body.classList.remove("no-scroll");
       }
     });
   });
 
   // Fecha a sidebar ao clicar fora dela em dispositivos móveis
   document.addEventListener('click', function(e) {
+    // Verifica se o clique não foi na sidebar e nem no ícone do menu
     if (window.innerWidth < 768 && sidebar.classList.contains('active') && !sidebar.contains(e.target) && !menuIcon.contains(e.target)) {
       sidebar.classList.remove('active');
-      document.body.style.overflow = '';
+      document.body.classList.remove("no-scroll");
     }
   });
 
   // Gerencia a sidebar ao redimensionar a janela
   window.addEventListener('resize', () => {
-    if (window.innerWidth >= 768 && sidebar.classList.contains('active')) {
-      sidebar.classList.remove('active');
-      document.body.style.overflow = '';
-    }
-    if (window.innerWidth < 768 && sidebar.classList.contains('collapsed')) {
-      sidebar.classList.remove('collapsed');
-    }
-    if (window.innerWidth >= 768 && !sidebar.classList.contains('collapsed')) {
-      sidebar.classList.add('collapsed');
-    }
+    initializeSidebarState(); // Reaplica o estado correto ao redimensionar
     if (window.innerWidth < 768 && calendar.view.type !== 'timeGridDay') {
       calendar.changeView('timeGridDay');
       document.querySelectorAll('.view-btn').forEach(btn => btn.classList.remove('active'));
@@ -171,10 +181,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  // === DROPDOWN DO USUÁRIO ===
-  const userToggle = document.getElementById("userToggle");
-  const userMenu = document.getElementById("userMenu");
-
+  // User dropdown
   userToggle.addEventListener("click", function(e) {
     e.stopPropagation();
     userMenu.style.display = userMenu.style.display === "flex" ? "none" : "flex";
