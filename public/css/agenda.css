@@ -437,6 +437,65 @@ body {
 
   .calendar-header { flex-direction: column; gap: 10px; }
   .calendar-views { flex-wrap: wrap; }
+
+  /* Diminui o tamanho da data escrita por extenso no título do calendário */
+  .fc-toolbar-title {
+    font-size: 14px !important;
+    white-space: normal !important;
+    line-height: 1.2;
+  }
+
+  /* Diminui o tamanho das setas de navegação no título do calendário */
+  .fc-prev-button,
+  .fc-next-button {
+    font-size: 16px !important;
+  }
+
+  /* Ajustes para responsividade do calendário em mobile */
+  .fc {
+    font-size: 12px;
+  }
+
+  .fc-col-header-cell {
+    padding: 2px 2px;
+  }
+
+  .fc-col-header-cell-cushion {
+    font-size: 10px;
+    white-space: nowrap;
+  }
+
+  .fc-timegrid-col {
+    min-width: 50px;
+  }
+
+  .fc-timegrid-slot {
+    min-width: 45px;
+  }
+
+  .fc-timegrid-slot-label {
+    font-size: 9px;
+    padding: 1px;
+  }
+
+  .fc-event {
+    font-size: 8px;
+    padding: 1px 2px;
+    margin: 1px;
+    min-height: 12px;
+  }
+
+  .fc-timegrid-event .fc-event-title {
+    font-size: 8px;
+  }
+
+  .fc-toolbar-chunk {
+    margin: 1px;
+  }
+
+  #calendar {
+    overflow-x: auto;
+  }
 }
 
 @media (max-width: 480px) {
@@ -469,5 +528,46 @@ body {
   .calendar-views .view-btn {
     padding: 4px 10px;
     font-size: 12px;
+  }
+
+  /* Ajuste adicional para telas muito pequenas */
+  .fc-toolbar-title {
+    font-size: 12px !important;
+  }
+
+  /* Ajuste adicional para setas em telas muito pequenas */
+  .fc-prev-button,
+  .fc-next-button {
+    font-size: 14px !important;
+  }
+
+  /* Ajustes mais agressivos para telas muito pequenas */
+  .fc {
+    font-size: 11px;
+  }
+
+  .fc-col-header-cell-cushion {
+    font-size: 9px;
+  }
+
+  .fc-timegrid-col {
+    min-width: 40px;
+  }
+
+  .fc-timegrid-slot {
+    min-width: 35px;
+  }
+
+  .fc-timegrid-slot-label {
+    font-size: 8px;
+  }
+
+  .fc-event {
+    font-size: 7px;
+    padding: 0.5px 1px;
+  }
+
+  .fc-timegrid-event .fc-event-title {
+    font-size: 7px;
   }
 }

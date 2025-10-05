@@ -39,6 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
       hour12: false
     },
     height: 'auto',
+    aspectRatio: window.innerWidth < 768 ? 1.2 : 1.8,
     events: [
       { title: 'LAYLA PEREIRA DA SILVA', start: '2025-09-14T15:00:00', className: 'green' },
       { title: 'ALMOÇO', start: '2025-09-14T16:00:00', className: 'blue' },
@@ -74,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function() {
       { title: 'ELTON MARCOS ANSELMO MÃE', start: '2025-09-17T19:00:00', className: 'green' },
       { title: 'CIERO JOSE DA SILVA', start: '2025-09-17T20:00:00', className: 'green' },
       { title: 'MELISA RODRIGODES DIAS MÃE', start: '2025-09-17T21:00:00', className: 'green' },
-      { title: 'PRISCILA BATISTA RODRIGUES', start: '2025-09-17T22:00:00', className: 'green' },
+      { title: 'PRISCILA BATISTA RODRIGODES', start: '2025-09-17T22:00:00', className: 'green' },
       { title: 'CLARA SOUTO CHAVES DE', start: '2025-09-17T23:00:00', className: 'green' },
       { title: 'LUIZ HENRIQUE DE OLIVEIRA', start: '2025-09-18T15:00:00', className: 'green' },
       { title: 'ALMOÇO', start: '2025-09-18T16:00:00', className: 'blue' },
@@ -142,15 +143,19 @@ document.addEventListener('DOMContentLoaded', function() {
   // Gerencia a sidebar ao redimensionar a janela
   window.addEventListener('resize', () => {
     initializeSidebarState(); // Reaplica o estado correto ao redimensionar
-    if (window.innerWidth < 768 && calendar.view.type !== 'timeGridDay') {
+    const isMobile = window.innerWidth < 768;
+    const isSmallMobile = window.innerWidth < 480;
+    if (isMobile && calendar.view.type !== 'timeGridDay') {
       calendar.changeView('timeGridDay');
       document.querySelectorAll('.view-btn').forEach(btn => btn.classList.remove('active'));
       document.querySelector('.view-btn[data-view="timeGridDay"]').classList.add('active');
-    } else if (window.innerWidth >= 768 && calendar.view.type !== 'timeGridWeek' && calendar.view.type !== 'dayGridMonth') {
+    } else if (!isMobile && calendar.view.type !== 'timeGridWeek' && calendar.view.type !== 'dayGridMonth') {
       calendar.changeView('timeGridWeek');
       document.querySelectorAll('.view-btn').forEach(btn => btn.classList.remove('active'));
       document.querySelector('.view-btn[data-view="timeGridWeek"]').classList.add('active');
     }
+    // Ajusta aspectRatio dinamicamente
+    calendar.setOption('aspectRatio', isSmallMobile ? 1.0 : isMobile ? 1.2 : 1.8);
     setTimeout(() => {
       calendar.updateSize();
     }, 310);
@@ -160,9 +165,21 @@ document.addEventListener('DOMContentLoaded', function() {
   document.querySelectorAll('.view-btn').forEach(button => {
     button.addEventListener('click', () => {
       const view = button.getAttribute('data-view');
+      const isMobile = window.innerWidth < 768;
+      if (isMobile && view === 'timeGridWeek') {
+        // Em mobile, permite semana mas ajusta
+        calendar.setOption('aspectRatio', 1.2);
+      } else if (view === 'timeGridDay') {
+        calendar.setOption('aspectRatio', 1.2);
+      } else {
+        calendar.setOption('aspectRatio', 1.8);
+      }
       calendar.changeView(view);
       document.querySelectorAll('.view-btn').forEach(btn => btn.classList.remove('active'));
       button.classList.add('active');
+      setTimeout(() => {
+        calendar.updateSize();
+      }, 100);
     });
   });
 
