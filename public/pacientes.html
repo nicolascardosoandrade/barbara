@@ -7,6 +7,10 @@
   <link rel="stylesheet" href="css/pacientes.css"/>
   <link rel="icon" href="assets/img/Logo-barbara.png" type="image/x-icon">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+
+  <!-- DataTables CSS -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/colreorder/1.6.3/css/colReorder.dataTables.min.css">
 </head>
 <body>
   <!-- Cabeçalho -->
@@ -89,58 +93,68 @@
 
     <!-- Main -->
     <main class="main-content">
-      <table>
-        <thead>
-          <tr>
-            <th>IDADE</th>
-            <th>CPF</th>
-            <th>CONVÊNIO</th>
-            <th>SITUAÇÃO</th>
-            <th>EXTRATO DOS AGENDAMENTOS</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td data-label="Idade">43 anos, 2 meses, 10 dias</td>
-            <td data-label="CPF">00000000000</td>
-            <td data-label="Convênio">USISAÚDE</td>
-            <td data-label="Situação">Inativo</td>
-            <td data-label="Extrato dos Agendamentos"><span class="material-icons">description</span></td>
-          </tr>
-          <tr>
-            <td data-label="Idade">53 anos, 11 meses, 0 dias</td>
-            <td data-label="CPF">00000000000</td>
-            <td data-label="Convênio">USISAÚDE</td>
-            <td data-label="Situação">Ativo</td>
-            <td data-label="Extrato dos Agendamentos"><span class="material-icons">description</span></td>
-          </tr>
-          <tr>
-            <td data-label="Idade">21 anos, 8 meses, 25 dias</td>
-            <td data-label="CPF">00000000000</td>
-            <td data-label="Convênio">USISAÚDE</td>
-            <td data-label="Situação">Inativo</td>
-            <td data-label="Extrato dos Agendamentos"><span class="material-icons">description</span></td>
-          </tr>
-          <tr>
-            <td data-label="Idade">30 anos, 9 meses, 4 dias</td>
-            <td data-label="CPF">00000000000</td>
-            <td data-label="Convênio">PARTICULAR</td>
-            <td data-label="Situação">Inativo</td>
-            <td data-label="Extrato dos Agendamentos"><span class="material-icons">description</span></td>
-          </tr>
-          <tr>
-            <td data-label="Idade">6 anos, 4 meses, 21 dias</td>
-            <td data-label="CPF">00000000000</td>
-            <td data-label="Convênio">USISAÚDE</td>
-            <td data-label="Situação">Ativo</td>
-            <td data-label="Extrato dos Agendamentos"><span class="material-icons">description</span></td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="patients-report">
+        <h3>RELATÓRIO DE PACIENTES</h3>
+        <table id="relatorio-pacientes">
+          <thead>
+            <tr>
+              <th>IDADE</th>
+              <th>CPF</th>
+              <th>CONVÊNIO</th>
+              <th>SITUAÇÃO</th>
+              <th>EXTRATO DOS AGENDAMENTOS</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-label="IDADE">43 anos, 2 meses, 10 dias</td>
+              <td data-label="CPF">00000000000</td>
+              <td data-label="CONVÊNIO">USISAÚDE</td>
+              <td data-label="SITUAÇÃO">Inativo</td>
+              <td data-label="EXTRATO DOS AGENDAMENTOS"><span class="material-icons">description</span></td>
+            </tr>
+            <tr>
+              <td data-label="IDADE">53 anos, 11 meses, 0 dias</td>
+              <td data-label="CPF">00000000000</td>
+              <td data-label="CONVÊNIO">USISAÚDE</td>
+              <td data-label="SITUAÇÃO">Ativo</td>
+              <td data-label="EXTRATO DOS AGENDAMENTOS"><span class="material-icons">description</span></td>
+            </tr>
+            <tr>
+              <td data-label="IDADE">21 anos, 8 meses, 25 dias</td>
+              <td data-label="CPF">00000000000</td>
+              <td data-label="CONVÊNIO">USISAÚDE</td>
+              <td data-label="SITUAÇÃO">Inativo</td>
+              <td data-label="EXTRATO DOS AGENDAMENTOS"><span class="material-icons">description</span></td>
+            </tr>
+            <tr>
+              <td data-label="IDADE">30 anos, 9 meses, 4 dias</td>
+              <td data-label="CPF">00000000000</td>
+              <td data-label="CONVÊNIO">PARTICULAR</td>
+              <td data-label="SITUAÇÃO">Inativo</td>
+              <td data-label="EXTRATO DOS AGENDAMENTOS"><span class="material-icons">description</span></td>
+            </tr>
+            <tr>
+              <td data-label="IDADE">6 anos, 4 meses, 21 dias</td>
+              <td data-label="CPF">00000000000</td>
+              <td data-label="CONVÊNIO">USISAÚDE</td>
+              <td data-label="SITUAÇÃO">Ativo</td>
+              <td data-label="EXTRATO DOS AGENDAMENTOS"><span class="material-icons">description</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
       <button class="add-patient">+ ADICIONAR</button>
     </main>
   </div>
 
+  <!-- Seu script original -->
   <script src="js/pacientes.js"></script>
+
+  <!-- jQuery + DataTables + ColReorder -->
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/colreorder/1.6.3/js/dataTables.colReorder.min.js"></script>
+
 </body>
 </html>

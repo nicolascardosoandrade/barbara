@@ -177,18 +177,44 @@ body {
   border-radius: 4px;
 }
 
-.delete-btn {
-  background-color: #e74c3c;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 14px;
+.percent-input {
+  width: 50px;
+  text-align: center;
+  padding: 2px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
 }
 
-.delete-btn:hover {
-  background-color: #c0392b;
+.edit-btn {
+  background: none;
+  color: #3498db;
+  border: none;
+  padding: 0;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 14px;
+  font-family: inherit;
+}
+
+.edit-btn:hover {
+  color: #2980b9;
+  text-decoration: none;
+}
+
+.save-btn {
+  background: none;
+  color: #27ae60;
+  border: none;
+  padding: 0;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 14px;
+  font-family: inherit;
+}
+
+.save-btn:hover {
+  color: #229954;
+  text-decoration: none;
 }
 
 .financial-report {
@@ -205,7 +231,7 @@ body {
 
 table {
   width: 100%;
-  border-collapse: collapse;
+  border-collapse: remove;
 }
 
 table th, table td {
@@ -387,12 +413,84 @@ table th {
 
   .financial-summary {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
+    gap: 12px;
+    padding: 12px;
   }
 
   .summary-item {
     width: 100%;
-    margin-bottom: 10px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+  }
+
+  .summary-item:last-of-type {
+    border-bottom: none;
+  }
+
+  .summary-item label {
+    font-size: 13px;
+    color: #333;
+    font-weight: 500;
+    flex: 1;
+  }
+
+  .summary-item span {
+    font-size: 16px;
+    font-weight: bold;
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  .summary-item.total span {
+    color: #5e2d79;
+    font-size: 18px;
+  }
+
+  .summary-item input {
+    padding: 6px 8px;
+    font-size: 14px;
+    flex: 1;
+    max-width: 140px;
+    text-align: right;
+  }
+
+  .edit-btn, .save-btn {
+    width: 100%;
+    padding: 12px;
+    margin-top: 8px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: none;
+    text-align: center;
+    transition: background-color 0.2s ease;
+  }
+
+  .edit-btn {
+    background-color: transparent;
+    color: #3498db;
+    border-color: #3498db;
+  }
+
+  .edit-btn:hover {
+    background-color: #3498db;
+    color: white;
+  }
+
+  .save-btn {
+    background-color: transparent;
+    color: #27ae60;
+    border-color: #27ae60;
+  }
+
+  .save-btn:hover {
+    background-color: #27ae60;
+    color: white;
   }
 
   table, thead, tbody, th, td, tr {
@@ -419,20 +517,23 @@ table th {
   td {
     border: none;
     position: relative;
-    padding-left: 50%;
-    text-align: right;
+    padding: 8px 0;
+    text-align: left;
     width: 100%;
+    padding-left: 0;
   }
 
   td:before {
-    position: absolute;
-    left: 6px;
-    width: 45%;
-    padding-right: 10px;
-    white-space: nowrap;
-    content: attr(data-label);
+    position: static;
+    left: auto;
+    width: auto;
+    padding-right: 0;
+    white-space: normal;
+    content: attr(data-label) ':';
     font-weight: bold;
     text-align: left;
+    display: block;
+    margin-bottom: 2px;
   }
 }
 
@@ -450,5 +551,44 @@ table th {
   }
   .topbar {
     padding: 10px;
+  }
+
+  .financial-summary {
+    padding: 10px;
+    gap: 10px;
+  }
+
+  .summary-item {
+    padding: 6px 0;
+  }
+
+  .summary-item label {
+    font-size: 12px;
+  }
+
+  .summary-item span {
+    font-size: 15px;
+  }
+
+  .summary-item.total span {
+    font-size: 16px;
+  }
+
+  .summary-item input {
+    padding: 4px 6px;
+    font-size: 13px;
+  }
+
+  .edit-btn, .save-btn {
+    padding: 10px;
+    font-size: 15px;
+  }
+
+  td {
+    padding: 6px 0;
+  }
+
+  td:before {
+    margin-bottom: 1px;
   }
 }

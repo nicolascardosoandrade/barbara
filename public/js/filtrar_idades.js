@@ -81,21 +81,43 @@ document.addEventListener('DOMContentLoaded', function() {
   window.filterAges = function() {
     const minAge = parseInt(document.getElementById("minAge").value) || 0;
     const maxAge = parseInt(document.getElementById("maxAge").value) || 100;
-    const table = document.getElementById("ageFilterTable").getElementsByTagName("tbody")[0];
-    table.innerHTML = "";
 
-    const rows = [
-      { name: "Túlio Siqueira", age: 13 },
-      { name: "Adriana Farrel", age: 43 },
-      { name: "Alice Alves de", age: 6 }
+    const allRows = [
+      { name: "Túlio Siqueira", age: 13, status: "Ativo" },
+      { name: "Adriana Farrel", age: 43, status: "Inativo" },
+      { name: "Alice Alves de", age: 6, status: "Ativo" }
     ];
 
-    rows.forEach(row => {
-      if (row.age >= minAge && row.age <= maxAge) {
-        const newRow = table.insertRow();
-        newRow.insertCell(0).textContent = row.name;
-        newRow.insertCell(1).textContent = `${row.age} anos, 0 meses`;
-      }
+    const filteredRows = allRows.filter(row => row.age >= minAge && row.age <= maxAge);
+
+    var table = $('#ageFilterTable').DataTable();
+    table.clear();
+    filteredRows.forEach(row => {
+      table.row.add([
+        row.name,
+        `${row.age} anos, 0 meses`,
+        row.status
+      ]).draw(false);
     });
   };
+});
+
+// Inicializa DataTable com suporte a colunas arrastáveis
+document.addEventListener('DOMContentLoaded', function () {
+  if (window.jQuery && $.fn.dataTable) {
+    $('#ageFilterTable').DataTable({
+      colReorder: true,
+      paging: false,
+      searching: false,
+      info: false,
+      language: {
+        emptyTable: "Nenhum dado disponível",
+        loadingRecords: "Carregando...",
+        processing: "Processando...",
+        zeroRecords: "Nenhum registro encontrado"
+      }
+    });
+  } else {
+    console.warn("jQuery ou DataTables não carregados corretamente.");
+  }
 });

@@ -141,6 +141,12 @@ body {
   transition: margin-left 0.3s ease;
 }
 
+.main-content > div {
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 6px;
+}
+
 .main-content h1 {
   font-size: 24px;
   margin-bottom: 20px;
@@ -179,13 +185,12 @@ body {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
-  background-color: #fff;
 }
 
 .main-content th, .main-content td {
   padding: 10px;
-  border: 1px solid #ddd;
   text-align: left;
+  border-bottom: 1px solid #ddd;
 }
 
 .main-content th {
@@ -348,6 +353,10 @@ body {
     margin-left: 0 !important; /* Reseta qualquer margin-left que possa ter vindo do desktop */
   }
 
+  .main-content > div {
+    padding: 12px;
+  }
+
   /* Garante que o menu icon apareça visível no topo da tela */
   .topbar .menu-icon {
     display: block;
@@ -357,6 +366,28 @@ body {
   /* Não há necessidade de tooltip para a sidebar em mobile, pois ela se expande */
   .sidebar nav ul li:hover::after {
     content: none;
+  }
+
+  .main-content h1 {
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
+
+  .main-content label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+  }
+
+  .main-content input {
+    width: 100%;
+    margin-bottom: 10px;
+    max-width: none;
+  }
+
+  .main-content button {
+    width: 100%;
+    margin-top: 0;
   }
 
   table, thead, tbody, th, td, tr {
@@ -383,20 +414,23 @@ body {
   td {
     border: none;
     position: relative;
-    padding-left: 50%;
-    text-align: right;
+    padding: 8px 0;
+    text-align: left;
     width: 100%;
+    padding-left: 0;
   }
 
   td:before {
-    position: absolute;
-    left: 6px;
-    width: 45%;
-    padding-right: 10px;
-    white-space: nowrap;
-    content: attr(data-label);
+    position: static;
+    left: auto;
+    width: auto;
+    padding-right: 0;
+    white-space: normal;
+    content: attr(data-label) ':';
     font-weight: bold;
     text-align: left;
+    display: block;
+    margin-bottom: 2px;
   }
 }
 
@@ -414,5 +448,38 @@ body {
   }
   .topbar {
     padding: 10px;
+  }
+
+  .main-content > div {
+    padding: 10px;
+  }
+
+  .main-content h1 {
+    font-size: 18px;
+  }
+
+  .main-content label {
+    font-size: 13px;
+  }
+
+  .main-content input {
+    padding: 6px;
+  }
+
+  .main-content button {
+    padding: 12px;
+    font-size: 15px;
+  }
+
+  tr {
+    padding: 8px;
+  }
+
+  td {
+    padding: 6px 0;
+  }
+
+  td:before {
+    margin-bottom: 1px;
   }
 }

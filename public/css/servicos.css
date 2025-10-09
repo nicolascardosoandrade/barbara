@@ -350,17 +350,30 @@ body {
   .add-service, .filter-service, .select-service {
     width: 100%;
     margin-bottom: 10px;
+    margin-left: 0;
   }
 
-  .tabulator .tabulator-tableholder .tabulator-table {
+  #tabela-servicos_wrapper {
+    overflow-x: auto;
+  }
+
+  #tabela-servicos {
+    height: auto;
+    min-height: 400px;
+  }
+
+  /* Mobile Table Card View */
+  #tabela-servicos, #tabela-servicos thead, #tabela-servicos tbody, #tabela-servicos th, #tabela-servicos td, #tabela-servicos tr {
     display: block;
   }
 
-  .tabulator .tabulator-header {
-    display: none;
+  #tabela-servicos thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
   }
 
-  .tabulator .tabulator-row {
+  #tabela-servicos tr {
     border: 1px solid #ccc;
     margin-bottom: 10px;
     display: flex;
@@ -371,24 +384,80 @@ body {
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
   }
 
-  .tabulator .tabulator-cell {
+  #tabela-servicos td {
     border: none;
     position: relative;
-    padding-left: 50%;
-    text-align: right;
+    padding: 8px 0;
+    text-align: left;
     width: 100%;
-    display: block;
+    padding-left: 0;
   }
 
-  .tabulator .tabulator-cell:before {
-    position: absolute;
-    left: 6px;
-    width: 45%;
-    padding-right: 10px;
-    white-space: nowrap;
-    content: attr(data-label);
+  #tabela-servicos td:before {
+    position: static;
+    left: auto;
+    width: auto;
+    padding-right: 0;
+    white-space: normal;
+    content: attr(data-label) ':';
     font-weight: bold;
     text-align: left;
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  /* Card-like para o conteúdo child */
+  .dtr-bs-modal .modal-body {
+    padding: 0;
+  }
+
+  .dataTables_wrapper .dataTables_length,
+  .dataTables_wrapper .dataTables_filter,
+  .dataTables_wrapper .dataTables_info,
+  .dataTables_wrapper .dataTables_paginate {
+    margin: 5px;
+  }
+
+  .dataTables_wrapper .dataTables_length select,
+  .dataTables_wrapper .dataTables_filter input {
+    width: 100px;
+    margin-left: 5px;
+  }
+
+  /* Ajuste para o child row como card */
+  div.DTFC_LeftBodyLiner div.dataTables_scrollBody table.dataTable.dtr-inline.collapsed > tbody > tr > td:first-child:before {
+    display: none;
+  }
+
+  table.dataTable > tbody > tr.child ul.dtr-details {
+    margin: 0;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 6px;
+    display: block;
+    list-style: none;
+  }
+
+  table.dataTable > tbody > tr.child ul.dtr-details > li {
+    display: block;
+    margin-bottom: 8px;
+    padding: 5px 0;
+    border-bottom: 1px solid #eee;
+  }
+
+  table.dataTable > tbody > tr.child ul.dtr-details > li:last-child {
+    border-bottom: none;
+  }
+
+  table.dataTable > tbody > tr.child ul.dtr-details > li strong {
+    display: inline-block;
+    width: 40%;
+    font-weight: bold;
+    color: #333;
+  }
+
+  table.dataTable > tbody > tr.child ul.dtr-details > li span {
+    color: #666;
   }
 }
 
@@ -406,5 +475,31 @@ body {
   }
   .topbar {
     padding: 10px;
+  }
+
+  .main-content {
+    padding: 5px;
+  }
+
+  #tabela-servicos {
+    min-height: 300px;
+  }
+
+  #tabela-servicos tr {
+    padding: 8px;
+    margin-bottom: 8px;
+  }
+
+  #tabela-servicos td {
+    padding: 6px 0;
+  }
+
+  #tabela-servicos td:before {
+    margin-bottom: 1px;
+  }
+
+  .add-service, .filter-service, .select-service {
+    padding: 12px;
+    font-size: 15px;
   }
 }

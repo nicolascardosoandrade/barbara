@@ -3,6 +3,10 @@ document.addEventListener('DOMContentLoaded', function() {
   const menuIcon = document.querySelector(".menu-icon");
   const userToggle = document.getElementById("userToggle");
   const userMenu = document.getElementById("userMenu");
+  const editBtn = document.getElementById("edit-btn");
+  const clinicaSpan = document.getElementById("clinica-percent");
+  const impostoSpan = document.getElementById("imposto-percent");
+  let isEditing = false;
 
   // Função para aplicar o estado inicial da sidebar com base no tamanho da tela
   function initializeSidebarState() {
@@ -77,9 +81,92 @@ document.addEventListener('DOMContentLoaded', function() {
     // window.location.href = "login.html";
   };
 
-  // Delete button
-  document.querySelector('.delete-btn').addEventListener('click', function() {
-    alert('Excluir registros selecionados');
+  // Edit button functionality
+  editBtn.addEventListener('click', function() {
+    if (!isEditing) {
+      // Iniciar modo de edição
+      const currentClinica = parseFloat(clinicaSpan.textContent.replace('%', '').trim());
+      const currentImposto = parseFloat(impostoSpan.textContent.replace('%', '').trim());
+
+      // Criar input para clínica
+      const clinicaInput = document.createElement('input');
+      clinicaInput.type = 'number';
+      clinicaInput.min = 0;
+      clinicaInput.max = 100;
+      clinicaInput.step = 1;
+      clinicaInput.value = currentClinica;
+      clinicaInput.className = 'percent-input';
+
+      const percentClinicaText = document.createTextNode('%');
+
+      const clinicaItem = document.getElementById('clinica-item');
+      const oldClinicaSpan = document.getElementById('clinica-percent');
+      clinicaItem.removeChild(oldClinicaSpan);
+      clinicaItem.appendChild(clinicaInput);
+      clinicaItem.appendChild(percentClinicaText);
+
+      // Criar input para impostos
+      const impostoInput = document.createElement('input');
+      impostoInput.type = 'number';
+      impostoInput.min = 0;
+      impostoInput.max = 100;
+      impostoInput.step = 1;
+      impostoInput.value = currentImposto;
+      impostoInput.className = 'percent-input';
+
+      const percentImpostoText = document.createTextNode('%');
+
+      const impostoItem = document.getElementById('imposto-item');
+      const oldImpostoSpan = document.getElementById('imposto-percent');
+      impostoItem.removeChild(oldImpostoSpan);
+      impostoItem.appendChild(impostoInput);
+      impostoItem.appendChild(percentImpostoText);
+
+      // Alterar botão para "Salvar"
+      editBtn.textContent = 'Salvar';
+      editBtn.classList.remove('edit-btn');
+      editBtn.classList.add('save-btn');
+
+      isEditing = true;
+    } else {
+      // Salvar alterações
+      const clinicaInput = document.querySelector('#clinica-item input');
+      const impostoInput = document.querySelector('#imposto-item input');
+
+      const newClinica = parseFloat(clinicaInput.value);
+      const newImposto = parseFloat(impostoInput.value);
+
+      // Recriar spans
+      const newClinicaSpan = document.createElement('span');
+      newClinicaSpan.id = 'clinica-percent';
+      newClinicaSpan.textContent = `% ${newClinica}`;
+
+      const newImpostoSpan = document.createElement('span');
+      newImpostoSpan.id = 'imposto-percent';
+      newImpostoSpan.textContent = `% ${newImposto}`;
+
+      // Substituir no DOM
+      const clinicaItem = document.getElementById('clinica-item');
+      const percentClinicaText = clinicaItem.lastChild; // O text node '%'
+      clinicaItem.removeChild(clinicaInput);
+      clinicaItem.removeChild(percentClinicaText);
+      clinicaItem.appendChild(newClinicaSpan);
+
+      const impostoItem = document.getElementById('imposto-item');
+      const percentImpostoText = impostoItem.lastChild; // O text node '%'
+      impostoItem.removeChild(impostoInput);
+      impostoItem.removeChild(percentImpostoText);
+      impostoItem.appendChild(newImpostoSpan);
+
+      // Alterar botão de volta para "Editar"
+      editBtn.textContent = 'Editar';
+      editBtn.classList.remove('save-btn');
+      editBtn.classList.add('edit-btn');
+
+      isEditing = false;
+
+      alert('Porcentagens atualizadas com sucesso!');
+    }
   });
 });
 

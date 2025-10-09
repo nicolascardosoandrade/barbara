@@ -109,4 +109,22 @@ document.addEventListener('DOMContentLoaded', function() {
     link.click();
     document.body.removeChild(link);
   };
+
+  // Inicializa DataTable com suporte a colunas arrastáveis
+  if (window.jQuery && $.fn.dataTable) {
+    $('#appointmentsTable').DataTable({
+      colReorder: true,
+      paging: false,
+      searching: false,
+      info: false,
+      language: {
+        emptyTable: "Nenhum dado disponível",
+        loadingRecords: "Carregando...",
+        processing: "Processando...",
+        zeroRecords: "Nenhum registro encontrado"
+      }
+    });
+  } else {
+    console.warn("jQuery ou DataTables não carregados corretamente.");
+  }
 });

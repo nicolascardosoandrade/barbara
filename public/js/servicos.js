@@ -91,13 +91,15 @@ document.addEventListener("DOMContentLoaded", function () {
   const tabela = $("#tabela-servicos").DataTable({
     data: dadosServicos,
     columns: [
-      { title: "Convênio" },
-      { title: "Consulta" },
-      { title: "Duração" },
-      { title: "Valor" },
-      { title: "Pagamento (dias)" },
+      { title: "Convênio", data: 0 },
+      { title: "Consulta", data: 1 },
+      { title: "Duração", data: 2 },
+      { title: "Valor", data: 3 },
+      { title: "Pagamento (dias)", data: 4 },
     ],
     responsive: true,
+    pageLength: 10,
+    lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "Todos"]],
     language: {
       search: "Buscar:",
       lengthMenu: "Mostrar _MENU_ registros por página",
@@ -112,6 +114,13 @@ document.addEventListener("DOMContentLoaded", function () {
         previous: "Anterior",
       },
     },
+    createdRow: function (row, data, dataIndex) {
+      // Add data-label to each td based on column index
+      $(row).find('td').each(function (index) {
+        const labels = ['Convênio', 'Consulta', 'Duração', 'Valor', 'Pagamento'];
+        $(this).attr('data-label', labels[index]);
+      });
+    }
   });
 
   // 🔎 Integração com campo de pesquisa do cabeçalho
@@ -120,4 +129,3 @@ document.addEventListener("DOMContentLoaded", function () {
     tabela.search(this.value).draw();
   });
 });
-

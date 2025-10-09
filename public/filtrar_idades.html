@@ -7,6 +7,9 @@
   <link rel="stylesheet" href="css/filtrar_idades.css"/>
   <link rel="icon" href="assets/img/Logo-barbara.png" type="image/x-icon">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+  <!-- DataTables CSS -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/colreorder/1.6.3/css/colReorder.dataTables.min.css">
 </head>
 <body>
   <!-- Cabeçalho -->
@@ -101,20 +104,24 @@
             <tr>
               <th>Paciente</th>
               <th>Idade</th>
+              <th>Situação</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td data-label="Paciente">Túlio Siqueira</td>
               <td data-label="Idade">13 anos, 0 meses</td>
+              <td data-label="Situação">Ativo</td>
             </tr>
             <tr>
               <td data-label="Paciente">Adriana Farrel</td>
               <td data-label="Idade">43 anos, 2 meses</td>
+              <td data-label="Situação">Inativo</td>
             </tr>
             <tr>
               <td data-label="Paciente">Alice Alves de</td>
               <td data-label="Idade">6 anos, 4 meses</td>
+              <td data-label="Situação">Ativo</td>
             </tr>
           </tbody>
         </table>
@@ -122,6 +129,13 @@
     </main>
   </div>
 
+  <!-- Seu script original -->
   <script src="js/filtrar_idades.js"></script>
+
+  <!-- jQuery + DataTables + ColReorder -->
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/colreorder/1.6.3/js/dataTables.colReorder.min.js"></script>
+
 </body>
 </html>

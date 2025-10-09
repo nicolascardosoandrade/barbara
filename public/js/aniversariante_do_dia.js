@@ -81,4 +81,22 @@ document.addEventListener('DOMContentLoaded', function() {
   document.querySelector('.add-birthday').addEventListener('click', function() {
     alert('Adicionar aniversariante');
   });
+
+  // Inicializa DataTable com suporte a colunas arrastáveis
+  if (window.jQuery && $.fn.dataTable) {
+    $('#tabela-aniversariantes').DataTable({
+      colReorder: true,
+      paging: false,
+      searching: false,
+      info: false,
+      language: {
+        emptyTable: "Nenhum aniversariante encontrado",
+        loadingRecords: "Carregando...",
+        processing: "Processando...",
+        zeroRecords: "Nenhum registro encontrado"
+      }
+    });
+  } else {
+    console.warn("jQuery ou DataTables não carregados corretamente.");
+  }
 });

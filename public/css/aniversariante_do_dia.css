@@ -244,20 +244,20 @@ body {
 }
 
 /* ==== TABELA ==== */
-table {
-  width: 100%;
+#tabela-aniversariantes {
+  width: 100% !important;
   border-collapse: collapse;
   background-color: #fff;
   margin-bottom: 20px;
 }
 
-table th, table td {
+#tabela-aniversariantes th, #tabela-aniversariantes td {
   padding: 10px;
   text-align: left;
   border-bottom: 1px solid #ddd;
 }
 
-table th {
+#tabela-aniversariantes th {
   background-color: #e7b5e8;
   color: #333;
 }
@@ -335,17 +335,17 @@ table th {
     content: none;
   }
 
-  table, thead, tbody, th, td, tr {
+  #tabela-aniversariantes, #tabela-aniversariantes thead, #tabela-aniversariantes tbody, #tabela-aniversariantes th, #tabela-aniversariantes td, #tabela-aniversariantes tr {
     display: block;
   }
 
-  thead tr {
+  #tabela-aniversariantes thead tr {
     position: absolute;
     top: -9999px;
     left: -9999px;
   }
 
-  tr {
+  #tabela-aniversariantes tr {
     border: 1px solid #ccc;
     margin-bottom: 10px;
     display: flex;
@@ -356,23 +356,32 @@ table th {
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
   }
 
-  td {
+  #tabela-aniversariantes td {
     border: none;
     position: relative;
-    padding-left: 50%;
-    text-align: right;
+    padding: 8px 0;
+    text-align: left;
     width: 100%;
+    padding-left: 0;
   }
 
-  td:before {
-    position: absolute;
-    left: 6px;
-    width: 45%;
-    padding-right: 10px;
-    white-space: nowrap;
-    content: attr(data-label);
+  #tabela-aniversariantes td:before {
+    position: static;
+    left: auto;
+    width: auto;
+    padding-right: 0;
+    white-space: normal;
+    content: attr(data-label) ':';
     font-weight: bold;
     text-align: left;
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  .add-birthday {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
   }
 }
 
@@ -381,14 +390,35 @@ table th {
     max-width: 150px;
     margin: 0 5px;
   }
+
   .search-container input {
     padding: 6px 8px;
     font-size: 12px;
   }
+
   .actions {
     gap: 10px;
   }
+
   .topbar {
     padding: 10px;
+  }
+
+  #tabela-aniversariantes tr {
+    padding: 8px;
+    margin-bottom: 8px;
+  }
+
+  #tabela-aniversariantes td {
+    padding: 6px 0;
+  }
+
+  #tabela-aniversariantes td:before {
+    margin-bottom: 1px;
+  }
+
+  .add-birthday {
+    padding: 10px;
+    font-size: 15px;
   }
 }

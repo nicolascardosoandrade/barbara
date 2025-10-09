@@ -141,6 +141,19 @@ body {
   transition: margin-left 0.3s ease;
 }
 
+.patients-report {
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+}
+
+.patients-report h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
 table {
   width: 100%;
   border-collapse: collapse;
@@ -344,6 +357,14 @@ table td .material-icons {
     content: none;
   }
 
+  .patients-report {
+    padding: 12px;
+  }
+
+  .patients-report h3 {
+    font-size: 16px;
+  }
+
   table, thead, tbody, th, td, tr {
     display: block;
   }
@@ -368,20 +389,29 @@ table td .material-icons {
   td {
     border: none;
     position: relative;
-    padding-left: 50%;
-    text-align: right;
+    padding: 8px 0;
+    text-align: left;
     width: 100%;
+    padding-left: 0;
   }
 
   td:before {
-    position: absolute;
-    left: 6px;
-    width: 45%;
-    padding-right: 10px;
-    white-space: nowrap;
-    content: attr(data-label);
+    position: static;
+    left: auto;
+    width: auto;
+    padding-right: 0;
+    white-space: normal;
+    content: attr(data-label) ':';
     font-weight: bold;
     text-align: left;
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  .add-patient {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
   }
 }
 
@@ -399,5 +429,31 @@ table td .material-icons {
   }
   .topbar {
     padding: 10px;
+  }
+
+  .patients-report {
+    padding: 10px;
+  }
+
+  .patients-report h3 {
+    font-size: 15px;
+  }
+
+  tr {
+    padding: 8px;
+    margin-bottom: 8px;
+  }
+
+  td {
+    padding: 6px 0;
+  }
+
+  td:before {
+    margin-bottom: 1px;
+  }
+
+  .add-patient {
+    padding: 10px;
+    font-size: 15px;
   }
 }
