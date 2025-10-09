@@ -82,3 +82,23 @@ document.addEventListener('DOMContentLoaded', function() {
     alert('Excluir registros selecionados');
   });
 });
+
+// Inicializa DataTable com suporte a colunas arrastáveis
+document.addEventListener('DOMContentLoaded', function () {
+  if (window.jQuery && $.fn.dataTable) {
+    $('#relatorio-financeiro').DataTable({
+      colReorder: true,
+      paging: false,
+      searching: false,
+      info: false,
+      language: {
+        emptyTable: "Nenhum dado disponível",
+        loadingRecords: "Carregando...",
+        processing: "Processando...",
+        zeroRecords: "Nenhum registro encontrado"
+      }
+    });
+  } else {
+    console.warn("jQuery ou DataTables não carregados corretamente.");
+  }
+});

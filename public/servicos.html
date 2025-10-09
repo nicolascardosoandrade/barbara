@@ -8,8 +8,12 @@
   <link rel="icon" href="assets/img/Logo-barbara.png" type="image/x-icon">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
 
-  <!-- Tabulator CSS -->
-  <link href="https://unpkg.com/tabulator-tables@5.6.2/dist/css/tabulator.min.css" rel="stylesheet">
+  <!-- DataTables + jQuery -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.dataTables.min.css">
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
 </head>
 <body>
   <!-- Cabeçalho -->
@@ -41,56 +45,20 @@
     <aside class="sidebar collapsed">
       <nav>
         <ul>
-          <li data-tooltip="Detalhes">
-            <a href="index.html">
-              <span class="material-icons">info</span> <span>Detalhes</span>
-            </a>
-          </li>
-          <li data-tooltip="Convênios">
-            <a href="convenios.html">
-              <span class="material-icons">handshake</span> <span>Convênios</span>
-            </a>
-          </li>
-          <li data-tooltip="Filtrar Idades">
-            <a href="filtrar_idades.html">
-              <span class="material-icons">filter_alt</span> <span>Filtrar Idades</span>
-            </a>
-          </li>
-          <li data-tooltip="Pacientes">
-            <a href="pacientes.html">
-              <span class="material-icons">group</span> <span>Pacientes</span>
-            </a>
-          </li>
-          <li data-tooltip="Agenda">
-            <a href="agenda.html">
-              <span class="material-icons">calendar_today</span> <span>Agenda</span>
-            </a>
-          </li>
-          <li data-tooltip="Agendamentos">
-            <a href="agendamentos.html">
-              <span class="material-icons">event</span> <span>Agendamentos</span>
-            </a>
-          </li>
-          <li data-tooltip="Aniversariantes do Dia">
-            <a href="aniversariante_do_dia.html">
-              <span class="material-icons">cake</span> <span>Aniversariantes do Dia</span>
-            </a>
-          </li>
-          <li class="active" data-tooltip="Serviços">
-            <a href="servicos.html">
-              <span class="material-icons">home_repair_service</span> <span>Serviços</span>
-            </a>
-          </li>
-          <li data-tooltip="Financeiro">
-            <a href="financeiro.html">
-              <span class="material-icons">attach_money</span> <span>Financeiro</span>
-            </a>
-          </li>
+          <li data-tooltip="Detalhes"><a href="index.html"><span class="material-icons">info</span> <span>Detalhes</span></a></li>
+          <li data-tooltip="Convênios"><a href="convenios.html"><span class="material-icons">handshake</span> <span>Convênios</span></a></li>
+          <li data-tooltip="Filtrar Idades"><a href="filtrar_idades.html"><span class="material-icons">filter_alt</span> <span>Filtrar Idades</span></a></li>
+          <li data-tooltip="Pacientes"><a href="pacientes.html"><span class="material-icons">group</span> <span>Pacientes</span></a></li>
+          <li data-tooltip="Agenda"><a href="agenda.html"><span class="material-icons">calendar_today</span> <span>Agenda</span></a></li>
+          <li data-tooltip="Agendamentos"><a href="agendamentos.html"><span class="material-icons">event</span> <span>Agendamentos</span></a></li>
+          <li data-tooltip="Aniversariantes do Dia"><a href="aniversariante_do_dia.html"><span class="material-icons">cake</span> <span>Aniversariantes do Dia</span></a></li>
+          <li class="active" data-tooltip="Serviços"><a href="servicos.html"><span class="material-icons">home_repair_service</span> <span>Serviços</span></a></li>
+          <li data-tooltip="Financeiro"><a href="financeiro.html"><span class="material-icons">attach_money</span> <span>Financeiro</span></a></li>
         </ul>
       </nav>
     </aside>
 
-    <!-- Main -->
+    <!-- Conteúdo Principal -->
     <main class="main-content">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
         <h2>Serviços</h2>
@@ -101,13 +69,25 @@
         </div>
       </div>
 
-      <!-- Aqui entra a tabela dinâmica do Tabulator -->
-      <div id="tabela-servicos"></div>
+      <!-- Tabela com jQuery DataTables -->
+      <table id="tabela-servicos" class="display nowrap" style="width:100%">
+        <thead>
+          <tr>
+            <th>Convênio</th>
+            <th>Consulta</th>
+            <th>Duração</th>
+            <th>Valor</th>
+            <th>Pagamento</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Dados via JS -->
+        </tbody>
+      </table>
     </main>
   </div>
 
-  <!-- Tabulator JS -->
-  <script src="https://unpkg.com/tabulator-tables@5.6.2/dist/js/tabulator.min.js"></script>
+  <!-- JavaScript da página -->
   <script src="js/servicos.js"></script>
 </body>
 </html>

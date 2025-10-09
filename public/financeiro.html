@@ -7,6 +7,10 @@
   <link rel="stylesheet" href="css/financeiro.css"/>
   <link rel="icon" href="assets/img/Logo-barbara.png" type="image/x-icon">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+
+  <!-- DataTables CSS -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/colreorder/1.6.3/css/colReorder.dataTables.min.css">
 </head>
 <body>
   <!-- Cabeçalho -->
@@ -130,7 +134,7 @@
       </div>
       <div class="financial-report">
         <h3>RELATÓRIO GERAL</h3>
-        <table>
+        <table id="relatorio-financeiro">
           <thead>
             <tr>
               <th>DATA CONSULTA</th>
@@ -142,39 +146,39 @@
           </thead>
           <tbody>
             <tr>
-              <td data-label="Data Consulta">1/10/2025</td>
-              <td data-label="Nome">Kessyla Luiza Dutra dos Santos</td>
-              <td data-label="Convênio">USISAÚDE</td>
-              <td data-label="Consulta">Sessão de 30 min</td>
-              <td data-label="Frequência">SEMANAL</td>
+              <td>1/10/2025</td>
+              <td>Kessyla Luiza Dutra dos Santos</td>
+              <td>USISAÚDE</td>
+              <td>Sessão de 30 min</td>
+              <td>SEMANAL</td>
             </tr>
             <tr>
-              <td data-label="Data Consulta">1/10/2025</td>
-              <td data-label="Nome">Marco Antônio Oliveira Almeida</td>
-              <td data-label="Convênio">UNIMED</td>
-              <td data-label="Consulta">Sessão de 30 min</td>
-              <td data-label="Frequência">SEMANAL</td>
+              <td>1/10/2025</td>
+              <td>Marco Antônio Oliveira Almeida</td>
+              <td>UNIMED</td>
+              <td>Sessão de 30 min</td>
+              <td>SEMANAL</td>
             </tr>
             <tr>
-              <td data-label="Data Consulta">1/10/2025</td>
-              <td data-label="Nome">Maressa Vitória Sales Figueiredo</td>
-              <td data-label="Convênio">USISAÚDE</td>
-              <td data-label="Consulta">Sessão de 30 min</td>
-              <td data-label="Frequência">QUINZENAL</td>
+              <td>1/10/2025</td>
+              <td>Maressa Vitória Sales Figueiredo</td>
+              <td>USISAÚDE</td>
+              <td>Sessão de 30 min</td>
+              <td>QUINZENAL</td>
             </tr>
             <tr>
-              <td data-label="Data Consulta">1/10/2025</td>
-              <td data-label="Nome">Ana Darmstadter Stokler</td>
-              <td data-label="Convênio">USISAÚDE</td>
-              <td data-label="Consulta">Sessão de 30 min</td>
-              <td data-label="Frequência">SEMANAL</td>
+              <td>1/10/2025</td>
+              <td>Ana Darmstadter Stokler</td>
+              <td>USISAÚDE</td>
+              <td>Sessão de 30 min</td>
+              <td>SEMANAL</td>
             </tr>
             <tr>
-              <td data-label="Data Consulta">1/10/2025</td>
-              <td data-label="Nome">Leandro Faria Melo</td>
-              <td data-label="Convênio">USISAÚDE</td>
-              <td data-label="Consulta">Sessão de 30 min</td>
-              <td data-label="Frequência">SEMANAL</td>
+              <td>1/10/2025</td>
+              <td>Leandro Faria Melo</td>
+              <td>USISAÚDE</td>
+              <td>Sessão de 30 min</td>
+              <td>SEMANAL</td>
             </tr>
           </tbody>
         </table>
@@ -182,6 +186,14 @@
     </main>
   </div>
 
+  <!-- Seu script original -->
   <script src="js/financeiro.js"></script>
+
+  <!-- jQuery + DataTables + ColReorder -->
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/colreorder/1.6.3/js/dataTables.colReorder.min.js"></script>
+
+  
 </body>
 </html>
