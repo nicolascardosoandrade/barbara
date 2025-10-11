@@ -419,14 +419,55 @@ body {
 
 .fc-header-toolbar {
   margin-bottom: 10px;
+  padding: 10px;
+  background: #fff;
+  border-radius: 6px;
+  border: 1px solid #ddd;
 }
 
+/* ------------------------------------------------------------------ */
+/* NOVO ESTILO PARA OS BOTÕES ANTERIOR E PRÓXIMO (FullCalendar) */
+/* ------------------------------------------------------------------ */
 .fc-prev-button,
 .fc-next-button {
-  background-color: transparent;
+  /* Cor e Fundo Principal (Mais escuro para contraste) */
+  background-color: #dca0e5; /* Cor de destaque (similar ao item ativo da sidebar) */
+  color: #fff; /* Ícone/seta em branco para alto contraste */
+  
+  /* Formato e Tamanho (Padrão de ícone arredondado) */
   border: none;
-  font-size: 20px;
+  padding: 0; /* Remover padding padrão para controlar com width/height */
+  border-radius: 50%;
+  width: 36px; /* Tamanho ligeiramente menor que os botões de ação (40px) */
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.1s ease, box-shadow 0.2s ease;
+  font-size: 18px; /* Tamanho da seta/ícone */
+  margin: 0 4px; /* Espaçamento entre os botões */
+  
+  /* Remove o outline de foco do navegador */
+  box-shadow: none; 
 }
+
+.fc-prev-button:focus,
+.fc-next-button:focus {
+  outline: none; 
+}
+
+.fc-prev-button:hover,
+.fc-next-button:hover {
+  /* Efeito de Hover */
+  background-color: #ce93d8; /* Um tom um pouco mais suave no hover */
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Sombra suave para elevação */
+}
+/* ------------------------------------------------------------------ */
+/* FIM DO NOVO ESTILO PARA OS BOTÕES ANTERIOR E PRÓXIMO */
+/* ------------------------------------------------------------------ */
+
 
 /* ==== RESPONSIVIDADE ==== */
 @media (max-width: 768px) {
@@ -499,7 +540,10 @@ body {
   /* Diminui o tamanho das setas de navegação no título do calendário */
   .fc-prev-button,
   .fc-next-button {
+    width: 32px !important;
+    height: 32px !important;
     font-size: 16px !important;
+    padding: 6px !important;
   }
 
   /* Ajustes para responsividade do calendário em mobile */
@@ -599,7 +643,10 @@ body {
   /* Ajuste adicional para setas em telas muito pequenas */
   .fc-prev-button,
   .fc-next-button {
+    width: 28px !important;
+    height: 28px !important;
     font-size: 14px !important;
+    padding: 4px !important;
   }
 
   /* Ajustes mais agressivos para telas muito pequenas */
