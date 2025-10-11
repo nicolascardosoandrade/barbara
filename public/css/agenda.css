@@ -266,43 +266,94 @@ body {
   display: flex;
   gap: 10px;
   align-items: center;
+  position: relative; /* Para tooltips não interferirem */
 }
 
 .icon-btn {
   display: flex;
   align-items: center;
-  gap: 5px;
-  background-color: #1976d2;
+  justify-content: center; /* Centraliza o ícone agora que não há texto */
+  gap: 0; /* Remove o gap desnecessário sem texto */
+  background-color: #e1bee7; /* Cor base suave roxa para harmonizar com o tema */
   color: #fff;
   border: none;
-  padding: 6px 12px;
+  padding: 8px; /* Ajuste de padding para centralizar o ícone melhor */
   border-radius: 6px;
   font-size: 14px;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: background 0.3s ease, transform 0.1s ease; /* Adicionado transform para leve elevação no hover */
+  position: relative; /* Essencial para posicionamento do tooltip */
 }
 
 .icon-btn:hover {
-  background-color: #1565c0;
+  background-color: #ce93d8; /* Hover mais escuro e vibrante */
+  transform: translateY(-1px); /* Leve elevação para efeito bonito */
 }
 
-/* Botão Hoje */
-.today-btn {
-  background-color: #9c27b0;
+.icon-btn .material-icons {
+  color: #5e2d79; /* Ícone em roxo escuro para contraste */
 }
 
-.today-btn:hover {
-  background-color: #7b1fa2;
+/* Tooltip para botões de ícone */
+.icon-btn:hover::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #444;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+  font-size: 12px;
+  z-index: 1000;
+  margin-top: 5px;
 }
 
-.excel-btn { background-color: #4caf50; }
-.excel-btn:hover { background-color: #3e8e41; }
+/* Botão Excel: Verde suave para exportação de dados */
+.excel-btn { 
+  background-color: #c8e6c9; 
+}
+.excel-btn:hover { 
+  background-color: #a5d6a7; 
+}
+.excel-btn .material-icons { 
+  color: #2e7d32; 
+}
 
-.add-btn { background-color: #dca0e5; }
-.add-btn:hover { background-color: #b76acc; }
+/* Botão Adicionar: Roxo vibrante para criação */
+.add-btn { 
+  background-color: #f3e5f5; 
+}
+.add-btn:hover { 
+  background-color: #e1bee7; 
+}
+.add-btn .material-icons { 
+  color: #7b1fa2; 
+}
 
-.filter-btn { background-color: #607d8b; }
-.filter-btn:hover { background-color: #4b636e; }
+/* Botão Filtrar: Azul acinzentado para filtro neutro */
+.filter-btn { 
+  background-color: #e0f2f1; 
+}
+.filter-btn:hover { 
+  background-color: #b2dfdb; 
+}
+.filter-btn .material-icons { 
+  color: #00695c; 
+}
+
+/* Botão Hoje: Laranja suave para destaque temporal */
+.today-btn { 
+  background-color: #fff3e0; 
+}
+.today-btn:hover { 
+  background-color: #ffe0b2; 
+}
+.today-btn .material-icons { 
+  color: #ef6c00; 
+}
 
 /* ==== CALENDAR VIEWS ==== */
 .calendar-views {
@@ -496,6 +547,16 @@ body {
   #calendar {
     overflow-x: auto;
   }
+
+  /* Ajuste para ícones em mobile */
+  .icon-btn {
+    padding: 6px; /* Reduz padding em mobile para ícones menores */
+  }
+
+  /* Em mobile, esconde tooltips para economizar espaço */
+  .icon-btn:hover::after {
+    display: none;
+  }
 }
 
 @media (max-width: 480px) {
@@ -518,7 +579,7 @@ body {
     justify-content: center;
   }
   .icon-btn {
-    padding: 4px 8px;
+    padding: 4px 6px; /* Ajuste menor para telas pequenas */
     font-size: 12px;
   }
   .calendar-views {
