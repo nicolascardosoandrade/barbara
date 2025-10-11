@@ -146,29 +146,7 @@ body {
   color: #333;
 }
 
-.add-service, .filter-service, .select-service {
-  background-color: #5e2d79;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 14px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  margin-left: 5px;
-}
-
-.filter-service .material-icons, .select-service .material-icons {
-  font-size: 20px;
-  color: white;
-}
-
-.add-service:hover, .filter-service:hover, .select-service:hover {
-  background-color: #4a2261;
-}
-
+/* Remove os estilos dos botões que foram removidos */
 #tabela-servicos {
   height: 500px;
   background: #fff;
@@ -347,12 +325,6 @@ body {
     align-items: flex-start;
   }
 
-  .add-service, .filter-service, .select-service {
-    width: 100%;
-    margin-bottom: 10px;
-    margin-left: 0;
-  }
-
   #tabela-servicos_wrapper {
     overflow-x: auto;
   }
@@ -496,10 +468,5 @@ body {
 
   #tabela-servicos td:before {
     margin-bottom: 1px;
-  }
-
-  .add-service, .filter-service, .select-service {
-    padding: 12px;
-    font-size: 15px;
   }
 }

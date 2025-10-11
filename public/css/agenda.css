@@ -425,6 +425,16 @@ body {
   border: 1px solid #ddd;
 }
 
+/* Custom CSS to place day of week and day of month on separate lines */
+.fc .fc-daygrid-day-top {
+  display: flex;
+  flex-direction: column;
+}
+
+.fc .fc-daygrid-day-number {
+  margin-top: 2px;
+}
+
 /* ------------------------------------------------------------------ */
 /* NOVO ESTILO PARA OS BOTÕES ANTERIOR E PRÓXIMO (FullCalendar) */
 /* ------------------------------------------------------------------ */

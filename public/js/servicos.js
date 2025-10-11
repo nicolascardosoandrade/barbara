@@ -69,12 +69,6 @@ document.addEventListener("DOMContentLoaded", function () {
     // window.location.href = "login.html";
   };
 
-  document
-    .querySelector(".add-service")
-    .addEventListener("click", function () {
-      alert("Adicionar serviço");
-    });
-
   // === Dados dos serviços ===
   const dadosServicos = [
     ["AAPI", "Sessão de 1h", "1:00", "R$120,00", "30"],
