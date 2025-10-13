@@ -5,12 +5,13 @@
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   height: 100%;
 }
 
 body {
-  font-family: 'Segoe UI', sans-serif;
+  font-family: "Segoe UI", sans-serif;
   display: flex;
   flex-direction: column;
   background-color: #f4f4f4;
@@ -159,7 +160,8 @@ table {
   margin-bottom: 20px;
 }
 
-table th, table td {
+table th,
+table td {
   padding: 10px;
   text-align: left;
   border-bottom: 1px solid #ddd;
@@ -175,7 +177,11 @@ table td .material-icons {
   color: #5e2d79;
 }
 
-.add-appointment, .export-excel {
+/* Updated button styles to include filter and select buttons */
+.add-appointment,
+.export-excel,
+.filter-button,
+.select-button {
   background-color: #5e2d79;
   color: white;
   border: none;
@@ -183,9 +189,12 @@ table td .material-icons {
   border-radius: 6px;
   cursor: pointer;
   font-size: 14px;
+  transition: background-color 0.2s ease;
 }
 
-.export-excel {
+.export-excel,
+.filter-button,
+.select-button {
   padding: 10px;
   min-width: 40px;
   display: flex;
@@ -193,11 +202,16 @@ table td .material-icons {
   justify-content: center;
 }
 
-.export-excel .material-icons {
+.export-excel .material-icons,
+.filter-button .material-icons,
+.select-button .material-icons {
   font-size: 20px;
 }
 
-.add-appointment:hover, .export-excel:hover {
+.add-appointment:hover,
+.export-excel:hover,
+.filter-button:hover,
+.select-button:hover {
   background-color: #4a2261;
 }
 
@@ -361,15 +375,19 @@ table td .material-icons {
     content: none;
   }
 
+  /* Updated button container for mobile responsiveness */
   .button-container {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 10px;
     margin-bottom: 20px;
   }
 
-  .export-excel {
+  .export-excel,
+  .filter-button,
+  .select-button {
     width: auto;
     padding: 10px;
     flex-shrink: 0;
@@ -379,7 +397,12 @@ table td .material-icons {
     width: 100%;
   }
 
-  table, thead, tbody, th, td, tr {
+  table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
     display: block;
   }
 
@@ -397,7 +420,7 @@ table td .material-icons {
     padding: 10px;
     background-color: #fff;
     border-radius: 6px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
   }
 
   td {
@@ -447,7 +470,9 @@ table td .material-icons {
     margin-bottom: 1px;
   }
 
-  .export-excel {
+  .export-excel,
+  .filter-button,
+  .select-button {
     padding: 8px;
   }
 

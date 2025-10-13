@@ -94,9 +94,12 @@
     <!-- Main -->
     <main class="main-content">
       <h2>Agendamentos</h2>
+      <!-- Added filter and select buttons to match the reference image -->
       <div class="button-container">
         <button class="export-excel" onclick="exportToExcel()"><span class="material-icons">table_chart</span></button>
         <button class="add-appointment">+ ADICIONAR</button>
+        <button class="filter-button" onclick="filterAppointments()"><span class="material-icons">filter_list</span></button>
+        <button class="select-button" onclick="toggleSelectMode()"><span class="material-icons">check_box_outline_blank</span></button>
       </div>
       <table id="appointmentsTable">
         <thead>

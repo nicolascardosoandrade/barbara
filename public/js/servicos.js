@@ -1,23 +1,28 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
   const sidebar = document.querySelector(".sidebar");
   const menuIcon = document.querySelector(".menu-icon");
   const userToggle = document.getElementById("userToggle");
   const userMenu = document.getElementById("userMenu");
 
+  // Função para aplicar o estado inicial da sidebar com base no tamanho da tela
   function initializeSidebarState() {
     if (window.innerWidth >= 768) {
+      // Em desktop, a sidebar começa colapsada
       sidebar.classList.add("collapsed");
       sidebar.classList.remove("active");
       document.body.classList.remove("no-scroll");
     } else {
+      // Em mobile, a sidebar SEMPRE começa oculta
       sidebar.classList.remove("collapsed");
       sidebar.classList.remove("active");
       document.body.classList.remove("no-scroll");
     }
   }
 
+  // Chame a função ao carregar a página
   initializeSidebarState();
 
+  // Toggle sidebar (collapsed for desktop, active for mobile)
   menuIcon.addEventListener("click", () => {
     if (window.innerWidth < 768) {
       sidebar.classList.toggle("active");
@@ -29,6 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
+  // Fecha a sidebar ao clicar em um item da lista em dispositivos móveis
   sidebar.querySelectorAll("nav ul li a").forEach((item) => {
     item.addEventListener("click", () => {
       if (window.innerWidth < 768 && sidebar.classList.contains("active")) {
@@ -38,7 +44,8 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  document.addEventListener("click", function (e) {
+  // Fecha a sidebar ao clicar fora dela em dispositivos móveis
+  document.addEventListener("click", (e) => {
     if (
       window.innerWidth < 768 &&
       sidebar.classList.contains("active") &&
@@ -50,21 +57,24 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
+  // Gerencia a sidebar ao redimensionar a janela
   window.addEventListener("resize", initializeSidebarState);
 
-  userToggle.addEventListener("click", function (e) {
+  // User dropdown
+  userToggle.addEventListener("click", (e) => {
     e.stopPropagation();
-    userMenu.style.display =
-      userMenu.style.display === "flex" ? "none" : "flex";
+    userMenu.style.display = userMenu.style.display === "flex" ? "none" : "flex";
   });
 
-  document.addEventListener("click", function (e) {
+  // Fecha dropdown ao clicar fora
+  document.addEventListener("click", (e) => {
     if (!userMenu.contains(e.target) && e.target !== userToggle) {
       userMenu.style.display = "none";
     }
   });
 
-  window.logout = function () {
+  // Logout function
+  window.logout = () => {
     alert("Você saiu com sucesso!");
     // window.location.href = "login.html";
   };
@@ -82,44 +92,71 @@ document.addEventListener("DOMContentLoaded", function () {
   ];
 
   // === Inicializar DataTable ===
-  const tabela = $("#tabela-servicos").DataTable({
-    data: dadosServicos,
-    columns: [
-      { title: "Convênio", data: 0 },
-      { title: "Consulta", data: 1 },
-      { title: "Duração", data: 2 },
-      { title: "Valor", data: 3 },
-      { title: "Pagamento (dias)", data: 4 },
-    ],
-    responsive: true,
-    pageLength: 10,
-    lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "Todos"]],
-    language: {
-      search: "Buscar:",
-      lengthMenu: "Mostrar _MENU_ registros por página",
-      zeroRecords: "Nenhum serviço encontrado",
-      info: "Mostrando página _PAGE_ de _PAGES_",
-      infoEmpty: "Nenhum serviço disponível",
-      infoFiltered: "(filtrado de _MAX_ serviços no total)",
-      paginate: {
-        first: "Primeiro",
-        last: "Último",
-        next: "Próximo",
-        previous: "Anterior",
+  if (window.jQuery && $.fn.dataTable) {
+    const tabela = $("#tabela-servicos").DataTable({
+      data: dadosServicos,
+      columns: [
+        { title: "CONVÊNIO", data: 0 },
+        { title: "CONSULTA", data: 1 },
+        { title: "DURAÇÃO", data: 2 },
+        { title: "VALOR", data: 3 },
+        { title: "PAGAMENTO", data: 4 },
+      ],
+      colReorder: true,
+      paging: false,
+      searching: false,
+      info: false,
+      language: {
+        emptyTable: "Nenhum dado disponível",
+        loadingRecords: "Carregando...",
+        processing: "Processando...",
+        zeroRecords: "Nenhum registro encontrado",
       },
-    },
-    createdRow: function (row, data, dataIndex) {
-      // Add data-label to each td based on column index
-      $(row).find('td').each(function (index) {
-        const labels = ['Convênio', 'Consulta', 'Duração', 'Valor', 'Pagamento'];
-        $(this).attr('data-label', labels[index]);
-      });
-    }
+      createdRow: (row, data, dataIndex) => {
+        $(row)
+          .find("td")
+          .each(function (index) {
+            const labels = ["CONVÊNIO", "CONSULTA", "DURAÇÃO", "VALOR", "PAGAMENTO"];
+            $(this).attr("data-label", labels[index]);
+          });
+      },
+    });
+
+    // === Integração com campo de pesquisa do cabeçalho ===
+    const searchInput = document.getElementById("searchInput");
+    searchInput.addEventListener("input", function () {
+      tabela.search(this.value).draw();
+    });
+  } else {
+    console.warn("jQuery ou DataTables não carregados corretamente.");
+  }
+
+  // === Botão Adicionar ===
+  const btnAdicionar = document.getElementById("btnAdicionar");
+  btnAdicionar.addEventListener("click", () => {
+    alert("Funcionalidade de adicionar serviço será implementada aqui.");
   });
 
-  // 🔎 Integração com campo de pesquisa do cabeçalho
-  const searchInput = document.getElementById("searchInput");
-  searchInput.addEventListener("input", function () {
-    tabela.search(this.value).draw();
+  // === Botão Filtrar ===
+  const btnFiltrar = document.getElementById("btnFiltrar");
+  btnFiltrar.addEventListener("click", () => {
+    btnFiltrar.classList.toggle("active");
+    alert("Funcionalidade de filtro será implementada aqui.");
+  });
+
+  // === Botão Selecionar ===
+  const btnSelecionar = document.getElementById("btnSelecionar");
+  let selectMode = false;
+  btnSelecionar.addEventListener("click", () => {
+    selectMode = !selectMode;
+    btnSelecionar.classList.toggle("active");
+    const icon = btnSelecionar.querySelector(".material-icons");
+    icon.textContent = selectMode ? "check_box" : "check_box_outline_blank";
+
+    if (selectMode) {
+      alert("Modo de seleção ativado. Funcionalidade será implementada.");
+    } else {
+      alert("Modo de seleção desativado.");
+    }
   });
 });

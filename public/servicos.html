@@ -10,10 +10,10 @@
 
   <!-- DataTables + jQuery -->
   <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
-  <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.dataTables.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/colreorder/1.6.3/css/colReorder.dataTables.min.css">
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-  <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
+  <script src="https://cdn.datatables.net/colreorder/1.6.3/js/dataTables.colReorder.min.js"></script>
 </head>
 <body>
   <!-- Cabeçalho -->
@@ -62,25 +62,38 @@
     <main class="main-content">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
         <h2>Serviços</h2>
-        <div>
+        <div class="action-buttons">
+          <button class="btn-adicionar" id="btnAdicionar">
+            <span class="material-icons">add</span>
+            ADICIONAR
+          </button>
+          <button class="btn-icon" id="btnFiltrar" title="Filtrar">
+            <span class="material-icons">filter_list</span>
+          </button>
+          <button class="btn-icon" id="btnSelecionar" title="Selecionar">
+            <span class="material-icons">check_box_outline_blank</span>
+          </button>
         </div>
       </div>
 
       <!-- Tabela com jQuery DataTables -->
-      <table id="tabela-servicos" class="display" style="width:100%">
-        <thead>
-          <tr>
-            <th data-label="Convênio">Convênio</th>
-            <th data-label="Consulta">Consulta</th>
-            <th data-label="Duração">Duração</th>
-            <th data-label="Valor">Valor</th>
-            <th data-label="Pagamento">Pagamento</th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- Dados via JS -->
-        </tbody>
-      </table>
+      <div class="services-report">
+        <h3>RELATÓRIO DE SERVIÇOS</h3>
+        <table id="tabela-servicos">
+          <thead>
+            <tr>
+              <th>CONVÊNIO</th>
+              <th>CONSULTA</th>
+              <th>DURAÇÃO</th>
+              <th>VALOR</th>
+              <th>PAGAMENTO</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Dados via JS -->
+          </tbody>
+        </table>
+      </div>
     </main>
   </div>
 

@@ -23,7 +23,7 @@ body {
   width: 100%;
   margin-top: 0;
   min-height: 0;
-  overflow: hidden; /* Garante que o conteúdo não vaze enquanto a sidebar se move */
+  overflow: hidden;
 }
 
 /* ==== SIDEBAR GERAL ==== */
@@ -34,10 +34,10 @@ body {
   flex-direction: column;
   justify-content: flex-start;
   min-height: calc(100vh - 60px);
-  transition: width 0.3s ease, padding 0.3s ease, transform 0.3s ease; /* Adicionado transform para mobile */
+  transition: width 0.3s ease, padding 0.3s ease, transform 0.3s ease;
   overflow-x: hidden;
-  flex-shrink: 0; /* Impede que a sidebar diminua mais do que o necessário */
-  position: relative; /* Para z-index e posicionamento em mobile */
+  flex-shrink: 0;
+  position: relative;
 }
 
 /* ==== SIDEBAR PADRÃO (DESKTOP EXPANDIDA) ==== */
@@ -130,28 +130,6 @@ body {
   white-space: nowrap;
   font-size: 12px;
   z-index: 1000;
-}
-
-/* ==== MAIN CONTENT ==== */
-.main-content {
-  flex: 1;
-  padding: 20px;
-  overflow-y: auto;
-  min-height: calc(100vh - 60px);
-  transition: margin-left 0.3s ease;
-}
-
-.main-content h2 {
-  font-size: 24px;
-  color: #333;
-}
-
-/* Remove os estilos dos botões que foram removidos */
-#tabela-servicos {
-  height: 500px;
-  background: #fff;
-  border-radius: 6px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
 /* ==== HEADER ==== */
@@ -262,6 +240,106 @@ body {
   background-color: #f0f0f0;
 }
 
+/* ==== MAIN CONTENT ==== */
+.main-content {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  min-height: calc(100vh - 60px);
+  transition: margin-left 0.3s ease;
+}
+
+.main-content h2 {
+  font-size: 24px;
+  color: #333;
+}
+
+.services-report {
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 6px;
+}
+
+.services-report h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table th, table td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+table th {
+  background-color: #e7b5e8;
+  color: #333;
+}
+
+/* ==== ACTION BUTTONS ==== */
+.action-buttons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-adicionar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background-color: #e7b5e8;
+  color: #333;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btn-adicionar:hover {
+  background-color: #dca0e5;
+}
+
+.btn-adicionar .material-icons {
+  font-size: 18px;
+}
+
+.btn-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-icon:hover {
+  background-color: #f0f0f0;
+  border-color: #999;
+}
+
+.btn-icon .material-icons {
+  font-size: 20px;
+  color: #333;
+}
+
+.btn-icon.active {
+  background-color: #e7b5e8;
+  border-color: #dca0e5;
+}
+
 /* ==== RESPONSIVIDADE ==== */
 @media (max-width: 768px) {
   .logo-title h2 {
@@ -276,46 +354,40 @@ body {
     padding: 10px 15px;
   }
 
-  /* Em mobile, a sidebar começa completamente oculta fora da tela */
   .sidebar {
-    position: fixed; /* Fixa a sidebar na viewport */
-    top: 60px; /* Abaixo do header */
+    position: fixed;
+    top: 60px;
     left: 0;
-    width: 280px; /* Largura total quando visível */
-    height: calc(100vh - 60px); /* Ocupa o resto da altura da viewport */
-    transform: translateX(-100%); /* Esconde a sidebar completamente para a esquerda */
-    box-shadow: none; /* Remove a sombra por padrão */
+    width: 280px;
+    height: calc(100vh - 60px);
+    transform: translateX(-100%);
+    box-shadow: none;
     z-index: 999;
-    padding: 0; /* Remove padding inicial */
-    transition: transform 0.3s ease, padding 0.3s ease, box-shadow 0.3s ease; /* Transições suaves */
+    padding: 0;
+    transition: transform 0.3s ease, padding 0.3s ease, box-shadow 0.3s ease;
   }
 
-  /* Quando a sidebar está ativa (expandida) em mobile */
   .sidebar.active {
-    transform: translateX(0); /* Faz a sidebar deslizar para a direita, tornando-a visível */
-    padding: 20px 10px; /* Adiciona padding quando ativa */
-    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3); /* Adiciona sombra quando visível */
+    transform: translateX(0);
+    padding: 20px 10px;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
   }
 
-  /* Impede que o scroll do body em mobile afete a página principal quando a sidebar está aberta */
   body.no-scroll {
     overflow: hidden;
   }
 
-  /* Ajusta o main-content, mas ele não será empurrado. A sidebar flutua sobre ele. */
   .main-content {
     width: 100%;
     padding: 10px;
-    margin-left: 0 !important; /* Reseta qualquer margin-left que possa ter vindo do desktop */
+    margin-left: 0 !important;
   }
 
-  /* Garante que o menu icon apareça visível no topo da tela */
   .topbar .menu-icon {
     display: block;
     margin-right: 10px;
   }
 
-  /* Não há necessidade de tooltip para a sidebar em mobile, pois ela se expande */
   .sidebar nav ul li:hover::after {
     content: none;
   }
@@ -325,27 +397,25 @@ body {
     align-items: flex-start;
   }
 
-  #tabela-servicos_wrapper {
-    overflow-x: auto;
+  .services-report {
+    padding: 12px;
   }
 
-  #tabela-servicos {
-    height: auto;
-    min-height: 400px;
+  .services-report h3 {
+    font-size: 16px;
   }
 
-  /* Mobile Table Card View */
-  #tabela-servicos, #tabela-servicos thead, #tabela-servicos tbody, #tabela-servicos th, #tabela-servicos td, #tabela-servicos tr {
+  table, thead, tbody, th, td, tr {
     display: block;
   }
 
-  #tabela-servicos thead tr {
+  thead tr {
     position: absolute;
     top: -9999px;
     left: -9999px;
   }
 
-  #tabela-servicos tr {
+  tr {
     border: 1px solid #ccc;
     margin-bottom: 10px;
     display: flex;
@@ -356,7 +426,7 @@ body {
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
   }
 
-  #tabela-servicos td {
+  td {
     border: none;
     position: relative;
     padding: 8px 0;
@@ -365,7 +435,7 @@ body {
     padding-left: 0;
   }
 
-  #tabela-servicos td:before {
+  td:before {
     position: static;
     left: auto;
     width: auto;
@@ -377,60 +447,6 @@ body {
     display: block;
     margin-bottom: 2px;
   }
-
-  /* Card-like para o conteúdo child */
-  .dtr-bs-modal .modal-body {
-    padding: 0;
-  }
-
-  .dataTables_wrapper .dataTables_length,
-  .dataTables_wrapper .dataTables_filter,
-  .dataTables_wrapper .dataTables_info,
-  .dataTables_wrapper .dataTables_paginate {
-    margin: 5px;
-  }
-
-  .dataTables_wrapper .dataTables_length select,
-  .dataTables_wrapper .dataTables_filter input {
-    width: 100px;
-    margin-left: 5px;
-  }
-
-  /* Ajuste para o child row como card */
-  div.DTFC_LeftBodyLiner div.dataTables_scrollBody table.dataTable.dtr-inline.collapsed > tbody > tr > td:first-child:before {
-    display: none;
-  }
-
-  table.dataTable > tbody > tr.child ul.dtr-details {
-    margin: 0;
-    padding: 10px;
-    background-color: #f9f9f9;
-    border-radius: 6px;
-    display: block;
-    list-style: none;
-  }
-
-  table.dataTable > tbody > tr.child ul.dtr-details > li {
-    display: block;
-    margin-bottom: 8px;
-    padding: 5px 0;
-    border-bottom: 1px solid #eee;
-  }
-
-  table.dataTable > tbody > tr.child ul.dtr-details > li:last-child {
-    border-bottom: none;
-  }
-
-  table.dataTable > tbody > tr.child ul.dtr-details > li strong {
-    display: inline-block;
-    width: 40%;
-    font-weight: bold;
-    color: #333;
-  }
-
-  table.dataTable > tbody > tr.child ul.dtr-details > li span {
-    color: #666;
-  }
 }
 
 @media (max-width: 480px) {
@@ -438,13 +454,16 @@ body {
     max-width: 150px;
     margin: 0 5px;
   }
+
   .search-container input {
     padding: 6px 8px;
     font-size: 12px;
   }
+
   .actions {
     gap: 10px;
   }
+
   .topbar {
     padding: 10px;
   }
@@ -453,20 +472,15 @@ body {
     padding: 5px;
   }
 
-  #tabela-servicos {
-    min-height: 300px;
+  .services-report {
+    padding: 10px;
   }
 
-  #tabela-servicos tr {
-    padding: 8px;
-    margin-bottom: 8px;
-  }
-
-  #tabela-servicos td {
+  td {
     padding: 6px 0;
   }
 
-  #tabela-servicos td:before {
+  td:before {
     margin-bottom: 1px;
   }
 }
