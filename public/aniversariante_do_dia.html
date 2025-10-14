@@ -21,7 +21,7 @@
     </div>
 
     <div class="search-container">
-      <input type="text" placeholder="Procurar Aniver. do dia" />
+      <input type="text" id="searchInput" placeholder="Procurar Aniver. do dia" />
     </div>
 
     <div class="actions">
@@ -93,7 +93,21 @@
 
     <!-- Main -->
     <main class="main-content">
-      <h1>Aniver. do dia</h1>
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+        <h1>Aniver. do dia</h1>
+        <div class="action-buttons">
+          <button class="btn-adicionar" id="btnAdicionar">
+            <span class="material-icons">add</span>
+            ADICIONAR
+          </button>
+          <button class="btn-icon" id="btnFiltrar" title="Filtrar">
+            <span class="material-icons">filter_list</span>
+          </button>
+          <button class="btn-icon" id="btnSelecionar" title="Selecionar">
+            <span class="material-icons">check_box_outline_blank</span>
+          </button>
+        </div>
+      </div>
       <table id="tabela-aniversariantes">
         <thead>
           <tr>
@@ -108,7 +122,6 @@
           </tr>
         </tbody>
       </table>
-      <button class="add-birthday">+ ADICIONAR</button>
     </main>
   </div>
 

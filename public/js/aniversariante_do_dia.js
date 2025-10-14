@@ -77,24 +77,67 @@ document.addEventListener('DOMContentLoaded', function() {
     // window.location.href = "login.html";
   };
 
-  // Add birthday button
-  document.querySelector('.add-birthday').addEventListener('click', function() {
-    alert('Adicionar aniversariante');
+  // === Botão Adicionar ===
+  const btnAdicionar = document.getElementById("btnAdicionar");
+  btnAdicionar.addEventListener("click", () => {
+    alert("Funcionalidade de adicionar aniversariante será implementada aqui.");
   });
+
+  // === Botão Filtrar ===
+  const btnFiltrar = document.getElementById("btnFiltrar");
+  btnFiltrar.addEventListener("click", () => {
+    btnFiltrar.classList.toggle("active");
+    alert("Funcionalidade de filtro será implementada aqui.");
+  });
+
+  // === Botão Selecionar ===
+  const btnSelecionar = document.getElementById("btnSelecionar");
+  let selectMode = false;
+  btnSelecionar.addEventListener("click", () => {
+    selectMode = !selectMode;
+    btnSelecionar.classList.toggle("active");
+    const icon = btnSelecionar.querySelector(".material-icons");
+    icon.textContent = selectMode ? "check_box" : "check_box_outline_blank";
+
+    if (selectMode) {
+      alert("Modo de seleção ativado. Funcionalidade será implementada.");
+    } else {
+      alert("Modo de seleção desativado.");
+    }
+  });
+
+  // === Integração com campo de pesquisa do cabeçalho ===
+  const searchInput = document.getElementById("searchInput");
+  if (searchInput) {
+    searchInput.addEventListener("input", function () {
+      if (window.jQuery && $.fn.dataTable) {
+        const tabela = $('#tabela-aniversariantes').DataTable();
+        tabela.search(this.value).draw();
+      }
+    });
+  }
 
   // Inicializa DataTable com suporte a colunas arrastáveis
   if (window.jQuery && $.fn.dataTable) {
-    $('#tabela-aniversariantes').DataTable({
+    const tabela = $('#tabela-aniversariantes').DataTable({
       colReorder: true,
       paging: false,
-      searching: false,
+      searching: true,
       info: false,
       language: {
         emptyTable: "Nenhum aniversariante encontrado",
         loadingRecords: "Carregando...",
         processing: "Processando...",
         zeroRecords: "Nenhum registro encontrado"
-      }
+      },
+      createdRow: (row, data, dataIndex) => {
+        $(row)
+          .find("td")
+          .each(function (index) {
+            const labels = ["PACIENTE", "IDADE"];
+            $(this).attr("data-label", labels[index]);
+          });
+      },
     });
   } else {
     console.warn("jQuery ou DataTables não carregados corretamente.");

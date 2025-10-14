@@ -184,18 +184,62 @@ table td .material-icons {
   color: #5e2d79;
 }
 
-.add-patient {
-  background-color: #5e2d79;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 14px;
+/* ==== ACTION BUTTONS ==== */
+.action-buttons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-.add-patient:hover {
-  background-color: #4a2261;
+.btn-adicionar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background-color: #e7b5e8;
+  color: #333;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btn-adicionar:hover {
+  background-color: #dca0e5;
+}
+
+.btn-adicionar .material-icons {
+  font-size: 18px;
+}
+
+.btn-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-icon:hover {
+  background-color: #f0f0f0;
+  border-color: #999;
+}
+
+.btn-icon .material-icons {
+  font-size: 20px;
+  color: #333;
+}
+
+.btn-icon.active {
+  background-color: #e7b5e8;
+  border-color: #dca0e5;
 }
 
 /* ==== HEADER ==== */
@@ -369,6 +413,11 @@ table td .material-icons {
     content: none;
   }
 
+  .action-buttons {
+    justify-content: flex-end;
+    width: 100%;
+  }
+
   .patients-report {
     padding: 12px;
   }
@@ -419,12 +468,6 @@ table td .material-icons {
     display: block;
     margin-bottom: 2px;
   }
-
-  .add-patient {
-    width: 100%;
-    padding: 12px;
-    font-size: 16px;
-  }
 }
 
 @media (max-width: 480px) {
@@ -466,10 +509,5 @@ table td .material-icons {
 
   td:before {
     margin-bottom: 1px;
-  }
-
-  .add-patient {
-    padding: 10px;
-    font-size: 15px;
   }
 }

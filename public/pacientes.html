@@ -21,7 +21,7 @@
     </div>
 
     <div class="search-container">
-      <input type="text" placeholder="Procurar Pacientes" />
+      <input type="text" id="searchInput" placeholder="Procurar Pacientes" />
     </div>
 
     <div class="actions">
@@ -93,12 +93,27 @@
 
     <!-- Main -->
     <main class="main-content">
-      <h1>Pacientes</h1>
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+        <h1>Pacientes</h1>
+        <div class="action-buttons">
+          <button class="btn-adicionar" id="btnAdicionar">
+            <span class="material-icons">add</span>
+            ADICIONAR
+          </button>
+          <button class="btn-icon" id="btnFiltrar" title="Filtrar">
+            <span class="material-icons">filter_list</span>
+          </button>
+          <button class="btn-icon" id="btnSelecionar" title="Selecionar">
+            <span class="material-icons">check_box_outline_blank</span>
+          </button>
+        </div>
+      </div>
       <div class="patients-report">
         <h3>RELATÓRIO DE PACIENTES</h3>
         <table id="relatorio-pacientes">
           <thead>
             <tr>
+              <th>PACIENTE</th>
               <th>IDADE</th>
               <th>CPF</th>
               <th>CONVÊNIO</th>
@@ -108,44 +123,88 @@
           </thead>
           <tbody>
             <tr>
+              <td data-label="PACIENTE">ADRIANA FERREIRA DA SILVA OLIVEIRA</td>
               <td data-label="IDADE">43 anos, 2 meses, 10 dias</td>
-              <td data-label="CPF">00000000000</td>
+              <td data-label="CPF">053634280</td>
               <td data-label="CONVÊNIO">USISAÚDE</td>
               <td data-label="SITUAÇÃO">Inativo</td>
               <td data-label="EXTRATO DOS AGENDAMENTOS"><span class="material-icons">description</span></td>
             </tr>
             <tr>
+              <td data-label="PACIENTE">ADRIANA MICHELE DOS SANTOS</td>
               <td data-label="IDADE">53 anos, 11 meses, 0 dias</td>
-              <td data-label="CPF">00000000000</td>
+              <td data-label="CPF">881216204</td>
               <td data-label="CONVÊNIO">USISAÚDE</td>
               <td data-label="SITUAÇÃO">Ativo</td>
               <td data-label="EXTRATO DOS AGENDAMENTOS"><span class="material-icons">description</span></td>
             </tr>
             <tr>
+              <td data-label="PACIENTE">ADRIANA RODRIGUES DOS SANTOS</td>
               <td data-label="IDADE">21 anos, 8 meses, 25 dias</td>
-              <td data-label="CPF">00000000000</td>
+              <td data-label="CPF">139608030</td>
               <td data-label="CONVÊNIO">USISAÚDE</td>
               <td data-label="SITUAÇÃO">Inativo</td>
               <td data-label="EXTRATO DOS AGENDAMENTOS"><span class="material-icons">description</span></td>
             </tr>
             <tr>
+              <td data-label="PACIENTE">ALEXSANDRO NOGUEIRA MONTEIRO</td>
               <td data-label="IDADE">30 anos, 9 meses, 4 dias</td>
-              <td data-label="CPF">00000000000</td>
+              <td data-label="CPF">130221279</td>
               <td data-label="CONVÊNIO">PARTICULAR</td>
               <td data-label="SITUAÇÃO">Inativo</td>
               <td data-label="EXTRATO DOS AGENDAMENTOS"><span class="material-icons">description</span></td>
             </tr>
             <tr>
+              <td data-label="PACIENTE">ALICE ALVES DE OLIVEIRA MENDES MÃE ANA FLÁVIA FARMÁCIA VENEZ</td>
               <td data-label="IDADE">6 anos, 4 meses, 21 dias</td>
-              <td data-label="CPF">00000000000</td>
+              <td data-label="CPF">17827431</td>
               <td data-label="CONVÊNIO">USISAÚDE</td>
               <td data-label="SITUAÇÃO">Ativo</td>
+              <td data-label="EXTRATO DOS AGENDAMENTOS"><span class="material-icons">description</span></td>
+            </tr>
+            <tr>
+              <td data-label="PACIENTE">ALICE CARVALHO DE SOUZA MÃE ANA FLÁVIA FARMÁCIA VENEZ</td>
+              <td data-label="IDADE">24 anos, 7 meses, 11 dias</td>
+              <td data-label="CPF">161235369</td>
+              <td data-label="CONVÊNIO">USISAÚDE</td>
+              <td data-label="SITUAÇÃO">Ativo</td>
+              <td data-label="EXTRATO DOS AGENDAMENTOS"><span class="material-icons">description</span></td>
+            </tr>
+            <tr>
+              <td data-label="PACIENTE">ALINE APARECIDA PAULA DIAS</td>
+              <td data-label="IDADE">34 anos, 0 meses, 20 dias</td>
+              <td data-label="CPF">112466963</td>
+              <td data-label="CONVÊNIO">CASSSI</td>
+              <td data-label="SITUAÇÃO">Ativo</td>
+              <td data-label="EXTRATO DOS AGENDAMENTOS"><span class="material-icons">description</span></td>
+            </tr>
+            <tr>
+              <td data-label="PACIENTE">ALINE APARECIDA PAULA DIAS</td>
+              <td data-label="IDADE">31 anos, 2 meses, 2 dias</td>
+              <td data-label="CPF">102465979</td>
+              <td data-label="CONVÊNIO">CASSSI</td>
+              <td data-label="SITUAÇÃO">Ativo</td>
+              <td data-label="EXTRATO DOS AGENDAMENTOS"><span class="material-icons">description</span></td>
+            </tr>
+            <tr>
+              <td data-label="PACIENTE">ALINE RODRIGUES DOS SANTOS</td>
+              <td data-label="IDADE">41 anos, 1 meses, 2 dias</td>
+              <td data-label="CPF">068681679</td>
+              <td data-label="CONVÊNIO">USISAÚDE</td>
+              <td data-label="SITUAÇÃO">Ativo</td>
+              <td data-label="EXTRATO DOS AGENDAMENTOS"><span class="material-icons">description</span></td>
+            </tr>
+            <tr>
+              <td data-label="PACIENTE">ALINY MELO CARVALHO</td>
+              <td data-label="IDADE">38 anos, 5 meses, 8 dias</td>
+              <td data-label="CPF">015168679</td>
+              <td data-label="CONVÊNIO">PARTICULAR</td>
+              <td data-label="SITUAÇÃO">Inativo</td>
               <td data-label="EXTRATO DOS AGENDAMENTOS"><span class="material-icons">description</span></td>
             </tr>
           </tbody>
         </table>
       </div>
-      <button class="add-patient">+ ADICIONAR</button>
     </main>
   </div>
 

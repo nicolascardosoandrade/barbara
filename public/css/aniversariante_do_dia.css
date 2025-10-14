@@ -250,6 +250,12 @@ body {
   background-color: #f0f0f0;
 }
 
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
 /* ==== TABELA ==== */
 #tabela-aniversariantes {
   width: 100% !important;
@@ -269,19 +275,62 @@ body {
   color: #333;
 }
 
-/* ==== BOTÃO ADICIONAR ==== */
-.add-birthday {
-  background-color: #5e2d79;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 14px;
+/* ==== ACTION BUTTONS ==== */
+.action-buttons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-.add-birthday:hover {
-  background-color: #4a2261;
+.btn-adicionar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background-color: #e7b5e8;
+  color: #333;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btn-adicionar:hover {
+  background-color: #dca0e5;
+}
+
+.btn-adicionar .material-icons {
+  font-size: 18px;
+}
+
+.btn-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-icon:hover {
+  background-color: #f0f0f0;
+  border-color: #999;
+}
+
+.btn-icon .material-icons {
+  font-size: 20px;
+  color: #333;
+}
+
+.btn-icon.active {
+  background-color: #e7b5e8;
+  border-color: #dca0e5;
 }
 
 /* ==== RESPONSIVIDADE ==== */
@@ -296,11 +345,6 @@ body {
 
   .topbar {
     padding: 10px 15px;
-  }
-
-  .main-content h1 {
-    font-size: 20px;
-    margin-bottom: 15px;
   }
 
   /* Em mobile, a sidebar começa completamente oculta fora da tela */
@@ -336,6 +380,11 @@ body {
     margin-left: 0 !important; /* Reseta qualquer margin-left que possa ter vindo do desktop */
   }
 
+  .main-content h1 {
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
+
   /* Garante que o menu icon apareça visível no topo da tela */
   .topbar .menu-icon {
     display: block;
@@ -345,6 +394,11 @@ body {
   /* Não há necessidade de tooltip para a sidebar em mobile, pois ela se expande */
   .sidebar nav ul li:hover::after {
     content: none;
+  }
+
+  .action-buttons {
+    justify-content: flex-end;
+    width: 100%;
   }
 
   #tabela-aniversariantes, #tabela-aniversariantes thead, #tabela-aniversariantes tbody, #tabela-aniversariantes th, #tabela-aniversariantes td, #tabela-aniversariantes tr {
@@ -389,12 +443,6 @@ body {
     display: block;
     margin-bottom: 2px;
   }
-
-  .add-birthday {
-    width: 100%;
-    padding: 12px;
-    font-size: 16px;
-  }
 }
 
 @media (max-width: 480px) {
@@ -431,10 +479,5 @@ body {
 
   #tabela-aniversariantes td:before {
     margin-bottom: 1px;
-  }
-
-  .add-birthday {
-    padding: 10px;
-    font-size: 15px;
   }
 }

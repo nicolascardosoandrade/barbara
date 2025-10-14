@@ -82,71 +82,73 @@ document.addEventListener("DOMContentLoaded", () => {
     // window.location.href = "login.html";
   }
 
-  // Add appointment button
-  document.querySelector(".add-appointment").addEventListener("click", () => {
-    alert("Adicionar agendamento")
-  })
+  // === Botão Exportar ===
+  const btnExport = document.getElementById("btnExport");
+  btnExport.addEventListener("click", () => {
+    const wb = XLSX.utils.book_new();
+    const ws = XLSX.utils.table_to_sheet(document.getElementById('appointmentsTable'));
+    XLSX.utils.book_append_sheet(wb, ws, "Agendamentos");
+    XLSX.writeFile(wb, 'agendamentos.xlsx');
+  });
 
-  // Export to Excel function
-  window.exportToExcel = () => {
-    const table = document.getElementById("appointmentsTable")
-    const rows = []
-    for (let i = 0; i < table.rows.length; i++) {
-      const cells = table.rows[i].cells
-      const rowData = []
-      for (let j = 0; j < cells.length - 1; j++) {
-        rowData.push(cells[j].textContent)
-      }
-      rows.push(rowData)
-    }
+  // === Botão Adicionar ===
+  const btnAdicionar = document.getElementById("btnAdicionar");
+  btnAdicionar.addEventListener("click", () => {
+    alert("Funcionalidade de adicionar agendamento será implementada aqui.");
+  });
 
-    let csvContent = "data:text/csv;charset=utf-8,"
-    rows.forEach((rowArray) => {
-      const row = rowArray.join(",")
-      csvContent += row + "\r\n"
-    })
+  // === Botão Filtrar ===
+  const btnFiltrar = document.getElementById("btnFiltrar");
+  btnFiltrar.addEventListener("click", () => {
+    btnFiltrar.classList.toggle("active");
+    alert("Funcionalidade de filtro será implementada aqui.");
+  });
 
-    const encodedUri = encodeURI(csvContent)
-    const link = document.createElement("a")
-    link.setAttribute("href", encodedUri)
-    link.setAttribute("download", "agendamentos.csv")
-    document.body.appendChild(link)
-    link.click()
-    document.body.removeChild(link)
-  }
+  // === Botão Selecionar ===
+  const btnSelecionar = document.getElementById("btnSelecionar");
+  let selectMode = false;
+  btnSelecionar.addEventListener("click", () => {
+    selectMode = !selectMode;
+    btnSelecionar.classList.toggle("active");
+    const icon = btnSelecionar.querySelector(".material-icons");
+    icon.textContent = selectMode ? "check_box" : "check_box_outline_blank";
 
-  // Filter appointments function
-  window.filterAppointments = () => {
-    alert("Filtrar agendamentos")
-    // Aqui você pode implementar a lógica de filtro
-  }
-
-  // Toggle select mode function
-  window.toggleSelectMode = () => {
-    const selectButton = document.querySelector(".select-button .material-icons")
-    if (selectButton.textContent === "check_box_outline_blank") {
-      selectButton.textContent = "check_box"
-      alert("Modo de seleção ativado")
-      // Aqui você pode implementar a lógica para ativar checkboxes nas linhas
+    if (selectMode) {
+      alert("Modo de seleção ativado. Funcionalidade será implementada.");
     } else {
-      selectButton.textContent = "check_box_outline_blank"
-      alert("Modo de seleção desativado")
-      // Aqui você pode implementar a lógica para desativar checkboxes nas linhas
+      alert("Modo de seleção desativado.");
     }
-  }
+  });
+
+  // === Integração com campo de pesquisa do cabeçalho ===
+  const searchInput = document.getElementById("searchInput");
+  searchInput.addEventListener("input", function () {
+    if (window.jQuery && $.fn.dataTable) {
+      const tabela = $('#appointmentsTable').DataTable();
+      tabela.search(this.value).draw();
+    }
+  });
 
   // Inicializa DataTable com suporte a colunas arrastáveis
   if (window.jQuery && window.$ && window.$.fn.dataTable) {
     window.$("#appointmentsTable").DataTable({
       colReorder: true,
       paging: false,
-      searching: false,
+      searching: true,
       info: false,
       language: {
-        emptyTable: "Nenhum dado disponível",
+        emptyTable: "Nenhum agendamento encontrado",
         loadingRecords: "Carregando...",
         processing: "Processando...",
         zeroRecords: "Nenhum registro encontrado",
+      },
+      createdRow: (row, data, dataIndex) => {
+        $(row)
+          .find("td")
+          .each(function (index) {
+            const labels = ["DATA CONSULTA", "NOME", "INÍCIO", "FIM", "CONVÊNIO", "CONSULTA", "FREQUÊNCIA", "OBS."];
+            $(this).attr("data-label", labels[index]);
+          });
       },
     })
   } else {

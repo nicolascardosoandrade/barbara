@@ -21,7 +21,7 @@
     </div>
 
     <div class="search-container">
-      <input type="text" placeholder="Procurar Agendamentos" />
+      <input type="text" id="searchInput" placeholder="Procurar Agendamentos" />
     </div>
 
     <div class="actions">
@@ -93,14 +93,22 @@
 
     <!-- Main -->
     <main class="main-content">
-      <div class="page-header">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
         <h1>Agendamentos</h1>
-        <!-- Added filter and select buttons to match the reference image -->
-        <div class="button-container">
-          <button class="export-excel" onclick="exportToExcel()"><span class="material-icons">table_chart</span></button>
-          <button class="add-appointment">+ ADICIONAR</button>
-          <button class="filter-button" onclick="filterAppointments()"><span class="material-icons">filter_list</span></button>
-          <button class="select-button" onclick="toggleSelectMode()"><span class="material-icons">check_box_outline_blank</span></button>
+        <div class="action-buttons">
+          <button class="btn-icon" id="btnExport" title="Exportar">
+            <span class="material-icons">table_chart</span>
+          </button>
+          <button class="btn-adicionar" id="btnAdicionar">
+            <span class="material-icons">add</span>
+            ADICIONAR
+          </button>
+          <button class="btn-icon" id="btnFiltrar" title="Filtrar">
+            <span class="material-icons">filter_list</span>
+          </button>
+          <button class="btn-icon" id="btnSelecionar" title="Selecionar">
+            <span class="material-icons">check_box_outline_blank</span>
+          </button>
         </div>
       </div>
       <table id="appointmentsTable">
@@ -118,7 +126,7 @@
         </thead>
         <tbody>
           <tr>
-            <td data-label="DATA CONSULTA">03/10/2025</td>
+            <td data-label="DATA CONSULTA">1/4/2024</td>
             <td data-label="NOME">Márcio da Silva Rodrigues</td>
             <td data-label="INÍCIO">09:00</td>
             <td data-label="FIM">09:30</td>
@@ -128,7 +136,7 @@
             <td data-label="OBS."><span class="material-icons">edit</span></td>
           </tr>
           <tr>
-            <td data-label="DATA CONSULTA">03/10/2025</td>
+            <td data-label="DATA CONSULTA">1/4/2024</td>
             <td data-label="NOME">João Gabriel Domingos Rodrigues Mãe Aline</td>
             <td data-label="INÍCIO">09:30</td>
             <td data-label="FIM">10:00</td>
@@ -138,7 +146,7 @@
             <td data-label="OBS."><span class="material-icons">edit</span></td>
           </tr>
           <tr>
-            <td data-label="DATA CONSULTA">03/10/2025</td>
+            <td data-label="DATA CONSULTA">1/4/2024</td>
             <td data-label="NOME">Isadora Ferreira de Oliveira Mãe Renata</td>
             <td data-label="INÍCIO">10:00</td>
             <td data-label="FIM">10:30</td>
@@ -148,7 +156,7 @@
             <td data-label="OBS."><span class="material-icons">edit</span></td>
           </tr>
           <tr>
-            <td data-label="DATA CONSULTA">03/10/2025</td>
+            <td data-label="DATA CONSULTA">1/4/2024</td>
             <td data-label="NOME">Send Lopes Carvalho</td>
             <td data-label="INÍCIO">10:30</td>
             <td data-label="FIM">11:00</td>
@@ -158,7 +166,7 @@
             <td data-label="OBS."><span class="material-icons">edit</span></td>
           </tr>
           <tr>
-            <td data-label="DATA CONSULTA">03/10/2025</td>
+            <td data-label="DATA CONSULTA">1/4/2024</td>
             <td data-label="NOME">Helena Lima Soares Rocha Mãe Isabely</td>
             <td data-label="INÍCIO">11:00</td>
             <td data-label="FIM">11:30</td>
@@ -168,7 +176,7 @@
             <td data-label="OBS."><span class="material-icons">edit</span></td>
           </tr>
           <tr>
-            <td data-label="DATA CONSULTA">03/10/2025</td>
+            <td data-label="DATA CONSULTA">1/4/2024</td>
             <td data-label="NOME">Héitor Lima Soares Rocha Mãe Isabely</td>
             <td data-label="INÍCIO">11:30</td>
             <td data-label="FIM">12:00</td>
@@ -178,7 +186,7 @@
             <td data-label="OBS."><span class="material-icons">edit</span></td>
           </tr>
           <tr>
-            <td data-label="DATA CONSULTA">03/10/2025</td>
+            <td data-label="DATA CONSULTA">1/4/2024</td>
             <td data-label="NOME">Júlia Pinto Coelho Guerra</td>
             <td data-label="INÍCIO">12:00</td>
             <td data-label="FIM">12:30</td>
@@ -188,17 +196,17 @@
             <td data-label="OBS."><span class="material-icons">edit</span></td>
           </tr>
           <tr>
-            <td data-label="DATA CONSULTA">03/10/2025</td>
+            <td data-label="DATA CONSULTA">1/4/2024</td>
             <td data-label="NOME">Túlio Silqueira de Oliveira Mãe Márcia</td>
             <td data-label="INÍCIO">13:00</td>
             <td data-label="FIM">14:00</td>
-            <td data-label="CONVÊNIO">USISAÚDE</td>
+            <td data-label="CONVÊNIO">ABERTTA</td>
             <td data-label="CONSULTA">Sessão de 1h</td>
             <td data-label="FREQUÊNCIA">SEMANAL</td>
             <td data-label="OBS."><span class="material-icons">edit</span></td>
           </tr>
           <tr>
-            <td data-label="DATA CONSULTA">03/10/2025</td>
+            <td data-label="DATA CONSULTA">1/4/2024</td>
             <td data-label="NOME">Marcilei Xavier Quaresma de Santos</td>
             <td data-label="INÍCIO">14:00</td>
             <td data-label="FIM">14:30</td>
@@ -208,7 +216,7 @@
             <td data-label="OBS."><span class="material-icons">edit</span></td>
           </tr>
           <tr>
-            <td data-label="DATA CONSULTA">03/10/2025</td>
+            <td data-label="DATA CONSULTA">1/4/2024</td>
             <td data-label="NOME">Camila Batista de Sá Mãe Sônia</td>
             <td data-label="INÍCIO">14:30</td>
             <td data-label="FIM">15:00</td>
@@ -218,7 +226,7 @@
             <td data-label="OBS."><span class="material-icons">edit</span></td>
           </tr>
           <tr>
-            <td data-label="DATA CONSULTA">03/10/2025</td>
+            <td data-label="DATA CONSULTA">1/4/2024</td>
             <td data-label="NOME">Bernardo Emmanuel Santos da Silva Pai Ronaldo</td>
             <td data-label="INÍCIO">15:30</td>
             <td data-label="FIM">16:00</td>
@@ -228,7 +236,7 @@
             <td data-label="OBS."><span class="material-icons">edit</span></td>
           </tr>
           <tr>
-            <td data-label="DATA CONSULTA">03/10/2025</td>
+            <td data-label="DATA CONSULTA">1/4/2024</td>
             <td data-label="NOME">Verlaine Azevedo Maciel</td>
             <td data-label="INÍCIO">16:00</td>
             <td data-label="FIM">16:30</td>
@@ -238,7 +246,7 @@
             <td data-label="OBS."><span class="material-icons">edit</span></td>
           </tr>
           <tr>
-            <td data-label="DATA CONSULTA">03/10/2025</td>
+            <td data-label="DATA CONSULTA">1/4/2024</td>
             <td data-label="NOME">Gael de Souza Silva Mãe Thaís</td>
             <td data-label="INÍCIO">16:30</td>
             <td data-label="FIM">17:00</td>
@@ -248,7 +256,7 @@
             <td data-label="OBS."><span class="material-icons">edit</span></td>
           </tr>
           <tr>
-            <td data-label="DATA CONSULTA">03/10/2025</td>
+            <td data-label="DATA CONSULTA">1/4/2024</td>
             <td data-label="NOME">Anna Júlia Ulhoa Clara Mãe Patrícia</td>
             <td data-label="INÍCIO">17:00</td>
             <td data-label="FIM">17:30</td>
@@ -258,7 +266,7 @@
             <td data-label="OBS."><span class="material-icons">edit</span></td>
           </tr>
           <tr>
-            <td data-label="DATA CONSULTA">03/10/2025</td>
+            <td data-label="DATA CONSULTA">1/4/2024</td>
             <td data-label="NOME">Fernando Castro Silva</td>
             <td data-label="INÍCIO">17:30</td>
             <td data-label="FIM">18:00</td>
@@ -268,7 +276,7 @@
             <td data-label="OBS."><span class="material-icons">edit</span></td>
           </tr>
           <tr>
-            <td data-label="DATA CONSULTA">03/10/2025</td>
+            <td data-label="DATA CONSULTA">1/4/2024</td>
             <td data-label="NOME">Luiza Freire Silva e Ramalho Batista Mãe Marcela</td>
             <td data-label="INÍCIO">18:00</td>
             <td data-label="FIM">18:30</td>
@@ -288,5 +296,7 @@
   <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
   <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
   <script src="https://cdn.datatables.net/colreorder/1.6.3/js/dataTables.colReorder.min.js"></script>
+  <!-- SheetJS for XLSX export -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 </body>
 </html>

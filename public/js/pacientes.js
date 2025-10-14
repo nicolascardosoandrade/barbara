@@ -77,26 +77,67 @@ document.addEventListener('DOMContentLoaded', function() {
     // window.location.href = "login.html";
   };
 
-  // Add patient button
-  document.querySelector('.add-patient').addEventListener('click', function() {
-    alert('Adicionar paciente');
+  // === Botão Adicionar ===
+  const btnAdicionar = document.getElementById("btnAdicionar");
+  btnAdicionar.addEventListener("click", () => {
+    alert("Funcionalidade de adicionar paciente será implementada aqui.");
   });
-});
 
-// Inicializa DataTable com suporte a colunas arrastáveis
-document.addEventListener('DOMContentLoaded', function () {
+  // === Botão Filtrar ===
+  const btnFiltrar = document.getElementById("btnFiltrar");
+  btnFiltrar.addEventListener("click", () => {
+    btnFiltrar.classList.toggle("active");
+    alert("Funcionalidade de filtro será implementada aqui.");
+  });
+
+  // === Botão Selecionar ===
+  const btnSelecionar = document.getElementById("btnSelecionar");
+  let selectMode = false;
+  btnSelecionar.addEventListener("click", () => {
+    selectMode = !selectMode;
+    btnSelecionar.classList.toggle("active");
+    const icon = btnSelecionar.querySelector(".material-icons");
+    icon.textContent = selectMode ? "check_box" : "check_box_outline_blank";
+
+    if (selectMode) {
+      alert("Modo de seleção ativado. Funcionalidade será implementada.");
+    } else {
+      alert("Modo de seleção desativado.");
+    }
+  });
+
+  // === Integração com campo de pesquisa do cabeçalho ===
+  const searchInput = document.getElementById("searchInput");
+  if (searchInput) {
+    searchInput.addEventListener("input", function () {
+      if (window.jQuery && $.fn.dataTable) {
+        const tabela = $('#relatorio-pacientes').DataTable();
+        tabela.search(this.value).draw();
+      }
+    });
+  }
+
+  // Inicializa DataTable com suporte a colunas arrastáveis
   if (window.jQuery && $.fn.dataTable) {
-    $('#relatorio-pacientes').DataTable({
+    const tabela = $('#relatorio-pacientes').DataTable({
       colReorder: true,
       paging: false,
-      searching: false,
+      searching: true,
       info: false,
       language: {
-        emptyTable: "Nenhum dado disponível",
+        emptyTable: "Nenhum paciente encontrado",
         loadingRecords: "Carregando...",
         processing: "Processando...",
         zeroRecords: "Nenhum registro encontrado"
-      }
+      },
+      createdRow: (row, data, dataIndex) => {
+        $(row)
+          .find("td")
+          .each(function (index) {
+            const labels = ["PACIENTE", "IDADE", "CPF", "CONVÊNIO", "SITUAÇÃO", "EXTRATO DOS AGENDAMENTOS"];
+            $(this).attr("data-label", labels[index]);
+          });
+      },
     });
   } else {
     console.warn("jQuery ou DataTables não carregados corretamente.");
