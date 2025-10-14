@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>SistemaAeR - Barbara Lana</title>
+  <title>SistemaAeR - Bárbara Lana</title>
   <link rel="stylesheet" href="css/agendamentos.css"/>
   <link rel="icon" href="assets/img/Logo-barbara.png" type="image/x-icon">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
@@ -17,7 +17,7 @@
   <header class="topbar">
     <div class="logo-title">
       <span class="menu-icon material-icons">menu</span>
-      <h2>SistemaAeR - Barbara Lana</h2>
+      <h2>SistemaAeR - Bárbara Lana</h2>
     </div>
 
     <div class="search-container">
@@ -93,13 +93,15 @@
 
     <!-- Main -->
     <main class="main-content">
-      <h2>Agendamentos</h2>
-      <!-- Added filter and select buttons to match the reference image -->
-      <div class="button-container">
-        <button class="export-excel" onclick="exportToExcel()"><span class="material-icons">table_chart</span></button>
-        <button class="add-appointment">+ ADICIONAR</button>
-        <button class="filter-button" onclick="filterAppointments()"><span class="material-icons">filter_list</span></button>
-        <button class="select-button" onclick="toggleSelectMode()"><span class="material-icons">check_box_outline_blank</span></button>
+      <div class="page-header">
+        <h1>Agendamentos</h1>
+        <!-- Added filter and select buttons to match the reference image -->
+        <div class="button-container">
+          <button class="export-excel" onclick="exportToExcel()"><span class="material-icons">table_chart</span></button>
+          <button class="add-appointment">+ ADICIONAR</button>
+          <button class="filter-button" onclick="filterAppointments()"><span class="material-icons">filter_list</span></button>
+          <button class="select-button" onclick="toggleSelectMode()"><span class="material-icons">check_box_outline_blank</span></button>
+        </div>
       </div>
       <table id="appointmentsTable">
         <thead>

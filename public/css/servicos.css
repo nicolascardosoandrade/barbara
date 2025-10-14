@@ -249,9 +249,11 @@ body {
   transition: margin-left 0.3s ease;
 }
 
-.main-content h2 {
+.main-content h1 {
   font-size: 24px;
-  color: #333;
+  color: #5e2d79;
+  margin-bottom: 20px;
+  font-weight: bold;
 }
 
 .services-report {
@@ -383,6 +385,11 @@ table th {
     margin-left: 0 !important;
   }
 
+  .main-content h1 {
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
+
   .topbar .menu-icon {
     display: block;
     margin-right: 10px;
@@ -392,9 +399,9 @@ table th {
     content: none;
   }
 
-  .main-content > div {
-    flex-direction: column;
-    align-items: flex-start;
+  .action-buttons {
+    justify-content: flex-end;
+    width: 100%;
   }
 
   .services-report {
@@ -468,12 +475,22 @@ table th {
     padding: 10px;
   }
 
-  .main-content {
-    padding: 5px;
+  .main-content h1 {
+    font-size: 18px;
+    margin-bottom: 10px;
   }
 
   .services-report {
     padding: 10px;
+  }
+
+  .services-report h3 {
+    font-size: 15px;
+  }
+
+  tr {
+    padding: 8px;
+    margin-bottom: 8px;
   }
 
   td {

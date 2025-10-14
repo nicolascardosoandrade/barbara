@@ -141,6 +141,13 @@ body {
   transition: margin-left 0.3s ease;
 }
 
+.main-content h1 {
+  font-size: 24px;
+  color: #5e2d79;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
 .patients-report {
   background-color: #fff;
   padding: 15px;
@@ -346,6 +353,11 @@ table td .material-icons {
     margin-left: 0 !important; /* Reseta qualquer margin-left que possa ter vindo do desktop */
   }
 
+  .main-content h1 {
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
+
   /* Garante que o menu icon apareça visível no topo da tela */
   .topbar .menu-icon {
     display: block;
@@ -429,6 +441,10 @@ table td .material-icons {
   }
   .topbar {
     padding: 10px;
+  }
+
+  .main-content h1 {
+    font-size: 18px;
   }
 
   .patients-report {

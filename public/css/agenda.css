@@ -135,10 +135,17 @@ body {
 /* ==== MAIN CONTENT ==== */
 .main-content {
   flex: 1;
-  padding: 10px;
+  padding: 20px;
   overflow-y: auto;
   min-height: calc(100vh - 60px);
   transition: margin-left 0.3s ease;
+}
+
+.main-content h1 {
+  font-size: 24px;
+  color: #5e2d79;
+  margin-bottom: 20px;
+  font-weight: bold;
 }
 
 /* ==== HEADER ==== */
@@ -247,18 +254,12 @@ body {
 .calendar-header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   padding: 10px 15px;
   margin-bottom: 10px;
   background: #fff;
   border: 1px solid #ddd;
   border-radius: 6px;
-}
-
-.calendar-header h3 {
-  font-size: 18px;
-  color: #333;
-  margin: 0;
 }
 
 /* Ações da agenda (Excel, Adicionar, Filtrar) */
@@ -493,6 +494,15 @@ body {
     padding: 10px 15px;
   }
 
+  .main-content {
+    padding: 10px;
+  }
+
+  .main-content h1 {
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
+
   /* Em mobile, a sidebar começa completamente oculta fora da tela */
   .sidebar {
     position: fixed; /* Fixa a sidebar na viewport */
@@ -537,7 +547,7 @@ body {
     content: none;
   }
 
-  .calendar-header { flex-direction: column; gap: 10px; }
+  .calendar-header { flex-direction: column; gap: 10px; justify-content: center; }
   .calendar-views { flex-wrap: wrap; }
 
   /* Diminui o tamanho da data escrita por extenso no título do calendário */
@@ -627,6 +637,10 @@ body {
   }
   .topbar {
     padding: 10px;
+  }
+  .main-content h1 {
+    font-size: 18px;
+    margin-bottom: 10px;
   }
   .calendar-actions {
     flex-wrap: wrap;

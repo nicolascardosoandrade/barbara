@@ -141,16 +141,17 @@ body {
   transition: margin-left 0.3s ease;
 }
 
+.main-content h1 {
+  font-size: 24px;
+  color: #5e2d79;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
 .main-content > div {
   background-color: #fff;
   padding: 15px;
   border-radius: 6px;
-}
-
-.main-content h1 {
-  font-size: 24px;
-  margin-bottom: 20px;
-  color: #333;
 }
 
 .main-content label {
@@ -357,6 +358,11 @@ body {
     padding: 12px;
   }
 
+  .main-content h1 {
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
+
   /* Garante que o menu icon apareça visível no topo da tela */
   .topbar .menu-icon {
     display: block;
@@ -366,11 +372,6 @@ body {
   /* Não há necessidade de tooltip para a sidebar em mobile, pois ela se expande */
   .sidebar nav ul li:hover::after {
     content: none;
-  }
-
-  .main-content h1 {
-    font-size: 20px;
-    margin-bottom: 15px;
   }
 
   .main-content label {

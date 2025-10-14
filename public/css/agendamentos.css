@@ -142,15 +142,25 @@ body {
   transition: margin-left 0.3s ease;
 }
 
-.main-content h2 {
-  margin-bottom: 10px;
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.main-content h1 {
+  font-size: 24px;
+  color: #5e2d79;
+  margin: 0;
+  font-weight: bold;
 }
 
 .button-container {
   display: flex;
   justify-content: flex-end;
   gap: 10px;
-  margin-bottom: 20px;
+  margin: 0;
 }
 
 table {
@@ -331,6 +341,21 @@ table td .material-icons {
     padding: 10px 15px;
   }
 
+  .main-content {
+    padding: 10px;
+  }
+
+  .page-header {
+    flex-direction: column;
+    align-items: stretch;
+    margin-bottom: 15px;
+  }
+
+  .main-content h1 {
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
+
   /* Em mobile, a sidebar começa completamente oculta fora da tela */
   .sidebar {
     position: fixed; /* Fixa a sidebar na viewport */
@@ -460,6 +485,11 @@ table td .material-icons {
   }
   .topbar {
     padding: 10px;
+  }
+
+  .main-content h1 {
+    font-size: 18px;
+    margin-bottom: 10px;
   }
 
   td {

@@ -141,6 +141,13 @@ body {
   transition: margin-left 0.3s ease;
 }
 
+.main-content h1 {
+  font-size: 24px;
+  color: #5e2d79;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
 .financial-summary {
   display: flex;
   flex-wrap: wrap;
@@ -367,6 +374,11 @@ table th {
     padding: 10px 15px;
   }
 
+  .main-content h1 {
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
+
   /* Em mobile, a sidebar começa completamente oculta fora da tela */
   .sidebar {
     position: fixed; /* Fixa a sidebar na viewport */
@@ -551,6 +563,10 @@ table th {
   }
   .topbar {
     padding: 10px;
+  }
+
+  .main-content h1 {
+    font-size: 18px;
   }
 
   .financial-summary {
