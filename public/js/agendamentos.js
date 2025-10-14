@@ -83,53 +83,50 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // === Botão Exportar ===
-  const btnExport = document.getElementById("btnExport");
+  const btnExport = document.getElementById("btnExport")
+  const XLSX = window.XLSX // Declare the XLSX variable
   btnExport.addEventListener("click", () => {
-    const wb = XLSX.utils.book_new();
-    const ws = XLSX.utils.table_to_sheet(document.getElementById('appointmentsTable'));
-    XLSX.utils.book_append_sheet(wb, ws, "Agendamentos");
-    XLSX.writeFile(wb, 'agendamentos.xlsx');
-  });
-
-  // === Botão Adicionar ===
-  const btnAdicionar = document.getElementById("btnAdicionar");
-  btnAdicionar.addEventListener("click", () => {
-    alert("Funcionalidade de adicionar agendamento será implementada aqui.");
-  });
+    const wb = XLSX.utils.book_new()
+    const ws = XLSX.utils.table_to_sheet(document.getElementById("appointmentsTable"))
+    XLSX.utils.book_append_sheet(wb, ws, "Agendamentos")
+    XLSX.writeFile(wb, "agendamentos.xlsx")
+  })
 
   // === Botão Filtrar ===
-  const btnFiltrar = document.getElementById("btnFiltrar");
+  const btnFiltrar = document.getElementById("btnFiltrar")
   btnFiltrar.addEventListener("click", () => {
-    btnFiltrar.classList.toggle("active");
-    alert("Funcionalidade de filtro será implementada aqui.");
-  });
+    btnFiltrar.classList.toggle("active")
+    alert("Funcionalidade de filtro será implementada aqui.")
+  })
 
   // === Botão Selecionar ===
-  const btnSelecionar = document.getElementById("btnSelecionar");
-  let selectMode = false;
+  const btnSelecionar = document.getElementById("btnSelecionar")
+  let selectMode = false
   btnSelecionar.addEventListener("click", () => {
-    selectMode = !selectMode;
-    btnSelecionar.classList.toggle("active");
-    const icon = btnSelecionar.querySelector(".material-icons");
-    icon.textContent = selectMode ? "check_box" : "check_box_outline_blank";
+    selectMode = !selectMode
+    btnSelecionar.classList.toggle("active")
+    const icon = btnSelecionar.querySelector(".material-icons")
+    icon.textContent = selectMode ? "check_box" : "check_box_outline_blank"
 
     if (selectMode) {
-      alert("Modo de seleção ativado. Funcionalidade será implementada.");
+      alert("Modo de seleção ativado. Funcionalidade será implementada.")
     } else {
-      alert("Modo de seleção desativado.");
+      alert("Modo de seleção desativado.")
     }
-  });
+  })
 
   // === Integração com campo de pesquisa do cabeçalho ===
-  const searchInput = document.getElementById("searchInput");
+  const searchInput = document.getElementById("searchInput")
   searchInput.addEventListener("input", function () {
+    const $ = window.$ // Declare the $ variable
     if (window.jQuery && $.fn.dataTable) {
-      const tabela = $('#appointmentsTable').DataTable();
-      tabela.search(this.value).draw();
+      const tabela = $("#appointmentsTable").DataTable()
+      tabela.search(this.value).draw()
     }
-  });
+  })
 
   // Inicializa DataTable com suporte a colunas arrastáveis
+  const $ = window.$ // Declare the $ variable
   if (window.jQuery && window.$ && window.$.fn.dataTable) {
     window.$("#appointmentsTable").DataTable({
       colReorder: true,
@@ -146,12 +143,79 @@ document.addEventListener("DOMContentLoaded", () => {
         $(row)
           .find("td")
           .each(function (index) {
-            const labels = ["DATA CONSULTA", "NOME", "INÍCIO", "FIM", "CONVÊNIO", "CONSULTA", "FREQUÊNCIA", "OBS."];
-            $(this).attr("data-label", labels[index]);
-          });
+            const labels = ["DATA CONSULTA", "NOME", "INÍCIO", "FIM", "CONVÊNIO", "CONSULTA", "FREQUÊNCIA", "OBS."]
+            $(this).attr("data-label", labels[index])
+          })
       },
     })
   } else {
     console.warn("jQuery ou DataTables não carregados corretamente.")
   }
+
+  // === Modal Agendamento ===
+  const modal = document.getElementById("modalAgendamento")
+  const btnAdicionar = document.getElementById("btnAdicionar")
+  const closeModal = document.getElementById("closeModal")
+  const btnCancelar = document.getElementById("btnCancelar")
+  const formAgendamento = document.getElementById("formAgendamento")
+
+  btnAdicionar.addEventListener("click", () => {
+    modal.classList.add("show")
+    document.body.style.overflow = "hidden" // Impede scroll da página
+  })
+
+  // Fecha o modal ao clicar no X
+  closeModal.addEventListener("click", () => {
+    modal.classList.remove("show")
+    document.body.style.overflow = "auto"
+  })
+
+  // Fecha o modal ao clicar no botão Cancelar
+  btnCancelar.addEventListener("click", () => {
+    modal.classList.remove("show")
+    document.body.style.overflow = "auto"
+    formAgendamento.reset()
+  })
+
+  // Fecha o modal ao clicar fora do conteúdo
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      modal.classList.remove("show")
+      document.body.style.overflow = "auto"
+      formAgendamento.reset()
+    }
+  })
+
+  // Submissão do formulário
+  formAgendamento.addEventListener("submit", (e) => {
+    e.preventDefault()
+
+    // Coleta os dados do formulário
+    const formData = new FormData(formAgendamento)
+    const dados = Object.fromEntries(formData)
+
+    console.log("Dados do agendamento:", dados)
+    alert("Agendamento cadastrado com sucesso!")
+
+    // Fecha o modal e reseta o formulário
+    modal.classList.remove("show")
+    document.body.style.overflow = "auto"
+    formAgendamento.reset()
+  })
+
+  const telefoneInput = document.getElementById("telefone")
+  telefoneInput.addEventListener("input", (e) => {
+    let value = e.target.value.replace(/\D/g, "")
+    if (value.length > 11) value = value.slice(0, 11)
+
+    if (value.length > 10) {
+      value = value.replace(/(\d{2})(\d{5})(\d{4})/, "($1) $2-$3")
+    } else if (value.length > 6) {
+      value = value.replace(/(\d{2})(\d{4})(\d{0,4})/, "($1) $2-$3")
+    } else if (value.length > 2) {
+      value = value.replace(/(\d{2})(\d{0,5})/, "($1) $2")
+    }
+
+    e.target.value = value
+  })
 })

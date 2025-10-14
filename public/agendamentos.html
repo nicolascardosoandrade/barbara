@@ -288,6 +288,94 @@
         </tbody>
       </table>
     </main>
+
+    <!-- Modal de Agendamento -->
+    <div id="modalAgendamento" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>AGENDAMENTO</h2>
+          <span class="close-modal" id="closeModal">&times;</span>
+        </div>
+        <form id="formAgendamento" class="modal-form">
+          <div class="form-section">
+            <h3>Dados do Agendamento</h3>
+            <div class="form-group">
+              <label for="dataConsulta">Data da Consulta <span class="required">*</span></label>
+              <input type="date" id="dataConsulta" name="dataConsulta" required />
+            </div>
+
+            <div class="form-group">
+              <label for="nomePaciente">Nome do paciente <span class="required">*</span></label>
+              <select id="nomePaciente" name="nomePaciente" required>
+                <option value="">Selecione o paciente</option>
+                <option value="KENYA CRISTINA FERREIRA RIBEIRO">KENYA CRISTINA FERREIRA RIBEIRO</option>
+                <option value="Márcio da Silva Rodrigues">Márcio da Silva Rodrigues</option>
+                <option value="João Gabriel Domingos Rodrigues">João Gabriel Domingos Rodrigues</option>
+                <option value="Isadora Ferreira de Oliveira">Isadora Ferreira de Oliveira</option>
+                <option value="Send Lopes Carvalho">Send Lopes Carvalho</option>
+                <option value="Helena Lima Soares Rocha">Helena Lima Soares Rocha</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="telefone">Telefone</label>
+              <input type="tel" id="telefone" name="telefone" placeholder="(00) 00000-0000" />
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="inicio">Início <span class="required">*</span></label>
+                <input type="time" id="inicio" name="inicio" required />
+              </div>
+
+              <div class="form-group">
+                <label for="fim">Fim <span class="required">*</span></label>
+                <input type="time" id="fim" name="fim" required />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="convenio">Convênio <span class="required">*</span></label>
+              <select id="convenio" name="convenio" required>
+                <option value="">Selecione o convênio</option>
+                <option value="UNIMED">UNIMED</option>
+                <option value="USISAÚDE">USISAÚDE</option>
+                <option value="CENIBRA">CENIBRA</option>
+                <option value="ABERTTA">ABERTTA</option>
+                <option value="PARTICULAR">PARTICULAR</option>
+                <option value="CASSSI">CASSSI</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="consulta">Consulta <span class="required">*</span></label>
+              <select id="consulta" name="consulta" required>
+                <option value="">Procurar</option>
+                <option value="Sessão de 30 min">Sessão de 30 min</option>
+                <option value="Sessão de 1h">Sessão de 1h</option>
+                <option value="Avaliação">Avaliação</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="frequencia">Frequência <span class="required">*</span></label>
+              <select id="frequencia" name="frequencia" required>
+                <option value="">Procurar</option>
+                <option value="ÚNICO">ÚNICO</option>
+                <option value="SEMANAL">SEMANAL</option>
+                <option value="QUINZENAL">QUINZENAL</option>
+                <option value="MENSAL">MENSAL</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn-cancelar" id="btnCancelar">Cancelar</button>
+            <button type="submit" class="btn-salvar">Salvar</button>
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
 
   <script src="js/agendamentos.js"></script>
