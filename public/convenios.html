@@ -21,7 +21,7 @@
     </div>
 
     <div class="search-container">
-      <input type="text" placeholder="Procurar Convênios" />
+      <input type="text" id="searchInput" placeholder="Procurar Convênios" />
     </div>
 
     <div class="actions">
@@ -93,65 +93,119 @@
 
     <!-- Main -->
     <main class="main-content">
-      <h1>Convênios</h1>
-      <div>
-        <input type="text" id="convenioFilter" placeholder="Convênio" />
-        <select id="usageFilter">
-          <option value="">Usaiu/De</option>
-          <option value="usaiu">Usaiu</option>
-          <option value="de">De</option>
-        </select>
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+        <h1>Convênios</h1>
+        <div class="action-buttons">
+          <button class="btn-adicionar" id="btnAdicionar">
+            <span class="material-icons">add</span>
+            ADICIONAR
+          </button>
+          <button class="btn-icon" id="btnFiltrar" title="Filtrar">
+            <span class="material-icons">filter_list</span>
+          </button>
+          <button class="btn-icon" id="btnSelecionar" title="Selecionar">
+            <span class="material-icons">check_box_outline_blank</span>
+          </button>
+        </div>
+      </div>
+      <div class="convenios-report">
+        <h3>RELATÓRIO DE CONVÊNIOS</h3>
         <table id="conveniosTable">
           <thead>
             <tr>
-              <th>Paciente</th>
-              <th>Idade</th>
+              <th>PACIENTE</th>
+              <th>IDADE</th>
               <th>CPF</th>
-              <th>Convênio</th>
-              <th>Ações</th>
+              <th>CONVÊNIO</th>
+              <th>AÇÕES</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td data-label="Paciente">Adriana Farrel</td>
-              <td data-label="Idade">43 anos, 2 meses</td>
+              <td data-label="PACIENTE">Adriana Farrel</td>
+              <td data-label="IDADE">43 anos, 2 meses</td>
               <td data-label="CPF">00000000000</td>
-              <td data-label="Convênio">Usaiu</td>
-              <td data-label="Ações"><button onclick="editConvenio(this)">Editar</button></td>
+              <td data-label="CONVÊNIO">Usaiu</td>
+              <td data-label="AÇÕES"><span class="material-icons">edit</span></td>
             </tr>
             <tr>
-              <td data-label="Paciente">Adriana Micheri</td>
-              <td data-label="Idade">53 anos, 11 meses</td>
+              <td data-label="PACIENTE">Adriana Micheri</td>
+              <td data-label="IDADE">53 anos, 11 meses</td>
               <td data-label="CPF">00000000000</td>
-              <td data-label="Convênio">Usaiu</td>
-              <td data-label="Ações"><button onclick="editConvenio(this)">Editar</button></td>
+              <td data-label="CONVÊNIO">Usaiu</td>
+              <td data-label="AÇÕES"><span class="material-icons">edit</span></td>
             </tr>
             <tr>
-              <td data-label="Paciente">Adrine Rodrigo</td>
-              <td data-label="Idade">21 anos, 8 meses</td>
+              <td data-label="PACIENTE">Adrine Rodrigo</td>
+              <td data-label="IDADE">21 anos, 8 meses</td>
               <td data-label="CPF">00000000000</td>
-              <td data-label="Convênio">Usaiu</td>
-              <td data-label="Ações"><button onclick="editConvenio(this)">Editar</button></td>
+              <td data-label="CONVÊNIO">Usaiu</td>
+              <td data-label="AÇÕES"><span class="material-icons">edit</span></td>
             </tr>
             <tr>
-              <td data-label="Paciente">Alice Alves de</td>
-              <td data-label="Idade">6 anos, 4 meses</td>
+              <td data-label="PACIENTE">Alice Alves de</td>
+              <td data-label="IDADE">6 anos, 4 meses</td>
               <td data-label="CPF">00000000000</td>
-              <td data-label="Convênio">Usaiu</td>
-              <td data-label="Ações"><button onclick="editConvenio(this)">Editar</button></td>
+              <td data-label="CONVÊNIO">Usaiu</td>
+              <td data-label="AÇÕES"><span class="material-icons">edit</span></td>
             </tr>
             <tr>
-              <td data-label="Paciente">Alice Carvalho</td>
-              <td data-label="Idade">24 anos, 7 meses</td>
+              <td data-label="PACIENTE">Alice Carvalho</td>
+              <td data-label="IDADE">24 anos, 7 meses</td>
               <td data-label="CPF">00000000000</td>
-              <td data-label="Convênio">Usaiu</td>
-              <td data-label="Ações"><button onclick="editConvenio(this)">Editar</button></td>
+              <td data-label="CONVÊNIO">Usaiu</td>
+              <td data-label="AÇÕES"><span class="material-icons">edit</span></td>
             </tr>
           </tbody>
         </table>
-        <button onclick="addConvenio()">Adicionar</button>
       </div>
     </main>
+
+    <!-- Modal de Adicionar Convênio -->
+    <div id="modalConvenio" class="modal-overlay">
+      <div class="modal-container">
+        <div class="modal-header">
+          <h2>CONVÊNIO</h2>
+          <button class="modal-close" id="closeModal">
+            <span class="material-icons">close</span>
+          </button>
+        </div>
+        
+        <form id="formConvenio" class="modal-body">
+          <div class="form-section">
+            <div class="form-group">
+              <label for="nomeConvenio">CONVÊNIO <span class="required">*</span></label>
+              <input type="text" id="nomeConvenio" name="nomeConvenio" required placeholder="Nome do convênio">
+            </div>
+
+            <div class="form-group">
+              <label for="consulta">CONSULTA <span class="required">*</span></label>
+              <input type="text" id="consulta" name="consulta" required placeholder="Tipo de consulta">
+            </div>
+
+            <div class="form-group">
+              <label for="duracao">DURAÇÃO <span class="required">*</span></label>
+              <input type="text" id="duracao" name="duracao" required placeholder="hh:mm" maxlength="5">
+            </div>
+
+            <div class="form-group">
+              <label for="valor">VALOR <span class="required">*</span></label>
+              <input type="text" id="valor" name="valor" required placeholder="R$ 0,00">
+            </div>
+
+            <div class="form-group">
+              <label for="pagamento">PAGAMENTO <span class="required">*</span></label>
+              <input type="number" id="pagamento" name="pagamento" required placeholder="Dias para pagamento" min="0">
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn-cancelar" id="btnCancelar">Cancelar</button>
+            <button type="submit" class="btn-salvar">Salvar</button>
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
 
   <!-- Seu script original -->

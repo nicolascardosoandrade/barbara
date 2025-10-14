@@ -5,12 +5,13 @@
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   height: 100%;
 }
 
 body {
-  font-family: 'Segoe UI', sans-serif;
+  font-family: "Segoe UI", sans-serif;
   display: flex;
   flex-direction: column;
   background-color: #f4f4f4;
@@ -148,56 +149,98 @@ body {
   font-weight: bold;
 }
 
-.main-content input, .main-content select {
-  padding: 8px;
-  margin-right: 10px;
+.convenios-report {
+  background-color: #fff;
+  padding: 15px;
   border-radius: 6px;
-  border: 1px solid #ddd;
 }
 
-.main-content table {
+.convenios-report h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 20px;
   background-color: #fff;
+  margin-bottom: 20px;
 }
 
-.main-content th, .main-content td {
+table th,
+table td {
   padding: 10px;
-  border: 1px solid #ddd;
   text-align: left;
+  border-bottom: 1px solid #ddd;
 }
 
-.main-content th {
+table th {
   background-color: #e7b5e8;
   color: #333;
 }
 
-.main-content td button {
-  padding: 5px 10px;
-  border: none;
-  border-radius: 4px;
-  background-color: #5e2d79;
-  color: white;
+table td .material-icons {
   cursor: pointer;
+  color: #5e2d79;
 }
 
-.main-content td button:hover {
-  background-color: #4a1f5e;
+/* ==== ACTION BUTTONS ==== */
+.action-buttons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-.main-content button {
-  padding: 10px 20px;
+.btn-adicionar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background-color: #e7b5e8;
+  color: #333;
   border: none;
+  padding: 8px 16px;
   border-radius: 6px;
-  background-color: #5e2d79;
-  color: white;
+  font-size: 14px;
+  font-weight: 500;
   cursor: pointer;
-  margin-top: 20px;
+  transition: background-color 0.2s ease;
 }
 
-.main-content button:hover {
-  background-color: #4a1f5e;
+.btn-adicionar:hover {
+  background-color: #dca0e5;
+}
+
+.btn-adicionar .material-icons {
+  font-size: 18px;
+}
+
+.btn-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-icon:hover {
+  background-color: #f0f0f0;
+  border-color: #999;
+}
+
+.btn-icon .material-icons {
+  font-size: 20px;
+  color: #333;
+}
+
+.btn-icon.active {
+  background-color: #e7b5e8;
+  border-color: #dca0e5;
 }
 
 /* ==== HEADER ==== */
@@ -371,18 +414,25 @@ body {
     content: none;
   }
 
-  .main-content input, .main-content select {
+  .action-buttons {
+    justify-content: flex-end;
     width: 100%;
-    margin-bottom: 10px;
-    margin-right: 0;
   }
 
-  .main-content button {
-    width: 100%;
-    margin-top: 10px;
+  .convenios-report {
+    padding: 12px;
   }
 
-  table, thead, tbody, th, td, tr {
+  .convenios-report h3 {
+    font-size: 16px;
+  }
+
+  table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
     display: block;
   }
 
@@ -400,7 +450,7 @@ body {
     padding: 10px;
     background-color: #fff;
     border-radius: 6px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
   }
 
   td {
@@ -418,16 +468,11 @@ body {
     width: auto;
     padding-right: 0;
     white-space: normal;
-    content: attr(data-label) ':';
+    content: attr(data-label) ":";
     font-weight: bold;
     text-align: left;
     display: block;
     margin-bottom: 2px;
-  }
-
-  .main-content td button {
-    width: 100%;
-    margin-top: 5px;
   }
 }
 
@@ -451,17 +496,17 @@ body {
     font-size: 18px;
   }
 
-  .main-content input, .main-content select {
-    padding: 6px;
+  .convenios-report {
+    padding: 10px;
   }
 
-  .main-content button {
-    padding: 12px;
+  .convenios-report h3 {
     font-size: 15px;
   }
 
   tr {
     padding: 8px;
+    margin-bottom: 8px;
   }
 
   td {
@@ -470,5 +515,224 @@ body {
 
   td:before {
     margin-bottom: 1px;
+  }
+}
+
+/* Estilos do Modal de Convênio */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 2000;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.3s ease;
+}
+
+.modal-overlay.active {
+  display: flex;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modal-container {
+  background-color: white;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  border-bottom: 1px solid #e0e0e0;
+  background-color: #f9f9f9;
+}
+
+.modal-header h2 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.modal-close:hover {
+  background-color: #e0e0e0;
+}
+
+.modal-close .material-icons {
+  font-size: 24px;
+  color: #666;
+}
+
+.modal-body {
+  padding: 24px;
+}
+
+.form-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #555;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.form-group .required {
+  color: #e74c3c;
+}
+
+.form-group input,
+.form-group select {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  background-color: white;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #dca0e5;
+  box-shadow: 0 0 0 3px rgba(220, 160, 229, 0.1);
+}
+
+.form-group input::placeholder {
+  color: #aaa;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 20px 24px;
+  border-top: 1px solid #e0e0e0;
+  background-color: #f9f9f9;
+}
+
+.btn-cancelar,
+.btn-salvar {
+  padding: 10px 24px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.btn-cancelar {
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+.btn-cancelar:hover {
+  background-color: #e0e0e0;
+}
+
+.btn-salvar {
+  background-color: #dca0e5;
+  color: #333;
+}
+
+.btn-salvar:hover {
+  background-color: #d18fdb;
+}
+
+.btn-cancelar:active,
+.btn-salvar:active {
+  transform: scale(0.98);
+}
+
+/* Responsividade do Modal */
+@media (max-width: 768px) {
+  .modal-container {
+    width: 95%;
+    max-height: 85vh;
+  }
+
+  .modal-header,
+  .modal-body,
+  .modal-footer {
+    padding: 16px;
+  }
+
+  .modal-header h2 {
+    font-size: 18px;
+  }
+
+  .form-section {
+    gap: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .modal-container {
+    width: 100%;
+    height: 100%;
+    max-height: 100vh;
+    border-radius: 0;
+  }
+
+  .modal-footer {
+    flex-direction: column;
+  }
+
+  .btn-cancelar,
+  .btn-salvar {
+    width: 100%;
   }
 }

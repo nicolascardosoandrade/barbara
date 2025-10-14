@@ -206,6 +206,129 @@
         </table>
       </div>
     </main>
+
+    <!-- Modal popup para adicionar paciente -->
+    <div id="modalPaciente" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>PACIENTE</h2>
+          <span class="close-modal" id="closeModal">&times;</span>
+        </div>
+        <form id="formPaciente" class="modal-form">
+          <div class="form-section">
+            <h3>Dados do Paciente</h3>
+            <div class="form-group">
+              <label for="nomeCompleto">Nome completo <span class="required">*</span></label>
+              <input type="text" id="nomeCompleto" name="nomeCompleto" required>
+            </div>
+            <div class="form-group">
+              <label for="responsavel">Responsável</label>
+              <input type="text" id="responsavel" name="responsavel" placeholder="Nome do responsável (se aplicável)">
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="telefone">Telefone <span class="required">*</span></label>
+                <input type="tel" id="telefone" name="telefone" required>
+              </div>
+              <div class="form-group">
+                <label for="email">Email <span class="required">*</span></label>
+                <input type="email" id="email" name="email" required>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="dataNascimento">Data de nascimento <span class="required">*</span></label>
+                <input type="date" id="dataNascimento" name="dataNascimento" required>
+              </div>
+              <div class="form-group">
+                <label for="cpf">CPF <span class="required">*</span></label>
+                <input type="text" id="cpf" name="cpf" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="convenio">Convênio <span class="required">*</span></label>
+              <select id="convenio" name="convenio" required>
+                <option value="">Selecione</option>
+                <option value="PARTICULAR">PARTICULAR</option>
+                <option value="USISAÚDE">USISAÚDE</option>
+                <option value="CASSSI">CASSSI</option>
+                <option value="UNIMED">UNIMED</option>
+                <option value="AMIL">AMIL</option>
+                <option value="BRADESCO SAÚDE">BRADESCO SAÚDE</option>
+                <option value="SULAMERICA">SULAMERICA</option>
+                <option value="OUTRO">OUTRO</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h3>Endereço do Paciente</h3>
+            <div class="form-row">
+              <div class="form-group form-group-small">
+                <label for="cep">CEP <span class="required">*</span></label>
+                <input type="text" id="cep" name="cep" required>
+              </div>
+              <div class="form-group form-group-large">
+                <label for="logradouro">Logradouro <span class="required">*</span></label>
+                <input type="text" id="logradouro" name="logradouro" required>
+              </div>
+              <div class="form-group form-group-small">
+                <label for="numero">Número <span class="required">*</span></label>
+                <input type="text" id="numero" name="numero" required>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="bairro">Bairro <span class="required">*</span></label>
+                <input type="text" id="bairro" name="bairro" required>
+              </div>
+              <div class="form-group">
+                <label for="cidade">Cidade <span class="required">*</span></label>
+                <input type="text" id="cidade" name="cidade" required>
+              </div>
+              <div class="form-group form-group-small">
+                <label for="estado">Estado <span class="required">*</span></label>
+                <select id="estado" name="estado" required>
+                  <option value="">Selecione</option>
+                  <option value="AC">AC</option>
+                  <option value="AL">AL</option>
+                  <option value="AP">AP</option>
+                  <option value="AM">AM</option>
+                  <option value="BA">BA</option>
+                  <option value="CE">CE</option>
+                  <option value="DF">DF</option>
+                  <option value="ES">ES</option>
+                  <option value="GO">GO</option>
+                  <option value="MA">MA</option>
+                  <option value="MT">MT</option>
+                  <option value="MS">MS</option>
+                  <option value="MG">MG</option>
+                  <option value="PA">PA</option>
+                  <option value="PB">PB</option>
+                  <option value="PR">PR</option>
+                  <option value="PE">PE</option>
+                  <option value="PI">PI</option>
+                  <option value="RJ">RJ</option>
+                  <option value="RN">RN</option>
+                  <option value="RS">RS</option>
+                  <option value="RO">RO</option>
+                  <option value="RR">RR</option>
+                  <option value="SC">SC</option>
+                  <option value="SP">SP</option>
+                  <option value="SE">SE</option>
+                  <option value="TO">TO</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn-cancelar" id="btnCancelar">Cancelar</button>
+            <button type="submit" class="btn-salvar">Salvar</button>
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
 
   <!-- Seu script original -->
